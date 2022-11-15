@@ -11,7 +11,8 @@ task mycosnptree {
   }
   command <<<
     date | tee DATE
-    echo "1.4" > MYCOSNPTREE_VERSION
+    # mycosnp-nf does not have a version output
+    echo "mycosnp-nf 1.4" | tee MYCOSNP_VERSION
 
     vcf_array=(~{sep=' ' vcf})
     vcf_array_len=$(echo "${#vcf[@]}")
@@ -31,10 +32,20 @@ task mycosnptree {
       echo -e "${vcf}" >> samples.csv
     done
 
+    # Debug
+    export TMP_DIR=${TMPDIR:-/tmp}
+    export TMP=${TMPDIR:-/tmp}
+    env
+
     # Run MycoSNP
     mkdir mycosnptree
     cd mycosnptree
-    if nextflow run /mycosnp-nf/main.nf --add_vcf_file ../samples.csv --ref_dir /reference/~{accession} --iqtree --publish_dir_mode copy --tmpdir $TMPDIR; then
+    if nextflow run /mycosnp-nf/main.nf \
+        --add_vcf_file ../samples.csv \
+        --ref_dir /reference/~{accession} \
+        --iqtree \
+        --publish_dir_mode copy \
+        --tmpdir ${TMPDIR:-/tmp}; then
       # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/
       cd ..
@@ -61,7 +72,7 @@ task mycosnptree {
     docker: "~{docker}"
     memory: "32 GB"
     cpu: 4
-    disks:  "local-disk ~{disk_size} SSD"
+    disks: "local-disk ~{disk_size} SSD"
     maxRetries: 3
     preemptible: 0
   }

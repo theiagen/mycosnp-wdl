@@ -16,21 +16,31 @@ task mycosnp {
   }
   command <<<
     date | tee DATE
-    echo $(nextflow pull rpetit3/mycosnp-nf 2>&1) | sed 's/^.*revision: //;' | tee MYCOSNP_VERSION
+    # mycosnp-nf does not have a version output
+    echo "mycosnp-nf 1.4" | tee MYCOSNP_VERSION
 
     # Make sample FOFN
     echo "sample,fastq_1,fastq_2" > sample.csv
     echo "~{samplename},~{read1},~{read2}" >> sample.csv
 
     # Debug
-    export TMP_DIR=$TMPDIR
-    export TMP=$TMPDIR
+    export TMP_DIR=${TMPDIR:-/tmp}
+    export TMP=${TMPDIR:-/tmp}
     env
 
     # Run MycoSNP
     mkdir ~{samplename}
     cd ~{samplename}
-    if nextflow run rpetit3/mycosnp-nf --input ../sample.csv --ref_dir /reference/~{accession} --publish_dir_mode copy --skip_phylogeny --tmpdir $TMPDIR --max_cpus ~{cpu} --max_memory '~{memory}.GB' --rate 0 --coverage ~{coverage}; then
+    if nextflow run /mycosnp-nf/main.nf \
+        --input ../sample.csv \
+        --ref_dir /reference/~{accession} \
+        --publish_dir_mode copy \
+        --skip_phylogeny \
+        --tmpdir ${TMPDIR:-/tmp} \
+        --max_cpus ~{cpu} \
+        --max_memory '~{memory}.GB'\
+        --rate 0 \
+        --coverage ~{coverage}; then
       # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/
       cd ..

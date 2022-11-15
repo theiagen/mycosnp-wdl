@@ -5,7 +5,7 @@ import "../tasks/task_versioning.wdl" as versioning
 
 workflow mycosnp_variants {
   meta {
-    description: "A WDL wrapper around the qc, processing and variant calling components of mycosnp-nf, for whole genome sequencing analysis of fungal organisms, including Candida auris."
+    description: "A WDL wrapper around the qc, processing and variant calling components of mycosnp-nf."
   }
   input {
     File    read1
