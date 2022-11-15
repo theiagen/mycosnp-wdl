@@ -1,0 +1,21 @@
+@HD	VN:1.6
+@SQ	SN:PGLS01000004.1	LN:4303397	M5:e6c0b9edca0a245c9fcf3e5168d6d61e	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000001.1	LN:2363944	M5:6820a5383be0244acb2134747678b7a9	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000002.1	LN:1552814	M5:0f8d010b4bc8defc7c603187155f1acf	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000007.1	LN:1437120	M5:2048eff0f0f8160a04d07e0db598d924	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000006.1	LN:996432	M5:4418785fcfce3ec53285be1e48882585	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000005.1	LN:949235	M5:5607babe497d5d7624c40f068c47f60d	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000003.1	LN:788955	M5:c91ceaefaad0e0ddbb71eca0c9cdd587	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000014.1	LN:51479	M5:a25ae8996f9c729233952fb70aaab296	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000017.1	LN:50837	M5:c6ef3da85d1a255d29c27f47a4985738	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000016.1	LN:32410	M5:058b7ea94253101c6e23c35b86857a15	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000015.1	LN:30471	M5:51cd9824858faad27deb6d5313200890	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000012.1	LN:26795	M5:34559c6f22b6576b6ec696820b4d70c3	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000018.1	LN:25403	M5:9c653ad9bf9ae68f6cd6c93dfd68a994	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000010.1	LN:24303	M5:de0a45f7a313b5cd0ecf8cc411bd9bbe	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000011.1	LN:21981	M5:9c61b6ddb0adc1d5bea5b2696ead816d	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000009.1	LN:20623	M5:4208502a101e97ea164791d222f2b67f	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000019.1	LN:20143	M5:a5891e05fc0f33d20cd9c38cb50bfc21	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000013.1	LN:17854	M5:0fb70245429afd25a9907fb26c528b7e	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000020.1	LN:16270	M5:f32c3cca6dec647d81bf89b3abea610c	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
+@SQ	SN:PGLS01000008.1	LN:10712	M5:9a6bf71f5b31dd4435d827c8ed4540d0	UR:file:/home/robert_petit/repos/public_health_bacterial_genomics/temp/nf/work/0a/3aa1bc3948963329d842b485f5e7e3/reference.fa
