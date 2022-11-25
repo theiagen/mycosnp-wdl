@@ -10,7 +10,7 @@ task mycosnp {
     String accession = "GCA_016772135"
     Int memory = 64
     Int cpu = 8
-    Int coverage = 100
+    Int? coverage
     Int min_depth = 10
     Int disk_size = 100
   }
@@ -40,7 +40,7 @@ task mycosnp {
         --max_cpus ~{cpu} \
         --max_memory "~{memory}.GB"\
         --rate 0 \
-        --coverage ~{coverage}; then
+        ~{'--coverage ' + coverage}; then
       # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/
       cd ..
