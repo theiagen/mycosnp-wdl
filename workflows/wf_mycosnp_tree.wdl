@@ -1,6 +1,6 @@
 version 1.0
 
-import "../tasks/phylogenetic_inference/task_mycosnp_tree.wdl" as mycosnptree_nf
+import "../tasks/task_mycosnp_tree.wdl" as mycosnptree_nf
 import "../tasks/task_versioning.wdl" as versioning
 
 workflow mycosnp_tree {
@@ -35,5 +35,6 @@ workflow mycosnp_tree {
     File mycosnp_alignment = mycosnptree.mycosnptree_alignment
     File mycosnptree_snpdists = mycosnptree.mycosnptree_snpdists
     File mycosnp_tree_full_results = mycosnptree.mycosnptree_full_results
+    File mycosnp_tree_vcf_csv = mycosnptree.mycosnptree_vcf_csv
   }
 }

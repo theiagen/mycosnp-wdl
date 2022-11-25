@@ -67,6 +67,7 @@ task mycosnptree {
     File mycosnptree_alignment = "mycosnptree/results/combined/vcf-to-fasta/vcf-to-fasta.fasta"
     File mycosnptree_snpdists = "mycosnptree/results/combined/snpdists/combined.tsv"
     File mycosnptree_full_results = "mycosnptree.tar.gz"
+    File mycosnptree_vcf_csv = "samples.csv"
   }
   runtime {
     docker: "~{docker}"
