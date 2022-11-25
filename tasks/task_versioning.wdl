@@ -7,12 +7,12 @@ task version_capture {
   meta {
     volatile: true
   }
-  command {
+  command <<<
     mycosnpwdl_version="mycosnp-wdl v1.4"
     ~{default='' 'export TZ=' + timezone}
     date +"%Y-%m-%d" > TODAY
-    echo $mycosnpwdl_version > MYCOSNPWDL_VERSION
-  }
+    echo "${mycosnpwdl_version}" > MYCOSNPWDL_VERSION
+  >>>
   output {
     String date = read_string("TODAY")
     String mycosnpwdl_version = read_string("MYCOSNPWDL_VERSION")
