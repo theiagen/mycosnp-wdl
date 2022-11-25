@@ -13,7 +13,7 @@ ARG MYCOSNP_SOFTWARE_VERSION="1.4"
 ARG MYCOSNP_SRC_URL=https://github.com/CDCgov/mycosnp-nf/archive/refs/tags/v${MYCOSNP_SOFTWARE_VERSION}.tar.gz
 
 # metadata labels
-LABEL base.image="nfcore/base:2.1"
+LABEL base.image="mambaorg/micromamba:0.27.0"
 LABEL dockerfile.version="1"
 LABEL software="mycosnp-wdl"
 LABEL software.version=${MYCOSNP_SOFTWARE_VERSION}
