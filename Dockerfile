@@ -78,7 +78,7 @@ RUN wget --quiet "${MYCOSNP_SRC_URL}" && \
 # set the environment, add base conda/micromamba bin directory into path
 # set locale settings to UTF-8
 # set the environment, put new conda env in PATH by default
-ENV PATH="/opt/conda/envs/base/bin:${PATH}" \
+ENV PATH="/opt/conda/bin:${PATH}" \
   LC_ALL=C.UTF-8
 
 # set final working directory to /data
