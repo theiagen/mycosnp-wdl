@@ -18,7 +18,7 @@
     - wf_mycosnp_variants_miniwdl
   files:
     - path: miniwdl_run/call-mycosnp/command
-      md5sum: 269f55184726a5f5dac312e6bf88a731
+      md5sum: b6937b3611cb7d6c3c4e5efd1837ed5e
     - path: miniwdl_run/call-mycosnp/inputs.json
     - path: miniwdl_run/call-mycosnp/outputs.json
     - path: miniwdl_run/call-mycosnp/stderr.txt

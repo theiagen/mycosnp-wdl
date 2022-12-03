@@ -2,3 +2,5 @@ wf_mycosnp_variants:
   - workflows/wf_mycosnp_variants.wdl
   - tasks/task_mycosnp_variants.wdl
   - tasks/task_versioning.wdl
+  - tests/inputs/wf_mycosnp_variants.json
+  - tests/workflows/test_wf_mycosnp_variants.yml
