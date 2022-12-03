@@ -1,0 +1,7 @@
+{
+    "mycosnp_variants.samplename": "test",
+    "mycosnp_variants.read1": "tests/fastqs/test_R1.fastq.gz",
+    "mycosnp_variants.read2": "tests/fastqs/test_R2.fastq.gz",
+    "mycosnp_variants.mycosnp.accession": "test",
+    "mycosnp_variants.mycosnp.min_depth": 5
+}

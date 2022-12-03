@@ -93,8 +93,8 @@ task mycosnp {
     Float percent_reference_coverage = read_float("PERCENT_REFERENCE_COVERAGE")
     Int assembly_size = read_int("ASSEMBLY_SIZE")
     Int consensus_n_variant_min_depth = min_depth
-    File vcf = "~{samplename}/results/samples/~{samplename}/variant_calling/haplotypecaller/~{samplename}.g.vcf"
-    File vcf_index = "~{samplename}/results/samples/~{samplename}/variant_calling/haplotypecaller/~{samplename}.g.vcf.tbi"
+    File vcf = "~{samplename}/results/samples/~{samplename}/variant_calling/haplotypecaller/~{samplename}.g.vcf.gz"
+    File vcf_index = "~{samplename}/results/samples/~{samplename}/variant_calling/haplotypecaller/~{samplename}.g.vcf.gz.tbi"
     File multiqc = "~{samplename}/results/multiqc/multiqc_report.html"
     File bam_file = "~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.bam"
     File bam_bai_file = "~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.bam.bai"

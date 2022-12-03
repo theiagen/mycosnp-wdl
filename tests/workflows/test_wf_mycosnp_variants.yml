@@ -1,0 +1,320 @@
+- name: mycosnp_variants_cromwell
+  command: cromwell run -i ./tests/inputs/wf_mycosnp_variants.json -m metadata.json ./workflows/wf_mycosnp_variants.wdl
+  tags:
+    - wf_mycosnp_variants
+    - wf_mycosnp_variants_cromwell
+  files:
+    - path: log.err
+      contains: ["Successfully released change log lock", "INFO", "WORKFLOW_METADATA_SUMMARY_ENTRY", "liquibase"]
+    - path: log.out
+      contains: ["workflow finished with status 'Succeeded'", "mycosnp_variants", "Done"]
+    - path: metadata.json
+      contains: ["outputs", "mycosnp_variants", "Succeeded", "runtimeAttributes"]
+
+- name: mycosnp_variants_miniwdl
+  command: miniwdl run -i ./tests/inputs/wf_mycosnp_variants.json -d miniwdl_run/. --verbose --error-json ./workflows/wf_mycosnp_variants.wdl
+  tags:
+    - wf_mycosnp_variants
+    - wf_mycosnp_variants_miniwdl
+  files:
+    - path: miniwdl_run/call-mycosnp/command
+      md5sum: 269f55184726a5f5dac312e6bf88a731
+    - path: miniwdl_run/call-mycosnp/inputs.json
+    - path: miniwdl_run/call-mycosnp/outputs.json
+    - path: miniwdl_run/call-mycosnp/stderr.txt
+    - path: miniwdl_run/call-mycosnp/stderr.txt.offset
+    - path: miniwdl_run/call-mycosnp/stdout.txt
+    - path: miniwdl_run/call-mycosnp/task.log
+    - path: miniwdl_run/call-mycosnp/work/ASSEMBLY_SIZE
+      md5sum: f58dc1272a49e4eebe213d95ca57af80
+    - path: miniwdl_run/call-mycosnp/work/DATE
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_COVERAGE_CLEAN
+      md5sum: b64ffa60f5b6fb256e5e79b98469459b
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_COVERAGE_RAW
+      md5sum: 8d0f2db50b6840a7205eeddbb913acf1
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_GC_CLEAN
+      md5sum: 384dcc0492b1a0c232208952eb650556
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_GC_RAW
+      md5sum: 2984345474273d7fe021b92a40915dcb
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_MEAN_COVERAGE_DEPTH
+      md5sum: f92e32da522871738ebe073ab85f64a4
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_PHRED_CLEAN
+      md5sum: 7b6c0be7583ddc0ad7f0e2c8e1f37986
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_PHRED_RAW
+      md5sum: 7db15e04d911a3d11be23b5043e5e10a
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_CLEAN
+      md5sum: 5730f3e02f1b09d3e2a673c972d96c55
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_MAPPED
+      md5sum: 77f22657560ffeab342772dfa7fa7a9c
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_RAW
+      md5sum: df04e570e32c12de3c35ffb91da70b97
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READ_PAIRS_CLEAN
+      md5sum: a064b3ed3913dbc67a053936080bd386
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READ_UNPAIRED_CLEAN
+      md5sum: b026324c6904b2a9cb4b88d6d61c81d1
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_VERSION
+      md5sum: d2ee59c8bb411ec2039c2c87060f3532
+    - path: miniwdl_run/call-mycosnp/work/NUMBER_NS
+      md5sum: 6f91d50beb877dd11a36255fa669c85c
+    - path: miniwdl_run/call-mycosnp/work/PERCENT_REFERENCE_COVERAGE
+      md5sum: 1b63c53e6ae8071ff199da62c3ea39e3
+    - path: miniwdl_run/call-mycosnp/work/_miniwdl_inputs/0/test_R1.fastq.gz
+    - path: miniwdl_run/call-mycosnp/work/_miniwdl_inputs/0/test_R2.fastq.gz
+    - path: miniwdl_run/call-mycosnp/work/sample.csv
+      md5sum: c09636fde6091b324c0fa8d53b51b85a
+    - path: miniwdl_run/call-mycosnp/work/test.tar.gz
+    - path: miniwdl_run/call-mycosnp/work/test/.nextflow.log
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/filteredgvcfs/combined_genotype_filtered.vcf.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/filteredgvcfs/combined_genotype_filtered.vcf.gz.tbi
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/finalfiltered/finalfiltered.vcf.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/genotypegvcfs/combined_genotype.vcf.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/genotypegvcfs/combined_genotype.vcf.gz.tbi
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/gvcf/combined.combined.g.vcf.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/gvcf/combined.combined.g.vcf.gz.tbi
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/selectedsnps/combined_genotype_filtered_snps.selectvariants.vcf.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/selectedsnps/combined_genotype_filtered_snps.selectvariants.vcf.gz.tbi
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/selectedsnpsfiltered/finalfiltered.vcf.gz.csi
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/snpdists/combined.tsv
+      md5sum: 6cdb7b3051b7bb373bc16c43b2faac66
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/splitvcf/samplelist.txt
+      md5sum: d8e8fca2dc0f896fd7cb4cb0031ba249
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/splitvcf/test.vcf.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/vcf-qc-report/vcf-qc-report.txt
+      md5sum: 49c864fb0f74ee0c41e63ce65460d2a4
+    - path: miniwdl_run/call-mycosnp/work/test/results/combined/vcf-to-fasta/vcf-to-fasta.fasta
+      md5sum: 4c7ed8d3ef16087371ea928775531496
+    - path: miniwdl_run/call-mycosnp/work/test/results/lane/combined/test_R1.fastq.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/lane/combined/test_R2.fastq.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_fastqc_per_base_n_content_plot_1.txt
+      md5sum: fdbef5486214b3d528366f2630e2e081
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_fastqc_per_base_sequence_quality_plot_1.txt
+      md5sum: 7569347df519f0c516bfb83b47fe3c2c
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_fastqc_per_sequence_gc_content_plot_Counts.txt
+      md5sum: 93056d37866dcefec7ce141ff6a00ec4
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_fastqc_per_sequence_gc_content_plot_Percentages.txt
+      md5sum: 138c9486460687ae787cc79e08e5830d
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_fastqc_per_sequence_quality_scores_plot_1.txt
+      md5sum: 1f7998f969f840cd428a528caa89f90e
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_fastqc_sequence_counts_plot_1.txt
+      md5sum: 5a8565866658cb7232fda781d8ffbcf6
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_fastqc_sequence_duplication_levels_plot_1.txt
+      md5sum: 8ad9bf0f870f629240aa481f066e86d3
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_fastqc_sequence_length_distribution_plot_1.txt
+      md5sum: d748d9fddd7595d39a7336c4fe9312e9
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_qualimap_coverage_histogram_1.txt
+      md5sum: 797c4c7151e8def75f807dca0846d3bf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_qualimap_gc_content_1.txt
+      md5sum: 9b577d8afc052e2e9badb33ee17fbc35
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_qualimap_genome_fraction_1.txt
+      md5sum: a20401e89f28159f9c4ff97173821ea9
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_qualimap_insert_size_1.txt
+      md5sum: 2433f64b0fb11bbdee39db3fae30d0f0
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_samtools-idxstats-mapped-reads-plot_Normalised_Counts.txt
+      md5sum: 215f110ec84b771d0fc3108481a71d2d
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_samtools-idxstats-mapped-reads-plot_Observed_over_Expected_Counts.txt
+      md5sum: 215f110ec84b771d0fc3108481a71d2d
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_samtools-idxstats-mapped-reads-plot_Raw_Counts.txt
+      md5sum: 26677ad6d45cbbfd1ec1c7645882d082
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/mqc_samtools_alignment_plot_1.txt
+      md5sum: ed7a341b95b32d59bff3c157e70ae263
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc.log
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc_data.json
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc_fastqc.txt
+      md5sum: 9c06321786c09a9fdb3f094c6a2adc6a
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc_general_stats.txt
+      md5sum: a0785e2425afe4f4263e2b4777b33f46
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc_qualimap_bamqc_genome_results.txt
+      md5sum: 43e12752724cef3f2fa176043a73d6e9
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc_samtools_flagstat.txt
+      md5sum: 29bc52e5dc11711030c6d49b4fbde060
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc_samtools_idxstats.txt
+      md5sum: 65b4a5ee0ee03dd1f63410ee744c24f7
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc_samtools_stats.txt
+      md5sum: aa69c01771817cb50aaffe8870d7539e
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_data/multiqc_sources.txt
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_per_base_n_content_plot_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_per_base_sequence_quality_plot_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_per_sequence_gc_content_plot_Counts.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_per_sequence_gc_content_plot_Percentages.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_per_sequence_quality_scores_plot_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_sequence_counts_plot_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_sequence_counts_plot_1_pc.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_sequence_duplication_levels_plot_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_fastqc_sequence_length_distribution_plot_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_qualimap_coverage_histogram_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_qualimap_gc_content_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_qualimap_genome_fraction_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_qualimap_insert_size_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_samtools-idxstats-mapped-reads-plot_Normalised_Counts.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_samtools-idxstats-mapped-reads-plot_Observed_over_Expected_Counts.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_samtools-idxstats-mapped-reads-plot_Raw_Counts.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_samtools_alignment_plot_1.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/pdf/mqc_samtools_alignment_plot_1_pc.pdf
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_per_base_n_content_plot_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_per_base_sequence_quality_plot_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_per_sequence_gc_content_plot_Counts.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_per_sequence_gc_content_plot_Percentages.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_per_sequence_quality_scores_plot_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_sequence_counts_plot_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_sequence_counts_plot_1_pc.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_sequence_duplication_levels_plot_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_fastqc_sequence_length_distribution_plot_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_qualimap_coverage_histogram_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_qualimap_gc_content_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_qualimap_genome_fraction_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_qualimap_insert_size_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_samtools-idxstats-mapped-reads-plot_Normalised_Counts.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_samtools-idxstats-mapped-reads-plot_Observed_over_Expected_Counts.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_samtools-idxstats-mapped-reads-plot_Raw_Counts.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_samtools_alignment_plot_1.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/png/mqc_samtools_alignment_plot_1_pc.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_per_base_n_content_plot_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_per_sequence_gc_content_plot_Counts.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_per_sequence_gc_content_plot_Percentages.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_per_sequence_quality_scores_plot_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_sequence_counts_plot_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_sequence_counts_plot_1_pc.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_sequence_duplication_levels_plot_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_fastqc_sequence_length_distribution_plot_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_qualimap_coverage_histogram_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_qualimap_gc_content_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_qualimap_genome_fraction_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_qualimap_insert_size_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_samtools-idxstats-mapped-reads-plot_Normalised_Counts.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_samtools-idxstats-mapped-reads-plot_Observed_over_Expected_Counts.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_samtools-idxstats-mapped-reads-plot_Raw_Counts.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_samtools_alignment_plot_1.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_samtools_alignment_plot_1_pc.svg
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_report.html
+    - path: miniwdl_run/call-mycosnp/work/test/results/pipeline_info/software_versions.yml
+      md5sum: 007ec00252962f3073e428e81e818ecb
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/qa.test.base_content.txt
+      md5sum: ca40f814008224f24e196813979cd7e5
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/qa.test.for_qual_histogram.txt
+      md5sum: 811fa744121fc147371683da3ca29732
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/qa.test.length_count.txt
+      md5sum: a3bb6749f9d2dc9a6d70a8a353837872
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/test.base_content.txt
+      md5sum: 8bb2976fd2af46badbdc1eb491c40a2d
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/test.for_qual_histogram.txt
+      md5sum: 57b75357864a84535399146534722234
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/test.length_count.txt
+      md5sum: 56315c9c466b541e358c9b9b7dda8ffe
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/test.stats.txt
+      md5sum: bddd271b3d86757f0e807ccc62fe7a44
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/test.trimmed.unpaired.fastq.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/test_1.trimmed.fastq.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/test_2.trimmed.fastq.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/fastqc_post/test_1_fastqc.html
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/fastqc_post/test_1_fastqc.zip
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/fastqc_post/test_2_fastqc.html
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/fastqc_post/test_2_fastqc.zip
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/fastqc_raw/test.raw_1_fastqc.html
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/fastqc_raw/test.raw_1_fastqc.zip
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/fastqc_raw/test.raw_2_fastqc.html
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/fastqc_raw/test.raw_2_fastqc.zip
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/finalbam/test.bam
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/finalbam/test.bam.bai
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/finalbam/test.coverage.txt
+      md5sum: 60f2561b91d8451ff3e2f06cdab6232b
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/qc_report/test_output.txt
+      md5sum: 223685fbc48f85848ddae909d57f3764
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/variant_calling/haplotypecaller/test.g.vcf.gz
+    - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/variant_calling/haplotypecaller/test.g.vcf.gz.tbi
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qc_report/qc_report.txt
+      md5sum: 39a119fc43a31f74cdb6e7a52811850a
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/agogo.css
+      md5sum: bd757b1a7ce6fdc0288ba148680f4583
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/ajax-loader.gif
+      md5sum: ae6667053ad118020b8e68ccf307b519
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/basic.css
+      md5sum: 25b2823342c0604924a2870eeb4e7e94
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/bgfooter.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/bgtop.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/comment-bright.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/comment-close.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/comment.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/doctools.js
+      md5sum: 5ff571aa60e63f69c1890283e240ff8d
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/down-pressed.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/down.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/file.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/jquery.js
+      md5sum: 10092eee563dec2dca82b77d2cf5a1ae
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/minus.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/plus.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/pygments.css
+      md5sum: d625a0adb949f181bd0d3f1432b0fa7f
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/qualimap_logo_small.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/report.css
+      md5sum: 7a5f09eaf7c176f966f4e8854168b812
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/searchtools.js
+      md5sum: d550841adeedc8ed47c40ee607620937
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/underscore.js
+      md5sum: db5ba047a66617d4cd3e8c5099cc51db
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/up-pressed.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/up.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/css/websupport.js
+      md5sum: 9e61e1e8a7433c56bd7e5a615affcf85
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/genome_results.txt
+      md5sum: 9cb8f3ce4eba32beae9e4b012c81f039
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_coverage_0to50_histogram.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_coverage_across_reference.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_coverage_histogram.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_coverage_quotes.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_gc_content_per_window.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_homopolymer_indels.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_insert_size_across_reference.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_insert_size_histogram.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_mapping_quality_across_reference.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_mapping_quality_histogram.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_reads_clipping_profile.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_reads_content_per_read_position.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/images_qualimapReport/genome_uniq_read_starts_histogram.png
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/qualimapReport.html
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/coverage_across_reference.txt
+      md5sum: 0e5557850579b6daf8e4201ac59163fb
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/coverage_histogram.txt
+      md5sum: bfbf396da876768617a38fc0a7fdf8b2
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/duplication_rate_histogram.txt
+      md5sum: a1be4a8600e43fa8b18e1e3f535440a3
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/genome_fraction_coverage.txt
+      md5sum: 5791a2f761eb1ad387deeda0e6f09a05
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/homopolymer_indels.txt
+      md5sum: 8539cb3f14030ebe998233f35f9a981e
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/insert_size_across_reference.txt
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/insert_size_histogram.txt
+      md5sum: 39107726e203a3067debeee6488aac24
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/mapped_reads_clipping_profile.txt
+      md5sum: 95884b4bab2f2cb857a41e10b66018e9
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt
+      md5sum: 8128a1f4fb0a5ecbea698cc6540623de
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/mapped_reads_nucleotide_content.txt
+      md5sum: 5f936ee8bdec58ce9d701ed21f676f4e
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/mapping_quality_across_reference.txt
+      md5sum: e6233d922b72d39f1122668a011e160b
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/test/raw_data_qualimapReport/mapping_quality_histogram.txt
+      md5sum: 550b138887ad5eed22d0cfda2cf6040c
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/qualimap/versions.yml
+      md5sum: 51d91a1325fe4b2351afe51b54036318
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/samtools_flagstat/test.flagstat
+      md5sum: d77644e1b1c79ed7134d90ea9d7b0dc5
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/samtools_idxstats/test.idxstats
+      md5sum: 41ac5c1643eac749c95c87ae032eedd9
+    - path: miniwdl_run/call-mycosnp/work/test/results/stats/samtools_stats/test.stats
+      md5sum: 44444ac4662f98ee7322f6c32798a01a
+    - path: miniwdl_run/call-mycosnp/work/tqc_report.txt
+      md5sum: 7caf1d8410ca529e734089d8cf161731
+    - path: miniwdl_run/call-version_capture/inputs.json
+    - path: miniwdl_run/call-version_capture/outputs.json
+    - path: miniwdl_run/call-version_capture/task.log
+    - path: miniwdl_run/inputs.json
+    - path: miniwdl_run/outputs.json
+    - path: miniwdl_run/wdl/tasks/task_mycosnp_variants.wdl
+      md5sum: cd84ed74bbcdbda45ae03c9b94bae1ff
+    - path: miniwdl_run/wdl/tasks/task_versioning.wdl
+      md5sum: 55d58424f27deedda4fe7c5381696d4f
+    - path: miniwdl_run/wdl/workflows/wf_mycosnp_variants.wdl
+      md5sum: 5462d35124ae773cee1e762c557ce17c
+    - path: miniwdl_run/workflow.log
