@@ -3,7 +3,7 @@ workflows:
  - name: MycoSNP_Variants
    subclass: WDL
    primaryDescriptorPath: /workflows/wf_mycosnp_variants.wdl
-   testParameterFiles
+   testParameterFiles:
     - empty.json
  - name: MycoSNP_Tree
    subclass: WDL
