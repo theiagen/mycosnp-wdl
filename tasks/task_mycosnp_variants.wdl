@@ -42,7 +42,7 @@ task mycosnp {
         --rate 0 \
         ~{'--coverage ' + coverage}; then
       # Everything finished, pack up the results and clean up
-      rm -rf .nextflow/ work/
+      # rm -rf .nextflow/ work/
       cd ..
       genomeCoverageBed -ibam ~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.bam -d > ~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.coverage.txt
       tar -cf - ~{samplename}/ | gzip -n --best > ~{samplename}.tar.gz
