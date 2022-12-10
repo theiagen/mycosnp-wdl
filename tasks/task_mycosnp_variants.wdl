@@ -38,9 +38,7 @@ task mycosnp {
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
-        --max_memory "~{memory}.GB"\
-        --rate 0 \
-        ~{'--coverage ' + coverage}; then
+        --max_memory "~{memory}.GB" ~{'--rate 0 --coverage ' + coverage}; then
       # Everything finished, pack up the results and clean up
       # rm -rf .nextflow/ work/
       cd ..
