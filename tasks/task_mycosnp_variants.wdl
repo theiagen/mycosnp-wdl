@@ -13,6 +13,7 @@ task mycosnp {
     Int? coverage
     Int min_depth = 10
     Int disk_size = 100
+    Boolean debug = false
   }
   command <<<
     date | tee DATE
@@ -39,8 +40,13 @@ task mycosnp {
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
         --max_memory "~{memory}.GB" ~{'--rate 0 --coverage ' + coverage}; then
-      # Everything finished, pack up the results and clean up
-      # rm -rf .nextflow/ work/
+        
+      # Everything finished, pack up the results
+      if [[ "~{debug}" == "false" ]]; then
+        # not in debug mode, clean up
+        rm -rf .nextflow/ work/
+      fi
+      
       cd ..
       genomeCoverageBed -ibam ~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.bam -d > ~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.coverage.txt
       tar -cf - ~{samplename}/ | gzip -n --best > ~{samplename}.tar.gz
