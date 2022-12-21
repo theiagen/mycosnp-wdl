@@ -18,7 +18,7 @@
     - wf_mycosnp_variants_miniwdl
   files:
     - path: miniwdl_run/call-mycosnp/command
-      md5sum: b6937b3611cb7d6c3c4e5efd1837ed5e
+      md5sum: 37f4754efe880d6155e44ba876c85327
     - path: miniwdl_run/call-mycosnp/inputs.json
     - path: miniwdl_run/call-mycosnp/outputs.json
     - path: miniwdl_run/call-mycosnp/stderr.txt
@@ -312,7 +312,7 @@
     - path: miniwdl_run/inputs.json
     - path: miniwdl_run/outputs.json
     - path: miniwdl_run/wdl/tasks/task_mycosnp_variants.wdl
-      md5sum: cd84ed74bbcdbda45ae03c9b94bae1ff
+      md5sum: 2332671a398ca71fafeb2958be1dd6d9
     - path: miniwdl_run/wdl/tasks/task_versioning.wdl
       md5sum: 55d58424f27deedda4fe7c5381696d4f
     - path: miniwdl_run/wdl/workflows/wf_mycosnp_variants.wdl
