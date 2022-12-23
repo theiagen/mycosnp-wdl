@@ -28,29 +28,35 @@
     - path: miniwdl_run/call-mycosnp/work/ASSEMBLY_SIZE
       md5sum: f58dc1272a49e4eebe213d95ca57af80
     - path: miniwdl_run/call-mycosnp/work/DATE
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_COVERAGE_CLEAN
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_REFERENCE_LENGTH_COVERAGE_AFTER_TRIMMING
       md5sum: b64ffa60f5b6fb256e5e79b98469459b
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_COVERAGE_RAW
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_REFERENCE_LENGTH_COVERAGE_BEFORE_TRIMMING
       md5sum: 8d0f2db50b6840a7205eeddbb913acf1
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_GC_CLEAN
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_GC_AFTER_TRIMMING
       md5sum: 384dcc0492b1a0c232208952eb650556
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_GC_RAW
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_GC_BEFORE_TRIMMING
       md5sum: 2984345474273d7fe021b92a40915dcb
     - path: miniwdl_run/call-mycosnp/work/MYCOSNP_MEAN_COVERAGE_DEPTH
       md5sum: f92e32da522871738ebe073ab85f64a4
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_PHRED_CLEAN
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_AVERAGE_Q_SCORE_AFTER_TRIMMING
       md5sum: 7b6c0be7583ddc0ad7f0e2c8e1f37986
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_PHRED_RAW
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_AVERAGE_Q_SCORE_BEFORE_TRIMMING
       md5sum: 7db15e04d911a3d11be23b5043e5e10a
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_CLEAN
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_AFTER_TRIMMING
+      md5sum: 5730f3e02f1b09d3e2a673c972d96c55
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_AFTER_TRIMMING_PERCENT
       md5sum: 5730f3e02f1b09d3e2a673c972d96c55
     - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_MAPPED
       md5sum: 77f22657560ffeab342772dfa7fa7a9c
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_RAW
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READS_BEFORE_TRIMMING
       md5sum: df04e570e32c12de3c35ffb91da70b97
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READ_PAIRS_CLEAN
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_PAIRED_READS_AFTER_TRIMMING
       md5sum: a064b3ed3913dbc67a053936080bd386
-    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_READ_UNPAIRED_CLEAN
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_PAIRED_READS_AFTER_TRIMMING_PERCENT
+      md5sum: a064b3ed3913dbc67a053936080bd386
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING
+      md5sum: b026324c6904b2a9cb4b88d6d61c81d1
+    - path: miniwdl_run/call-mycosnp/work/MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING_PERCENT
       md5sum: b026324c6904b2a9cb4b88d6d61c81d1
     - path: miniwdl_run/call-mycosnp/work/MYCOSNP_VERSION
       md5sum: d2ee59c8bb411ec2039c2c87060f3532
