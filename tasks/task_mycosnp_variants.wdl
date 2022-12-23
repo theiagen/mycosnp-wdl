@@ -57,16 +57,19 @@ task mycosnp {
 
     # QC Metrics
     csvtk transpose -t ~{samplename}/results/stats/qc_report/qc_report.txt > tqc_report.txt
-    grep "^Reads Before Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_READS_RAW
-    grep "^GC Before Trimming" tqc_report.txt | cut -f2 | sed 's/%//' | tee MYCOSNP_GC_RAW
-    grep "^Average Q Score Before Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_PHRED_RAW
-    grep "^Reference Length Coverage Before Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_COVERAGE_RAW
-    grep "^Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_READS_CLEAN
-    grep "^Paired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_READ_PAIRS_CLEAN
-    grep "^Unpaired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_READ_UNPAIRED_CLEAN
-    grep "^GC After Trimming" tqc_report.txt | cut -f2 | sed 's/%//' | tee MYCOSNP_GC_CLEAN
-    grep "^Average Q Score After Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_PHRED_CLEAN
-    grep "^Reference Length Coverage After Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_COVERAGE_CLEAN
+    grep "^Reads Before Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_READS_BEFORE_TRIMMING
+    grep "^GC Before Trimming" tqc_report.txt | cut -f2 | sed 's/%//' | tee MYCOSNP_GC_BEFORE_TRIMMING
+    grep "^Average Q Score Before Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_AVERAGE_Q_SCORE_BEFORE_TRIMMING
+    grep "^Reference Length Coverage Before Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_REFERENCE_LENGTH_COVERAGE_BEFORE_TRIMMING
+    grep "^Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_READS_AFTER_TRIMMING
+    grep "^Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | tee MYCOSNP_READS_AFTER_TRIMMING_PERCENT
+    grep "^Paired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_PAIRED_READS_AFTER_TRIMMING
+    grep "^Paired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | tee MYCOSNP_PAIRED_READS_AFTER_TRIMMING_PERCENT
+    grep "^Unpaired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING
+    grep "^Unpaired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | tee MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING_PERCENT
+    grep "^GC After Trimming" tqc_report.txt | cut -f2 | sed 's/%//' | tee MYCOSNP_GC_AFTER_TRIMMING
+    grep "^Average Q Score After Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_AVERAGE_Q_SCORE_AFTER_TRIMMING
+    grep "^Reference Length Coverage After Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_REFERENCE_LENGTH_COVERAGE_AFTER_TRIMMING
     grep "^Mean Coverage Depth" tqc_report.txt | cut -f2 | tee MYCOSNP_MEAN_COVERAGE_DEPTH
     grep "^Reads Mapped" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_READS_MAPPED
 
@@ -81,16 +84,19 @@ task mycosnp {
     String analysis_date = read_string("DATE")
     String reference_strain = strain
     String reference_accession = accession
-    Int read_raw = read_int("MYCOSNP_READS_RAW")
-    Float gc_raw = read_float("MYCOSNP_GC_RAW")
-    Float phred_raw = read_float("MYCOSNP_PHRED_RAW")
-    Float coverage_raw = read_float("MYCOSNP_COVERAGE_RAW")
-    Int read_clean = read_int("MYCOSNP_READS_CLEAN")
-    Int read_pairs_clean = read_int("MYCOSNP_READ_PAIRS_CLEAN")
-    Int read_unpaired_clean = read_int("MYCOSNP_READ_UNPAIRED_CLEAN")
-    Float gc_clean = read_float("MYCOSNP_GC_CLEAN")
-    Float phred_clean = read_float("MYCOSNP_PHRED_CLEAN")
-    Float coverage_clean = read_float("MYCOSNP_COVERAGE_CLEAN")
+    Int reads_before_trimming = read_int("MYCOSNP_READS_BEFORE_TRIMMING")
+    Float gc_before_trimming = read_float("MYCOSNP_GC_BEFORE_TRIMMING")
+    Float average_q_score_before_trimming = read_float("MYCOSNP_AVERAGE_Q_SCORE_BEFORE_TRIMMING")
+    Float reference_length_coverage_before_trimming = read_float("MYCOSNP_REFERENCE_LENGTH_COVERAGE_BEFORE_TRIMMING")
+    Int reads_after_trimming = read_int("MYCOSNP_READS_AFTER_TRIMMING")
+    String reads_after_trimming_percent = read_string("MYCOSNP_READS_AFTER_TRIMMING_PERCENT")
+    Int paired_reads_after_trimming = read_int("MYCOSNP_PAIRED_READS_AFTER_TRIMMING")
+    String paired_reads_after_trimming_percent = read_string("MYCOSNP_PAIRED_READS_AFTER_TRIMMING_PERCENT")
+    Int unpaired_reads_after_trimming = read_int("MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING")
+    String unpaired_reads_after_trimming_percent = read_string("MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING")
+    Float gc_after_trimming = read_float("MYCOSNP_GC_AFTER_TRIMMING")
+    Float average_q_score_after_trimming = read_float("MYCOSNP_AVERAGE_Q_SCORE_AFTER_TRIMMING")
+    Float reference_length_coverage_after_trimming = read_float("MYCOSNP_REFERENCE_LENGTH_COVERAGE_AFTER_TRIMMING")
     Float mean_coverage_depth = read_float("MYCOSNP_MEAN_COVERAGE_DEPTH")
     Int reads_mapped = read_int("MYCOSNP_READS_MAPPED")
     Int number_n = read_int("NUMBER_NS")
