@@ -64,9 +64,9 @@ task mycosnp {
     grep "^Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_READS_AFTER_TRIMMING
     grep "^Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | tee MYCOSNP_READS_AFTER_TRIMMING_PERCENT
     grep "^Paired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_PAIRED_READS_AFTER_TRIMMING
-    grep "^Paired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | tee MYCOSNP_PAIRED_READS_AFTER_TRIMMING_PERCENT
+    grep "^Paired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | sed -e "s/(//" | tee MYCOSNP_PAIRED_READS_AFTER_TRIMMING_PERCENT
     grep "^Unpaired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING
-    grep "^Unpaired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | tee MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING_PERCENT
+    grep "^Unpaired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | sed -e "s/(//" | tee MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING_PERCENT
     grep "^GC After Trimming" tqc_report.txt | cut -f2 | sed 's/%//' | tee MYCOSNP_GC_AFTER_TRIMMING
     grep "^Average Q Score After Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_AVERAGE_Q_SCORE_AFTER_TRIMMING
     grep "^Reference Length Coverage After Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_REFERENCE_LENGTH_COVERAGE_AFTER_TRIMMING
