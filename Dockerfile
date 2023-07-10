@@ -9,7 +9,7 @@ WORKDIR /
 
 # Version arguments
 # ARG variables only persist during build time
-ARG MYCOSNP_SOFTWARE_VERSION="1.4"
+ARG MYCOSNP_SOFTWARE_VERSION="1.5"
 ARG MYCOSNP_SRC_URL=https://github.com/CDCgov/mycosnp-nf/archive/refs/tags/v${MYCOSNP_SOFTWARE_VERSION}.tar.gz
 
 # metadata labels
@@ -53,11 +53,13 @@ RUN micromamba install -y --name base -c conda-forge -c bioconda -c defaults \
     'bioconda::nextflow==22.04.0' \
     'bioconda::picard==2.26.10' \
     'bioconda::qualimap==2.2.2d' \
+    'bioconda::quicksnp==1.0.1' \
     'bioconda::rapidnj==2.3.2' \
     'bioconda::raxml-ng==1.0.3' \
     'bioconda::samtools==1.15' \
     'bioconda::seqkit==2.1.0' \
     'bioconda::seqtk==1.3' \
+    'bioconda::snpeff==5.0' \
     'bioconda::snp-dists==0.8.2' \
     'bioconda::sra-tools==2.11.0' \
     'conda-forge::biopython==1.78' \

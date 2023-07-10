@@ -5,7 +5,7 @@ task mycosnp {
     File read1
     File read2
     String samplename
-    String docker = "quay.io/theiagen/mycosnp:1.4"
+    String docker = "quay.io/theiagen/mycosnp:1.5"
     String strain = "B11205"
     String accession = "GCA_016772135"
     Int memory = 64
@@ -18,7 +18,7 @@ task mycosnp {
   command <<<
     date | tee DATE
     # mycosnp-nf does not have a version output
-    echo "mycosnp-nf 1.4" | tee MYCOSNP_VERSION
+    echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
 
     # Make sample FOFN
     echo "sample,fastq_1,fastq_2" > sample.csv
@@ -39,7 +39,7 @@ task mycosnp {
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
-        --max_memory "~{memory}.GB" ~{'--rate 0 --coverage ' + coverage}; then
+        --max_memory "~{memory}.GB" ~{'--coverage ' + coverage}; then
         
       # Everything finished, pack up the results
       if [[ "~{debug}" == "false" ]]; then

@@ -8,7 +8,7 @@ task version_capture {
     volatile: true
   }
   command <<<
-    mycosnpwdl_version="mycosnp-wdl v1.4"
+    mycosnpwdl_version="mycosnp-wdl v1.5"
     ~{default='' 'export TZ=' + timezone}
     date +"%Y-%m-%d" > TODAY
     echo "${mycosnpwdl_version}" > MYCOSNPWDL_VERSION

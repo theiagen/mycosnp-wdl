@@ -12,7 +12,7 @@ task mycosnptree {
   command <<<
     date | tee DATE
     # mycosnp-nf does not have a version output
-    echo "mycosnp-nf 1.4" | tee MYCOSNPTREE_VERSION
+    echo "mycosnp-nf 1.5" | tee MYCOSNPTREE_VERSION
 
     vcf_array=(~{sep=' ' vcf})
     vcf_array_len=$(echo "${#vcf[@]}")
