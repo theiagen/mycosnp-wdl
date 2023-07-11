@@ -62,10 +62,11 @@ RUN micromamba install -y --name base -c conda-forge -c bioconda -c defaults \
     'bioconda::snpeff==5.0' \
     'bioconda::snp-dists==0.8.2' \
     'bioconda::sra-tools==2.11.0' \
+    'bioconda::tabix==1.11' \
     'conda-forge::biopython==1.78' \
     'conda-forge::coreutils==9.0' \
     'conda-forge::openjdk==11.0.8' \
-    'conda-forge::pandas==1.1.5' \
+    'conda-forge::pandas==1.5.2' \
     'conda-forge::pigz==2.6' \
     'conda-forge::scipy==1.8.0' \
     'conda-forge::sed==4.7' && \
