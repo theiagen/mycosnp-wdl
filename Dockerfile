@@ -1,6 +1,6 @@
 # modeled after StaPH-B/docker-builds template
 # Software installation, no database files
-FROM mambaorg/micromamba:0.27.0
+FROM mambaorg/micromamba:1.4.9
 
 # build and run as root users since micromamba image has 'mambauser' set as the $USER
 USER root
@@ -13,7 +13,7 @@ ARG MYCOSNP_SOFTWARE_VERSION="1.5"
 ARG MYCOSNP_SRC_URL=https://github.com/CDCgov/mycosnp-nf/archive/refs/tags/v${MYCOSNP_SOFTWARE_VERSION}.tar.gz
 
 # metadata labels
-LABEL base.image="mambaorg/micromamba:0.27.0"
+LABEL base.image="mambaorg/micromamba:1.4.9"
 LABEL dockerfile.version="1"
 LABEL software="mycosnp-wdl"
 LABEL software.version=${MYCOSNP_SOFTWARE_VERSION}
@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   ca-certificates \
   git \
   procps \
+  libtiff5 \
   bsdmainutils && \
   apt-get autoclean && \
   rm -rf /var/lib/apt/lists/*
@@ -68,6 +69,7 @@ RUN micromamba install -y --name base -c conda-forge -c bioconda -c defaults \
     'conda-forge::openjdk==11.0.8' \
     'conda-forge::pandas==1.5.2' \
     'conda-forge::pigz==2.6' \
+    'conda-forge::python==3.9.5' \
     'conda-forge::scipy==1.8.0' \
     'conda-forge::sed==4.7' && \
     micromamba clean -a -y
