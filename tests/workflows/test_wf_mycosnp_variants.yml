@@ -18,7 +18,7 @@
     - wf_mycosnp_variants_miniwdl
   files:
     - path: miniwdl_run/call-mycosnp/command
-      md5sum: 9620ab0ca689193e2b4c45e0b6d8a93a
+      md5sum: dee1f918b42901cc26a7c35defcc785a
     - path: miniwdl_run/call-mycosnp/inputs.json
     - path: miniwdl_run/call-mycosnp/outputs.json
     - path: miniwdl_run/call-mycosnp/stderr.txt
@@ -53,13 +53,13 @@
     - path: miniwdl_run/call-mycosnp/work/MYCOSNP_PAIRED_READS_AFTER_TRIMMING
       md5sum: a064b3ed3913dbc67a053936080bd386
     - path: miniwdl_run/call-mycosnp/work/MYCOSNP_PAIRED_READS_AFTER_TRIMMING_PERCENT
-      md5sum: de6e424e822289f8a213e13a035cee9c
+      md5sum: 5acd6ae3f246733a2e8e3ad364218579
     - path: miniwdl_run/call-mycosnp/work/MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING
       md5sum: b026324c6904b2a9cb4b88d6d61c81d1
     - path: miniwdl_run/call-mycosnp/work/MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING_PERCENT
-      md5sum: 5b99a5f18ca264fafa4f9a08d8f0db6b
+      md5sum: 4fd4dcef994592f9865e9bc8807f32f4
     - path: miniwdl_run/call-mycosnp/work/MYCOSNP_VERSION
-      md5sum: d2ee59c8bb411ec2039c2c87060f3532
+      md5sum: ef76e188443587058d4274ccc84a943c
     - path: miniwdl_run/call-mycosnp/work/NUMBER_NS
       md5sum: 6f91d50beb877dd11a36255fa669c85c
     - path: miniwdl_run/call-mycosnp/work/PERCENT_REFERENCE_COVERAGE
@@ -194,7 +194,7 @@
     - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_samtools_alignment_plot_1_pc.svg
     - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_report.html
     - path: miniwdl_run/call-mycosnp/work/test/results/pipeline_info/software_versions.yml
-      md5sum: 007ec00252962f3073e428e81e818ecb
+      md5sum: 3339eb73b448baba0a7ca3d04a5a4b75
     - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/qa.test.base_content.txt
       md5sum: ca40f814008224f24e196813979cd7e5
     - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/qa.test.for_qual_histogram.txt
@@ -318,9 +318,9 @@
     - path: miniwdl_run/inputs.json
     - path: miniwdl_run/outputs.json
     - path: miniwdl_run/wdl/tasks/task_mycosnp_variants.wdl
-      md5sum: f250959c784df8fa1c7c1e131b55ea75
+      md5sum: 047eae352d211a3a6110e30959bbd71f
     - path: miniwdl_run/wdl/tasks/task_versioning.wdl
-      md5sum: 55d58424f27deedda4fe7c5381696d4f
+      md5sum: a17beb7504b76c9074736e5052702230
     - path: miniwdl_run/wdl/workflows/wf_mycosnp_variants.wdl
       md5sum: 84f2c216eb5928c7e662050385866de4
     - path: miniwdl_run/workflow.log
