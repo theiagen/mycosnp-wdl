@@ -4,12 +4,16 @@ task mycosnptree {
   input {
     Array[File] vcf
     Array[File] vcf_index
-    String docker="quay.io/theiagen/mycosnp:1.4"
-    String strain="B11205"
-    String accession="GCA_016772135"
+    String docker="quay.io/theiagen/mycosnp:1.4" # this doesnt match the 1.5 version in the command
+    String? strain="B11205" # Optional, defaults to clade-specific reference 
+    String? accession="GCA_016772135" # Optional, defaults to clade-specific reference 
     Int disk_size = 50
+    Int cpu = 4
+    Int memory = 32
   }
   command <<<
+    set -euo pipefail
+    
     date | tee DATE
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNPTREE_VERSION
@@ -43,6 +47,7 @@ task mycosnptree {
     if nextflow run /mycosnp-nf/main.nf \
         --add_vcf_file ../samples.csv \
         --ref_dir /reference/~{accession} \
+        --strain ~{strain} \
         --iqtree \
         --publish_dir_mode copy \
         --tmpdir ${TMPDIR:-/tmp}; then
@@ -71,9 +76,9 @@ task mycosnptree {
   }
   runtime {
     docker: "~{docker}"
-    memory: "32 GB"
-    cpu: 4
-    disks: "local-disk ~{disk_size} SSD"
+    memory: "~{memory} GB"
+    cpu: cpu
+    disks: "local-disk " + disk_size + " SSD"
     maxRetries: 3
     preemptible: 0
   }
