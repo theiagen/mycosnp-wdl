@@ -10,10 +10,11 @@ task mycosnptree {
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
+    Int? sample_ploidy = 2  # Optional, default ploidy is 2
   }
   command <<<
     set -euo pipefail
-    
+
     date | tee DATE
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNPTREE_VERSION
@@ -48,6 +49,7 @@ task mycosnptree {
         --add_vcf_file ../samples.csv \
         --ref_dir /reference/~{accession} \
         --strain ~{strain} \
+        ~{if defined(sample_ploidy) then '--sample_ploidy ' + sample_ploidy else ''}
         --iqtree \
         --publish_dir_mode copy \
         --tmpdir ${TMPDIR:-/tmp}; then
