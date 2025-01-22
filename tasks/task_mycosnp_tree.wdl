@@ -5,12 +5,12 @@ task mycosnptree {
     Array[File] vcf
     Array[File] vcf_index
     String docker="quay.io/theiagen/mycosnp:1.4" # this doesnt match the 1.5 version in the command
-    String? strain="B11205" # Optional, defaults to clade-specific reference 
-    String? accession="GCA_016772135" # Optional, defaults to clade-specific reference 
+    String strain="B11205" # Optional, defaults to clade-specific reference 
+    String accession="GCA_016772135" # Optional, defaults to clade-specific reference 
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
-    Int? sample_ploidy = 2  # Optional, default ploidy is 2
+    Int? sample_ploidy
   }
   command <<<
     set -euo pipefail
@@ -49,9 +49,10 @@ task mycosnptree {
         --add_vcf_file ../samples.csv \
         --ref_dir /reference/~{accession} \
         --strain ~{strain} \
-        ~{if defined(sample_ploidy) then '--sample_ploidy ' + sample_ploidy else ''}
+        ~{if defined(sample_ploidy) then '--sample_ploidy ' + sample_ploidy else ''} \
         --iqtree \
         --publish_dir_mode copy \
+        --max_cpus ~{cpu} \
         --tmpdir ${TMPDIR:-/tmp}; then
       # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/
