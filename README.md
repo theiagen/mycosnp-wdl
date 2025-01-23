@@ -1,4 +1,4 @@
-# mycosnp-wdl
+# MycoSNP-WDL Workflow Series
 
 ## Quick Facts
 
