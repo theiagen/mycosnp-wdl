@@ -8,7 +8,7 @@ task mycosnp {
     String docker = "quay.io/theiagen/mycosnp:1.5"
     String strain = "B11205"
     String accession = "GCA_016772135"
-    Int memory = 64
+    Int memory = 16
     Int cpu = 8
     Int disk_size = 100
     Int? coverage
@@ -18,6 +18,8 @@ task mycosnp {
     Boolean debug = false
   }
   command <<<
+    set -euo pipefail
+
     date | tee DATE
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
@@ -45,6 +47,7 @@ task mycosnp {
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
+        --min_depth ~{min_depth} \
         --max_memory "~{memory}.GB"; then
         
       # Everything finished, pack up the results

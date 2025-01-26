@@ -8,9 +8,9 @@ workflow mycosnp_variants {
     description: "A WDL wrapper around the qc, processing and variant calling components of mycosnp-nf."
   }
   input {
-    File    read1
-    File    read2
-    String  samplename
+    File read1
+    File read2
+    String samplename
     String? strain
     String? accession
   }

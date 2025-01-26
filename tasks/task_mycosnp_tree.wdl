@@ -4,9 +4,9 @@ task mycosnptree {
   input {
     Array[File] vcf
     Array[File] vcf_index
-    String docker="quay.io/theiagen/mycosnp:1.4" # this doesnt match the 1.5 version in the command
-    String strain="B11205" # Optional, defaults to clade-specific reference 
-    String accession="GCA_016772135" # Optional, defaults to clade-specific reference 
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
+    String strain = "B11205" # Optional, defaults to clade-specific reference 
+    String accession = "GCA_016772135" # Optional, defaults to clade-specific reference 
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
@@ -53,6 +53,7 @@ task mycosnptree {
         --iqtree \
         --publish_dir_mode copy \
         --max_cpus ~{cpu} \
+        --max_memory "~{memory}.GB"
         --tmpdir ${TMPDIR:-/tmp}; then
       # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/
