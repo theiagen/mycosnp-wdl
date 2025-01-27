@@ -8,12 +8,12 @@ task mycosnp {
     String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
     String strain = "B11205"
     String accession = "GCA_016772135" # Optional, defaults to clade-specific reference
-    Int memory = 64s
+    Int memory = 64
     Int cpu = 8
+    Int disk_size = 100
     Int? coverage
     Int? sample_ploidy
     Int min_depth = 10
-    Int disk_size = 100
     Boolean debug = false
   }
   command <<<
