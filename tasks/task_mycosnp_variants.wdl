@@ -36,6 +36,8 @@ task mycosnp {
         --input ../sample.csv \
         --ref_dir /reference/~{accession} \
         --publish_dir_mode copy \
+        --strain ~{strain} \
+        --min_depth ~{min_depth} \
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
