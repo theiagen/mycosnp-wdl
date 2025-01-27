@@ -5,10 +5,10 @@ task mycosnp {
     File read1
     File read2
     String samplename
-    String docker = "quay.io/theiagen/mycosnp:1.5"
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
     String strain = "B11205"
     String accession = "GCA_016772135" # Optional, defaults to clade-specific reference
-    Int memory = 64
+    Int memory = 64s
     Int cpu = 8
     Int? coverage
     Int? sample_ploidy
