@@ -8,18 +8,14 @@ task mycosnp {
     String docker = "quay.io/theiagen/mycosnp:1.5"
     String strain = "B11205"
     String accession = "GCA_016772135"
-    Int memory = 16
+    Int memory = 64
     Int cpu = 8
-    Int disk_size = 100
     Int? coverage
-    Int? sample_ploidy
     Int min_depth = 10
-    
+    Int disk_size = 100
     Boolean debug = false
   }
   command <<<
-    set -euo pipefail
-
     date | tee DATE
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
@@ -40,15 +36,10 @@ task mycosnp {
         --input ../sample.csv \
         --ref_dir /reference/~{accession} \
         --publish_dir_mode copy \
-        --strain ~{strain} \
-        ~{if defined(coverage) then '--coverage ' + coverage else ''} \
-        ~{if defined(min_depth) then '--min_depth ' + min_depth else ''} \
-        ~{if defined(sample_ploidy) then '--sample_ploidy ' + sample_ploidy else ''} \
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
-        --min_depth ~{min_depth} \
-        --max_memory "~{memory}.GB"; then
+        --max_memory "~{memory}.GB" ~{'--coverage ' + coverage}; then
         
       # Everything finished, pack up the results
       if [[ "~{debug}" == "false" ]]; then
