@@ -6,7 +6,7 @@ task mycosnptree {
     Array[File] vcf_index
     String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
     String strain = "B11205" # Optional, defaults to clade-specific reference 
-    String accession = "GCA_016772135" # Optional, defaults to clade-specific reference 
+    String accession = "GCA_016772135" # Optional, defaults to accession reference 
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
@@ -48,13 +48,13 @@ task mycosnptree {
     if nextflow run /mycosnp-nf/main.nf \
         --add_vcf_file ../samples.csv \
         --ref_dir /reference/~{accession} \
-        --strain ~{strain} \
         ~{if defined(sample_ploidy) then '--sample_ploidy ' + sample_ploidy else ''} \
         --iqtree \
         --publish_dir_mode copy \
         --max_cpus ~{cpu} \
         --max_memory "~{memory}.GB"
-        --tmpdir ${TMPDIR:-/tmp}; then
+        --tmpdir "${TMPDIR:-/tmp}"; then
+
       # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/
       cd ..

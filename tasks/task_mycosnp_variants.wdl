@@ -7,10 +7,11 @@ task mycosnp {
     String samplename
     String docker = "quay.io/theiagen/mycosnp:1.5"
     String strain = "B11205"
-    String accession = "GCA_016772135"
+    String accession = "GCA_016772135" # Optional, defaults to clade-specific reference
     Int memory = 64
     Int cpu = 8
     Int? coverage
+    Int? sample_ploidy
     Int min_depth = 10
     Int disk_size = 100
     Boolean debug = false
@@ -36,7 +37,7 @@ task mycosnp {
         --input ../sample.csv \
         --ref_dir /reference/~{accession} \
         --publish_dir_mode copy \
-        --strain ~{strain} \
+        ~{if defined(sample_ploidy) then '--sample_ploidy ' + sample_ploidy else ''} \
         --min_depth ~{min_depth} \
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \

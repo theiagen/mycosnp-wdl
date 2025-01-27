@@ -11,16 +11,12 @@ workflow mycosnp_variants {
     File read1
     File read2
     String samplename
-    String? strain
-    String? accession
   }
   call mycosnp_nf.mycosnp {
     input:
       read1 = read1,
       read2 = read2,
       samplename = samplename,
-      strain = strain,
-      accession = accession
   }
   call versioning.version_capture{
     input:
