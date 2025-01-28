@@ -5,8 +5,8 @@ task mycosnptree {
     Array[File] vcf
     Array[File] vcf_index
     String docker = "quay.io/theiagen/mycosnp:1.4"
-    String strain = "B11205" 
-    String accession = "GCA_016772135" # Optional, defaults to accession reference 
+    String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain
+    String reference = "GCA_016772135" # Optional, defaults to accession reference 
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
@@ -44,7 +44,7 @@ task mycosnptree {
     cd mycosnptree
     if nextflow run /mycosnp-nf/main.nf \
         --add_vcf_file ../samples.csv \
-        --ref_dir /reference/~{accession} \
+        --ref_dir /reference/~{reference} \
         --iqtree \
         --publish_dir_mode copy \
         --max_cpus ~{cpu} \
@@ -63,7 +63,7 @@ task mycosnptree {
     String mycosnptree_docker = docker
     String analysis_date = read_string("DATE")
     String reference_strain = strain
-    String reference_accession = accession
+    String reference_name = reference
     File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nh"
     File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nh"
     File mycosnptree_iqtree_tree = "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nh"

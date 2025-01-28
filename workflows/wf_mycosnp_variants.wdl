@@ -30,7 +30,7 @@ workflow mycosnp_variants {
     String mycosnp_docker = mycosnp.mycosnp_docker
     String analysis_date = mycosnp.analysis_date
     String reference_strain = mycosnp.reference_strain
-    String reference_accession = mycosnp.reference_accession
+    String reference_name = mycosnp.reference_name
     Int reads_before_trimming = mycosnp.reads_before_trimming
     Float gc_before_trimming = mycosnp.gc_before_trimming
     Float average_q_score_before_trimming = mycosnp.average_q_score_before_trimming

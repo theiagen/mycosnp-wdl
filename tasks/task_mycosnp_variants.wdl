@@ -6,8 +6,8 @@ task mycosnp {
     File read2
     String samplename
     String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
-    String strain = "B11205"
-    String accession = "GCA_016772135" # Optional, defaults to clade-specific reference
+    String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain so we output
+    String reference = "GCA_016772135" # Optional, defaults to clade-specific reference
     Int memory = 64
     Int cpu = 8
     Int disk_size = 100
@@ -35,7 +35,7 @@ task mycosnp {
     cd ~{samplename}
     if nextflow run /mycosnp-nf/main.nf \
         --input ../sample.csv \
-        --ref_dir /reference/~{accession} \
+        --ref_dir /reference/~{reference} \
         --publish_dir_mode copy \
         ~{if defined(sample_ploidy) then '--sample_ploidy ' + sample_ploidy else ''} \
         --min_depth ~{min_depth} \
@@ -86,7 +86,7 @@ task mycosnp {
     String mycosnp_docker = docker
     String analysis_date = read_string("DATE")
     String reference_strain = strain
-    String reference_accession = accession
+    String reference_name = reference
     Int reads_before_trimming = read_int("MYCOSNP_READS_BEFORE_TRIMMING")
     Float gc_before_trimming = read_float("MYCOSNP_GC_BEFORE_TRIMMING")
     Float average_q_score_before_trimming = read_float("MYCOSNP_AVERAGE_Q_SCORE_BEFORE_TRIMMING")
