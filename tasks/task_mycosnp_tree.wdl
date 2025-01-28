@@ -48,6 +48,7 @@ task mycosnptree {
         --iqtree \
         --publish_dir_mode copy \
         --max_cpus ~{cpu} \
+        --max_memory ~{memory}GB \
         --tmpdir ${TMPDIR:-/tmp}; then
       # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/
