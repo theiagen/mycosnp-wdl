@@ -5,7 +5,7 @@ task mycosnptree {
     Array[File] vcf
     Array[File] vcf_index
     String docker = "quay.io/theiagen/mycosnp:1.4"
-    String strain = "B11205" # Optional, defaults to clade-specific reference 
+    String strain = "B11205" 
     String accession = "GCA_016772135" # Optional, defaults to accession reference 
     Int disk_size = 50
     Int cpu = 4
