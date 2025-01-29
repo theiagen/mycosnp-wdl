@@ -12,33 +12,34 @@ task mycosnp {
     Int cpu = 8
     Int disk_size = 100
     Int? coverage
-    Int sample_ploidy
+    Int? sample_ploidy
     Int min_depth = 10
     Boolean debug = false
 
-    # Optional: User-defined reference files
-    File? ref_masked_fasta
-    File? ref_fai
-    File? ref_dict
-    File? ref_bwa
+    # Optional: User-provided reference tar file
+    File? ref_tar 
   }
   command <<<
     date | tee DATE
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
 
-    # Validate custom reference inputs
-    if [[ -n "~{ref_masked_fasta}" || -n "~{ref_fai}" || -n "~{ref_dict}" || -n "~{ref_bwa}" ]]; then
-        if [[ -z "~{ref_masked_fasta}" || -z "~{ref_fai}" || -z "~{ref_dict}" || -z "~{ref_bwa}" ]]; then
-            echo "ERROR: If providing a custom reference, you must provide all required files (FASTA, FAI, DICT, BWA)." >&2
-            exit 1
-        fi
-        ref_dir_flag="--ref_masked_fasta ~{ref_masked_fasta} --ref_fai ~{ref_fai} --ref_dict ~{ref_dict} --ref_bwa ~{ref_bwa}"
+    # Set reference directory dynamically
+    if [[ -n "~{ref_tar}" && -f "~{ref_tar}" ]]; then
+        echo "Extracting user-provided reference archive..."
+        mkdir -p /reference/custom_ref
+        tar -xzvf ~{ref_tar} -C /reference/custom_ref --strip-components=1 --overwrite
+        ref_dir="/reference/custom_ref"
+        ref_name=$(basename "~{ref_tar}" .tar.gz)  # Extract filename without .tar.gz
     else
-        ref_dir_flag="--ref_dir /reference/~{reference}"
+        echo "Using predefined reference: /reference/~{reference}"
+        ref_dir="/reference/~{reference}"
+        ref_name="~{reference}"
     fi
 
-    # Make sample FOFN
+    echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
+    
+    # Create sample input file
     echo "sample,fastq_1,fastq_2" > sample.csv
     echo "~{samplename},~{read1},~{read2}" >> sample.csv
 
@@ -52,7 +53,7 @@ task mycosnp {
     cd ~{samplename}
     if nextflow run /mycosnp-nf/main.nf \
         --input ../sample.csv \
-        --ref_dir /reference/~{reference} \
+        --ref_dir "$ref_dir" \
         --publish_dir_mode copy \
         --sample_ploidy ~{sample_ploidy} \
         --min_depth ~{min_depth} \
@@ -104,7 +105,7 @@ task mycosnp {
     String mycosnp_docker = docker
     String analysis_date = read_string("DATE")
     String reference_strain = strain
-    String reference_name = reference
+    String reference_name = read_string("REFERENCE_NAME")  
     Int reads_before_trimming = read_int("MYCOSNP_READS_BEFORE_TRIMMING")
     Float gc_before_trimming = read_float("MYCOSNP_GC_BEFORE_TRIMMING")
     Float average_q_score_before_trimming = read_float("MYCOSNP_AVERAGE_Q_SCORE_BEFORE_TRIMMING")

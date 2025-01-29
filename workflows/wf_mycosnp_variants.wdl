@@ -11,21 +11,14 @@ workflow mycosnp_variants {
     File read1
     File read2
     String samplename
-    # Optional: User-defined reference files (must provide all if using custom reference)
-    File? ref_masked_fasta
-    File? ref_fai
-    File? ref_dict
-    File? ref_bwa
+    File? ref_tar #Optional user-defined reference tar file
   }
   call mycosnp_nf.mycosnp {
     input:
       read1 = read1,
       read2 = read2,
       samplename = samplename,
-      ref_masked_fasta = ref_masked_fasta,
-      ref_fai = ref_fai,
-      ref_dict = ref_dict,
-      ref_bwa = ref_bwa
+      ref_tar = ref_tar
   }
   call versioning.version_capture{
     input:
