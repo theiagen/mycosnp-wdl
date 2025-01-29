@@ -36,7 +36,7 @@ task mycosnp {
     elif [[ -n "~{fasta}" && -f "~{fasta}" ]]; then
         echo "Using user-provided FASTA: ~{fasta}"
         cp ~{fasta} /reference/custom_ref.fa
-        ref_dir="--fasta /reference/custom_ref.fa"
+        ref_param="--fasta /reference/custom_ref.fa"
         ref_name=$(basename "~{fasta}")
 
     else
@@ -46,6 +46,7 @@ task mycosnp {
     fi
 
     echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
+    echo "Final reference param: $ref_param"  # Log reference parameter
 
     # Create sample input file
     echo "sample,fastq_1,fastq_2" > sample.csv
