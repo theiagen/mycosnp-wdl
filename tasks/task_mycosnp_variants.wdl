@@ -35,7 +35,7 @@ task mycosnp {
 
     elif [[ -n "~{fasta}" && -f "~{fasta}" ]]; then
         echo "Using user-provided FASTA: ~{fasta}"
-        cp ~{fasta} /reference/custom_ref.fasta
+        cp ~{fasta} /reference/custom_ref.fa
         ref_dir="--fasta /reference/custom_ref.fa"
         ref_name=$(basename "~{fasta}")
 
