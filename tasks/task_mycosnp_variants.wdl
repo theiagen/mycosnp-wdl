@@ -29,13 +29,14 @@ task mycosnp {
         echo "Extracting user-provided reference archive..."
         mkdir -p /reference
         tar -xzvf ~{ref_tar} -C /reference --overwrite
-        ref_dir="/reference/$(tar -tzf ~{ref_tar} | head -1 | cut -d '/' -f1)"  # Capture extracted top-level folder
-        ref_name=$(basename "~{ref_tar}" .tar.gz)
+        ref_dir="/reference/$(basename ~{ref_tar} .tar.gz)"  # Use tar filename without .tar.gz as the folder name
+        ref_name=$(basename ~{ref_tar} .tar.gz)
     else
         echo "Using predefined reference: /reference/~{reference}"
         ref_dir="/reference/~{reference}"
         ref_name="~{reference}"
     fi
+
 
     echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
 
