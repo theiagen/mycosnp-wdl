@@ -25,28 +25,27 @@ task mycosnp {
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
 
-    # Determine reference mode
-    if [[ -n "~{fasta}" && -f "~{fasta}" ]]; then
-        echo "Using FASTA input: ~{fasta}"
-        ref_param="--fasta ~{fasta}"
-        ref_name=$(basename ~{fasta})
-    
-    elif [[ -n "~{ref_tar}" && -f "~{ref_tar}" ]]; then
+    # Determine the reference directory
+    if [[ -n "~{ref_tar}" && -f "~{ref_tar}" ]]; then
         echo "Extracting user-provided reference archive..."
-        mkdir -p /reference
-        tar -xzvf ~{ref_tar} -C /reference --overwrite
-        ref_dir="/reference/$(basename ~{ref_tar} .tar.gz)"
-        ref_param="--ref_dir $ref_dir"
-        ref_name=$(basename ~{ref_tar} .tar.gz)
-    
+        mkdir -p /reference/custom_ref
+        tar -xzvf ~{ref_tar} -C /reference/custom_ref
+        ref_dir="--ref_dir /reference/custom_ref/"
+        ref_name=$(basename "~{ref_tar}" .tar.gz) # Extract name without .tar.gz
+
+    elif [[ -n "~{fasta}" && -f "~{fasta}" ]]; then
+        echo "Using user-provided FASTA: ~{fasta}"
+        cp ~{fasta} /reference/custom_ref.fasta
+        ref_dir="--fasta /reference/custom_ref.fasta"
+        ref_name=$(basename "~{fasta}")
+
     else
         echo "Using predefined reference: /reference/~{reference}"
-        ref_dir="/reference/~{reference}"
-        ref_param="--ref_dir $ref_dir"
+        ref_dir="--ref_dir /reference/~{reference}"
         ref_name="~{reference}"
     fi
 
-    echo "$ref_name" | tee REFERENCE_NAME
+    echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
 
     # Create sample input file
     echo "sample,fastq_1,fastq_2" > sample.csv
