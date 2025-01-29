@@ -25,18 +25,18 @@ task mycosnp {
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
 
-    # Determine the reference directory
-    if [[ -n "~{ref_tar}" && -f "~{ref_tar}" ]]; then
+    # Set reference directory
+    if [[ -n "~{ref_tar}" && -f "~{ref_tar}" && "~{ref_tar}" == *.tar.gz ]]; then
         echo "Extracting user-provided reference archive..."
         mkdir -p /reference/custom_ref
-        tar -xzvf ~{ref_tar} -C /reference/custom_ref
+        tar -xzvf ~{ref_tar} -C /reference/custom_ref || { echo "ERROR: Extraction failed"; exit 1; }
         ref_dir="--ref_dir /reference/custom_ref/"
-        ref_name=$(basename "~{ref_tar}" .tar.gz) # Extract name without .tar.gz
+        ref_name=$(basename "~{ref_tar}" .tar.gz)
 
     elif [[ -n "~{fasta}" && -f "~{fasta}" ]]; then
         echo "Using user-provided FASTA: ~{fasta}"
         cp ~{fasta} /reference/custom_ref.fasta
-        ref_dir="--fasta /reference/custom_ref.fasta"
+        ref_dir="--fasta /reference/custom_ref.fa"
         ref_name=$(basename "~{fasta}")
 
     else
@@ -61,7 +61,7 @@ task mycosnp {
     cd ~{samplename}
      if nextflow run /mycosnp-nf/main.nf \
         --input ../sample.csv \
-        "$ref_param" \
+        $ref_param \
         --publish_dir_mode copy \
         --sample_ploidy ~{sample_ploidy} \
         --min_depth ~{min_depth} \
