@@ -16,29 +16,37 @@ task mycosnp {
     Int min_depth = 10
     Boolean debug = false
 
-    # Optional: User-provided reference tar file
-    File? ref_tar 
+    # Optional: User-provided reference tar file or fasta file
+    File? ref_tar
+    File? fasta
   }
   command <<<
     date | tee DATE
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
 
-    # Extract user-provided reference
-    if [[ -n "~{ref_tar}" && -f "~{ref_tar}" ]]; then
+    # Determine reference mode
+    if [[ -n "~{fasta}" && -f "~{fasta}" ]]; then
+        echo "Using FASTA input: ~{fasta}"
+        ref_param="--fasta ~{fasta}"
+        ref_name=$(basename ~{fasta})
+    
+    elif [[ -n "~{ref_tar}" && -f "~{ref_tar}" ]]; then
         echo "Extracting user-provided reference archive..."
         mkdir -p /reference
         tar -xzvf ~{ref_tar} -C /reference --overwrite
-        ref_dir="/reference/$(basename ~{ref_tar} .tar.gz)"  # Use tar filename without .tar.gz as the folder name
+        ref_dir="/reference/$(basename ~{ref_tar} .tar.gz)"
+        ref_param="--ref_dir $ref_dir"
         ref_name=$(basename ~{ref_tar} .tar.gz)
+    
     else
         echo "Using predefined reference: /reference/~{reference}"
         ref_dir="/reference/~{reference}"
+        ref_param="--ref_dir $ref_dir"
         ref_name="~{reference}"
     fi
 
-
-    echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
+    echo "$ref_name" | tee REFERENCE_NAME
 
     # Create sample input file
     echo "sample,fastq_1,fastq_2" > sample.csv
@@ -54,7 +62,7 @@ task mycosnp {
     cd ~{samplename}
      if nextflow run /mycosnp-nf/main.nf \
         --input ../sample.csv \
-        --ref_dir "$ref_dir" \
+        "$ref_param" \
         --publish_dir_mode copy \
         --sample_ploidy ~{sample_ploidy} \
         --min_depth ~{min_depth} \
