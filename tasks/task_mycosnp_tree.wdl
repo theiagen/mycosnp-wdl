@@ -10,6 +10,8 @@ task mycosnptree {
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
+    Int sample_ploidy
+    Int min_depth = 10
   }
   command <<<
     date | tee DATE
@@ -49,6 +51,8 @@ task mycosnptree {
         --publish_dir_mode copy \
         --max_cpus ~{cpu} \
         --max_memory ~{memory}GB \
+        --sample_ploidy ~{sample_ploidy} \
+        --min_depth ~{min_depth} \
         --tmpdir ${TMPDIR:-/tmp}; then
       # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/

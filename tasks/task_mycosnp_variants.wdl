@@ -12,7 +12,7 @@ task mycosnp {
     Int cpu = 8
     Int disk_size = 100
     Int? coverage
-    Int? sample_ploidy
+    Int sample_ploidy
     Int min_depth = 10
     Boolean debug = false
   }
@@ -37,12 +37,13 @@ task mycosnp {
         --input ../sample.csv \
         --ref_dir /reference/~{reference} \
         --publish_dir_mode copy \
-        ~{if defined(sample_ploidy) then '--sample_ploidy ' + sample_ploidy else ''} \
+        --sample_ploidy ~{sample_ploidy} \
         --min_depth ~{min_depth} \
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
-        --max_memory "~{memory}.GB" ~{'--coverage ' + coverage}; then
+        --max_memory "~{memory}.GB" 
+        ~{'--coverage ' + coverage}; then
         
       # Everything finished, pack up the results
       if [[ "~{debug}" == "false" ]]; then
