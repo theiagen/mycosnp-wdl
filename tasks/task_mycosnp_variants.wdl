@@ -11,7 +11,7 @@ task mycosnp {
     Int memory = 64
     Int cpu = 8
     Int disk_size = 100
-    Int? coverage
+    Int coverage = 0
     Int? sample_ploidy
     Int min_depth = 10
     Boolean debug = false
@@ -30,7 +30,7 @@ task mycosnp {
         mkdir -p /reference/custom_ref
         tar -xzvf ~{ref_tar} -C /reference/custom_ref --strip-components=1 --overwrite
         ref_dir="/reference/custom_ref"
-        ref_name=$(basename "~{ref_tar}" .tar.gz)  # Extract filename without .tar.gz
+        ref_name="$(basename ~{ref_tar} .tar.gz)"  # Extract filename without .tar.gz
     else
         echo "Using predefined reference: /reference/~{reference}"
         ref_dir="/reference/~{reference}"
@@ -38,7 +38,7 @@ task mycosnp {
     fi
 
     echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
-    
+
     # Create sample input file
     echo "sample,fastq_1,fastq_2" > sample.csv
     echo "~{samplename},~{read1},~{read2}" >> sample.csv
@@ -63,7 +63,7 @@ task mycosnp {
         --max_memory "~{memory}.GB" 
         ~{'--coverage ' + coverage}; then
         
-      # Everything finished, pack up the results
+       # Everything finished, pack up the results
       if [[ "~{debug}" == "false" ]]; then
         # not in debug mode, clean up
         rm -rf .nextflow/ work/
