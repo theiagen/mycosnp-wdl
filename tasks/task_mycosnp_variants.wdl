@@ -12,7 +12,7 @@ task mycosnp {
     Int cpu = 8
     Int disk_size = 100
     Int coverage = 0
-    Int? sample_ploidy
+    Int sample_ploidy = 1  # Defaulting to 1
     Int min_depth = 10
     Boolean debug = false
 
@@ -24,13 +24,13 @@ task mycosnp {
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
 
-    # Set reference directory dynamically
+    # Extract user-provided reference
     if [[ -n "~{ref_tar}" && -f "~{ref_tar}" ]]; then
         echo "Extracting user-provided reference archive..."
-        mkdir -p /reference/custom_ref
-        tar -xzvf ~{ref_tar} -C /reference/custom_ref --strip-components=1 --overwrite
-        ref_dir="/reference/custom_ref"
-        ref_name="$(basename ~{ref_tar} .tar.gz)"  # Extract filename without .tar.gz
+        mkdir -p /reference
+        tar -xzvf ~{ref_tar} -C /reference --overwrite
+        ref_dir="/reference/$(tar -tzf ~{ref_tar} | head -1 | cut -d '/' -f1)"  # Capture extracted top-level folder
+        ref_name=$(basename "~{ref_tar}" .tar.gz)
     else
         echo "Using predefined reference: /reference/~{reference}"
         ref_dir="/reference/~{reference}"
@@ -51,7 +51,7 @@ task mycosnp {
     # Run MycoSNP
     mkdir ~{samplename}
     cd ~{samplename}
-    if nextflow run /mycosnp-nf/main.nf \
+     if nextflow run /mycosnp-nf/main.nf \
         --input ../sample.csv \
         --ref_dir "$ref_dir" \
         --publish_dir_mode copy \
@@ -60,8 +60,9 @@ task mycosnp {
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
-        --max_memory "~{memory}.GB" 
-        ~{'--coverage ' + coverage}; then
+        --max_memory "~{memory}.GB" \
+        ~{if defined(coverage) then '--coverage ' + coverage else ''} \
+    ; then
         
        # Everything finished, pack up the results
       if [[ "~{debug}" == "false" ]]; then
