@@ -15,11 +15,28 @@ task mycosnp {
     Int sample_ploidy
     Int min_depth = 10
     Boolean debug = false
+
+    # Optional: User-defined reference files
+    File? ref_masked_fasta
+    File? ref_fai
+    File? ref_dict
+    File? ref_bwa
   }
   command <<<
     date | tee DATE
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
+
+    # Validate custom reference inputs
+    if [[ -n "~{ref_masked_fasta}" || -n "~{ref_fai}" || -n "~{ref_dict}" || -n "~{ref_bwa}" ]]; then
+        if [[ -z "~{ref_masked_fasta}" || -z "~{ref_fai}" || -z "~{ref_dict}" || -z "~{ref_bwa}" ]]; then
+            echo "ERROR: If providing a custom reference, you must provide all required files (FASTA, FAI, DICT, BWA)." >&2
+            exit 1
+        fi
+        ref_dir_flag="--ref_masked_fasta ~{ref_masked_fasta} --ref_fai ~{ref_fai} --ref_dict ~{ref_dict} --ref_bwa ~{ref_bwa}"
+    else
+        ref_dir_flag="--ref_dir /reference/~{reference}"
+    fi
 
     # Make sample FOFN
     echo "sample,fastq_1,fastq_2" > sample.csv
