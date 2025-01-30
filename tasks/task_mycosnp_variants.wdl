@@ -30,7 +30,7 @@ task mycosnp {
         echo "Extracting user-provided reference archive..."
         mkdir -p /reference/custom_ref
         tar -xzvf ~{ref_tar} -C /reference/custom_ref || { echo "ERROR: Extraction failed"; exit 1; }
-        ref_dir="--ref_dir /reference/custom_ref/"
+        ref_param="--ref_dir /reference/custom_ref/"
         ref_name=$(basename "~{ref_tar}" .tar.gz)
 
     elif [[ -n "~{fasta}" && -f "~{fasta}" ]]; then
