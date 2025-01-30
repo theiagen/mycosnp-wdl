@@ -12,6 +12,13 @@ task mycosnptree {
     Int memory = 32
     Int sample_ploidy
     Int min_depth = 10
+    # Optional: User-provided reference tar file or fasta file
+    File? ref_tar
+    File? fasta
+    # Phylogenetic tree options
+    Boolean iqtree = true
+    Boolean fasttree = true
+    Boolean rapidnj = true
   }
   command <<<
     date | tee DATE
@@ -36,6 +43,21 @@ task mycosnptree {
       echo -e "${vcf}" >> samples.csv
     done
 
+   # Set reference FASTA
+    if [[ -n "~{fasta}" && -f "~{fasta}" ]]; then 
+        echo "Using user-provided FASTA: ~{fasta}" 
+        cp ~{fasta} /reference/custom_ref.fa 
+        ref_param="--fasta /reference/custom_ref.fa"
+        ref_name="custom_ref.fa"
+    else 
+        echo "Using built-in reference: /reference/~{reference}.fa"
+        ref_param="--fasta /reference/~{reference}.fa"
+        ref_name="~{reference}.fa"
+    fi 
+
+    echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
+    echo "Final reference param: $ref_param"  # Log reference parameter
+
     # Debug
     export TMP_DIR=${TMPDIR:-/tmp}
     export TMP=${TMPDIR:-/tmp}
@@ -46,15 +68,16 @@ task mycosnptree {
     cd mycosnptree
     if nextflow run /mycosnp-nf/main.nf \
         --add_vcf_file ../samples.csv \
-        --ref_dir /reference/~{reference} \
-        --iqtree \
+        $ref_param \
+        ~{if iqtree then '--iqtree' else ''} \
+        ~{if fasttree then '--fasttree' else ''} \
+        ~{if rapidnj then '--rapidnj' else ''} \
         --publish_dir_mode copy \
         --max_cpus ~{cpu} \
         --max_memory ~{memory}GB \
         --sample_ploidy ~{sample_ploidy} \
         --min_depth ~{min_depth} \
         --tmpdir ${TMPDIR:-/tmp}; then
-      # Everything finished, pack up the results and clean up
       rm -rf .nextflow/ work/
       cd ..
       tar -cf - mycosnptree/ | gzip -n --best  > mycosnptree.tar.gz
@@ -68,7 +91,7 @@ task mycosnptree {
     String mycosnptree_docker = docker
     String analysis_date = read_string("DATE")
     String reference_strain = strain
-    String reference_name = reference
+    String reference_name = read_string("REFERENCE_NAME")
     File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nh"
     File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nh"
     File mycosnptree_iqtree_tree = "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nh"

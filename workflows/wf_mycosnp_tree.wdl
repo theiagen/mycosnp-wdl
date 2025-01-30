@@ -10,11 +10,14 @@ workflow mycosnp_tree {
   input {
     Array[File] vcf
     Array[File] vcf_index
+    File? fasta  # Optional reference FASTA input
+
   }
   call mycosnptree_nf.mycosnptree {
     input:
       vcf = vcf,
-      vcf_index = vcf_index
+      vcf_index = vcf_index,
+      fasta = fasta
   }
   call versioning.version_capture{
     input:
