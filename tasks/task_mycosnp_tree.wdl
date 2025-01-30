@@ -10,15 +10,10 @@ task mycosnptree {
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
-    Int sample_ploidy
-    Int min_depth = 10
     # Optional: User-provided reference tar file or fasta file
-    File? ref_tar
     File? fasta
-    # Phylogenetic tree options
-    Boolean iqtree = true
-    Boolean fasttree = true
-    Boolean rapidnj = true
+    # Tree building method (choose one: iqtree, fasttree, rapidnj)
+    String tree_method = "iqtree" 
   }
   command <<<
     date | tee DATE
@@ -42,6 +37,13 @@ task mycosnptree {
       vcf=${vcf_array[$index]}
       echo -e "${vcf}" >> samples.csv
     done
+
+    # Validate tree_method input
+    valid_tree_methods=("iqtree" "fasttree" "rapidnj")
+    if [[ ! " ${valid_tree_methods[@]} " =~ " ${tree_method} " ]]; then
+      echo "ERROR: Invalid tree method '${tree_method}'. Must be one of: iqtree, fasttree, rapidnj." >&2
+      exit 1
+    fi
 
    # Set reference FASTA
     if [[ -n "~{fasta}" && -f "~{fasta}" ]]; then 
@@ -69,14 +71,10 @@ task mycosnptree {
     if nextflow run /mycosnp-nf/main.nf \
         --add_vcf_file ../samples.csv \
         $ref_param \
-        ~{if iqtree then '--iqtree' else ''} \
-        ~{if fasttree then '--fasttree' else ''} \
-        ~{if rapidnj then '--rapidnj' else ''} \
+        --${tree_method} \
         --publish_dir_mode copy \
         --max_cpus ~{cpu} \
         --max_memory ~{memory}GB \
-        --sample_ploidy ~{sample_ploidy} \
-        --min_depth ~{min_depth} \
         --tmpdir ${TMPDIR:-/tmp}; then
       rm -rf .nextflow/ work/
       cd ..
