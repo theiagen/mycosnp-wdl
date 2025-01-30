@@ -31,6 +31,10 @@ task mycosnptree {
       exit 1
     fi
 
+    #debug vcf arrays
+    echo "VCF array: ${vcf_array[@]}"
+    echo "VCF index array: ${vcf_index_array[@]}"
+
     # Make sample FOFN
     touch samples.csv
     for index in ${!vcf_array[@]}; do
