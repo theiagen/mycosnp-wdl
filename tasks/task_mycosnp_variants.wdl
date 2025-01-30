@@ -41,7 +41,7 @@ task mycosnp {
 
     else
         echo "Using predefined reference: /reference/~{reference}"
-        ref_dir="--ref_dir /reference/~{reference}"
+        ref_param="--ref_dir /reference/"~{reference}
         ref_name="~{reference}"
     fi
 
