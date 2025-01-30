@@ -43,9 +43,9 @@ task mycosnptree {
         ref_param="--fasta /reference/custom_ref.fa"
         ref_name="custom_ref.fa"
     else 
-        echo "Using built-in reference: /reference/~{reference}.fa"
-        ref_param="--fasta /reference/~{reference}.fa"
-        ref_name="~{reference}.fa"
+        echo "Using built-in reference directory: /reference/~{reference}"
+        ref_param="--ref_dir /reference/~{reference}"
+        ref_name="~{reference}"
     fi 
 
     echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
