@@ -38,7 +38,12 @@ task mycosnptree {
       echo -e "${vcf}" >> samples.csv
     done
 
-    # Validate tree_method input
+    # Validate tree_method input and assign a default if empty
+    if [[ -z "~{tree_method}" ]]; then
+        echo "WARNING: No tree method specified, defaulting to iqtree."
+        tree_method="iqtree"
+    fi
+
     valid_tree_methods=("iqtree" "fasttree" "rapidnj")
     if [[ ! " ${valid_tree_methods[@]} " =~ " ${tree_method} " ]]; then
       echo "ERROR: Invalid tree method '${tree_method}'. Must be one of: iqtree, fasttree, rapidnj." >&2
