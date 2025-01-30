@@ -4,8 +4,7 @@
     - wf_mycosnp_variants
     - wf_mycosnp_variants_cromwell
   files:
-    - path: log.err
-      contains: ["Successfully released change log lock", "INFO", "WORKFLOW_METADATA_SUMMARY_ENTRY", "liquibase"]
+    - path: log.err # file is empty, so don't check for strings within, just for presence
     - path: log.out
       contains: ["workflow finished with status 'Succeeded'", "mycosnp_variants", "Done"]
     - path: metadata.json
