@@ -12,8 +12,6 @@ task mycosnptree {
     Int memory = 32
     # Optional: User-provided reference tar file or fasta file
     File? fasta
-    # Tree building method (choose one: iqtree, fasttree, rapidnj)
-    String tree_method = "iqtree" 
   }
   command <<<
     date | tee DATE
@@ -30,10 +28,6 @@ task mycosnptree {
       echo "VCF array (length: $vcf_array_len) and VCF index array (length: $vcf_index_array_len) are of unequal length." >&2
       exit 1
     fi
-
-    #debug vcf arrays
-    echo "VCF array: ${vcf_array[@]}"
-    echo "VCF index array: ${vcf_index_array[@]}"
 
     # Make sample FOFN
     touch samples.csv
@@ -68,16 +62,15 @@ task mycosnptree {
     if nextflow run /mycosnp-nf/main.nf \
         --add_vcf_file ../samples.csv \
         $ref_param \
-        --${tree_method} \
+        --iqtree \
         --publish_dir_mode copy \
         --max_cpus ~{cpu} \
-        --max_memory ~{memory}GB \
-        --tmpdir ${TMPDIR:-/tmp}; then
+        --max_memory "~{memory}GB" \
+        --tmpdir "${TMPDIR:-/tmp}"; then
       rm -rf .nextflow/ work/
       cd ..
-      tar -cf - mycosnptree/ | gzip -n --best  > mycosnptree.tar.gz
+      tar -cf - mycosnptree/ 2>/dev/null | gzip -n --best > mycosnptree.tar.gz || echo "Warning: tar failed"
     else
-      # Run failed
       exit 1
     fi
   >>>
