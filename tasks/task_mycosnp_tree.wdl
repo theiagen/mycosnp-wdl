@@ -4,7 +4,7 @@ task mycosnptree {
   input {
     Array[File] vcf
     Array[File] vcf_index
-    String docker = "quay.io/theiagen/mycosnp:1.4"
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
     String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain
     String reference = "GCA_016772135" # Optional, defaults to accession reference 
     Int disk_size = 50
@@ -37,13 +37,6 @@ task mycosnptree {
       vcf=${vcf_array[$index]}
       echo -e "${vcf}" >> samples.csv
     done
-
-    # Tree method validation
-    valid_tree_methods=("iqtree" "fasttree" "rapidnj")
-    if [[ ! " ${valid_tree_methods[@]} " =~ " ${tree_method} " ]]; then
-      echo "ERROR: Invalid tree method '${tree_method}'. Must be one of: iqtree, fasttree, rapidnj." >&2
-      exit 1
-    fi
 
    # Set reference FASTA
     if [[ -n "~{fasta}" && -f "~{fasta}" ]]; then 
