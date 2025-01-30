@@ -29,7 +29,7 @@ task mycosnp {
     if [[ -n "~{ref_tar}" && -f "~{ref_tar}" && "~{ref_tar}" == *.tar.gz ]]; then
         echo "Extracting user-provided reference archive..."
         mkdir -p /reference/custom_ref
-        tar -xzvf ~{ref_tar} -C /reference/custom_ref || { echo "ERROR: Extraction failed"; exit 1; }
+        tar -xzf ~{ref_tar} --strip-components=1 -C /reference/custom_ref
         ref_param="--ref_dir /reference/custom_ref/"
         ref_name=$(basename "~{ref_tar}" .tar.gz)
 
