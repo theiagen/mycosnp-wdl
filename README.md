@@ -7,7 +7,7 @@
 | MycoSNP-WDL | Fungi | mycosnp-wdl v1.5 | Yes | Sample-level, Set-level |
 
 ## MycoSNP-WDL
-WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *Candiozyma (Candida) auris* variant calling and single nucleotide polymorphism (SNP) phylogenetic tree reconstruction.
+WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
 
 ### wf_mycosnp_variants.wdl
 
@@ -62,6 +62,8 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *C
 | myco_bam | File | BAM file |
 | myco_bam_bai | File | BAM index file |
 | full_results | File | Full results file |
+
+
 
 ### wf_mycosnp_tree.wdl
 
