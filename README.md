@@ -8,7 +8,7 @@
 
 
 ## MycoSNP-WDL
-WDL wrappers of and Terra.bio support for [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf). These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
+WDL wrappers of and Terra.bio support for [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf). These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
 
 <br/>
 
@@ -71,7 +71,7 @@ This workflow calls variants for an inputted `.tar`/`.fasta` referencing the *C.
 <br/>
 
 ### wf_mycosnp_tree.wdl
-This workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. 
+This workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
 
 #### Inputs
 
