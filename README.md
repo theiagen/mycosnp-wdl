@@ -61,7 +61,7 @@ data/reference
 | mycosnp | **cpu** | Int | CPU cores | 8 | Optional |
 | mycosnp | **debug** | Boolean | Keeps `.nextflow/` and `work/` directories | false | Optional |
 | mycosnp | **disk_size** | Int | Disk size (GB) | 100 | Optional |
-| mycosnp | **docker** | String | Workflow Docker container | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5 | Optional |
+| mycosnp | **docker** | String | Workflow Docker container | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
 | mycosnp | **memory** | Int | RAM (GB) | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
 | mycosnp | **reference** | String | Reference clade | "GCA_016772135" | Optional |
@@ -134,11 +134,11 @@ data/reference
 | mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | mycosnptree | **cpu** | Int | CPU cores | 4 | Optional |
 | mycosnptree | **disk_size** | Int | Disk size (GB) | 50 | Optional |
-| mycosnptree | **docker** | String | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | | Optional |
+| mycosnptree | **docker** | String | Workflow Docker container | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
 | mycosnptree | **memory** | Int | RAM (GB) | 32 | Optional |
 | mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "GCA_016772135" | Optional |
 | mycosnptree | **strain** | String | mycosnp-nf reference strain name | "B11205" | Optional |
-| version_capture | **docker** | String | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | | Optional |
+| version_capture | **timezone** | String | Alternative timezone | | Optional |
 
 </div>
 
