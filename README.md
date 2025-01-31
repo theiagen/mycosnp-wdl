@@ -71,7 +71,7 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *C
 |---|---|---|---|---|---|
 | wf_mycosnp_tree | **vcf** | Array[File] | VCF files for analysis |  | Required |
 | wf_mycosnp_tree | **vcf_index** | Array[File] | Index files for the VCF files |  | Required |
-| wf_mycosnp_tree | **fasta** | File | Reference FASTA input | Optional |
+| wf_mycosnp_tree | **fasta** | File | Reference FASTA input | | Optional |
 
 #### Outputs
 
