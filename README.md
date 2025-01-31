@@ -58,11 +58,11 @@ data/reference
 | mycosnp_variants | **read2** | File | Illumina reverse read file in FASTQ format (compression optional) | | Required |
 | mycosnp_variants | **samplename** | String | Name of sample to be analyzed | | Required |
 | mycosnp | **coverage** | Int | Coverage is used to calculate a down-sampling rate that results in the specified coverage. For example, if coverage is 70, then FASTQ files are down-sampled such that, when aligned to the reference, the result is approximately 70x coverage | 0 | Optional |
-| mycosnp | **cpu** | Int | CPU cores | 8 | Optional |
+| mycosnp | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnp | **debug** | Boolean | Keeps `.nextflow/` and `work/` directories | false | Optional |
-| mycosnp | **disk_size** | Int | Disk size (GB) | 100 | Optional |
-| mycosnp | **docker** | String | Workflow Docker container | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
-| mycosnp | **memory** | Int | RAM (GB) | 64 | Optional |
+| mycosnp | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
+| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
+| mycosnp | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
 | mycosnp | **reference** | String | Reference clade | "GCA_016772135" | Optional |
 | mycosnp | **sample_ploidy** | Int | 1 | Ploidy of sample (GATK) | Optional |
@@ -132,10 +132,10 @@ data/reference
 | mycosnp_tree | **vcf** | Array[File] | VCF files for analysis |  | Required |
 | mycosnp_tree | **vcf_index** | Array[File] | Index files for the VCF files |  | Required |
 | mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
-| mycosnptree | **cpu** | Int | CPU cores | 4 | Optional |
-| mycosnptree | **disk_size** | Int | Disk size (GB) | 50 | Optional |
-| mycosnptree | **docker** | String | Workflow Docker container | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
-| mycosnptree | **memory** | Int | RAM (GB) | 32 | Optional |
+| mycosnptree | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
+| mycosnptree | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
+| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
+| mycosnptree | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "GCA_016772135" | Optional |
 | mycosnptree | **strain** | String | mycosnp-nf reference strain name | "B11205" | Optional |
 | version_capture | **timezone** | String | Alternative timezone | | Optional |
