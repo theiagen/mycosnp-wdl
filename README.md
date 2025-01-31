@@ -6,10 +6,15 @@
 |---|---|---|---|---|
 | MycoSNP-WDL | Fungi | mycosnp-wdl v1.5 | Yes | Sample-level, Set-level |
 
+
 ## MycoSNP-WDL
-WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
+WDL wrappers of and Terra.bio support for [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf). These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
+
+<br/>
 
 ### wf_mycosnp_variants.wdl
+This workflow calls variants for an inputted `.tar`/`.fasta` referencing the *C. auris* B11205 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/).
+
 
 #### Inputs
 
@@ -63,9 +68,10 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *C
 | myco_bam_bai | File | BAM index file |
 | full_results | File | Full results file |
 
-
+<br/>
 
 ### wf_mycosnp_tree.wdl
+This workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. 
 
 #### Inputs
 
