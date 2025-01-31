@@ -12,7 +12,7 @@ workflow mycosnp_variants {
     File read2
     String samplename
     File? ref_tar # Optional user-defined reference tar file
-    File? fasta # Optional: User-defined FASTA file (will be indexed)
+    File? ref_fasta # Optional: User-defined FASTA file (will be indexed)
   }
   call mycosnp_nf.mycosnp {
     input:
@@ -20,7 +20,7 @@ workflow mycosnp_variants {
       read2 = read2,
       samplename = samplename,
       ref_tar = ref_tar,
-      fasta = fasta
+      ref_fasta = ref_fasta
   }
   call versioning.version_capture{
     input:
