@@ -9,12 +9,18 @@
 
 
 ## MycoSNP-WDL
-WDL wrappers of and Terra.bio support for [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf). These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
+WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) designed for [Terra.bio](https://terra.bio) integration. These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
 
 <br/>
 
 ### wf_mycosnp_variants.wdl
-`mycosnp_variants` is a Terra sample-level workflow that calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade as labeled in the [reference data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), supply a reference FASTA (must use suffix `.fa`) that will be indexed via BWA, or provide a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
+`mycosnp_variants` calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade as labeled in the [reference data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference).
+
+#### Inputs 
+
+- **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference)
+- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory
+- **ref_tar** optionally takes a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
 ```
 data/reference
@@ -41,8 +47,8 @@ data/reference
 └── GCA_016772135
 ```
 
+- **strain** optionally delineates the strain name for VCF gene name annotation. MycoSNP currently only annotates with respect to the default strain, "B11205", so changing this option will simply bypass VCF annotation.
 
-#### Inputs
 
 <div class="searchable-table" markdown="1">
 
@@ -51,8 +57,6 @@ data/reference
 | mycosnp_variants | **read1** | File | Illumina forward read file in FASTQ format (compression optional) | | Required |
 | mycosnp_variants | **read2** | File | Illumina reverse read file in FASTQ format (compression optional) | | Required |
 | mycosnp_variants | **samplename** | String | Name of sample to be analyzed | | Required |
-| mycosnp_variants | **ref_tar** | File | Reference tar file | | Optional |
-| mycosnp_variants | **fasta** | File | Reference FASTA file | | Optional |
 | mycosnp | **coverage** | Int | {…} | | Optional |
 | mycosnp | **cpu** | Int | {…} | | Optional |
 | mycosnp | **debug** | Boolean | {…} | | Optional |
@@ -63,6 +67,8 @@ data/reference
 | mycosnp | **reference** | String | {…} | | Optional |
 | mycosnp | **sample_ploidy** | Int | {…} | | Optional |
 | mycosnp | **strain** | String | {…} | | Optional |
+| mycosnp_variants | **ref_fasta** | File | Reference FASTA file | | Optional |
+| mycosnp_variants | **ref_tar** | File | Reference tar file | | Optional |
 | version_capture | **timezone** | String | {…} | | Optional |
 
 </div>
@@ -111,12 +117,12 @@ data/reference
 <br/>
 
 ### wf_mycosnp_tree.wdl
-`mycosnp_tree` is a Terra set-level workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
+`mycosnp_tree` reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
 
 #### Inputs
 
-- **ref_fasta** will generate a new reference directory
-
+- **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference)
+- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory
 - **strain** is passed to output but does not change workflow function
 
 <div class="searchable-table" markdown="1">
