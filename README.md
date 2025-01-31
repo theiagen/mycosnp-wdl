@@ -13,18 +13,19 @@ WDL wrappers of and Terra.bio support for [CDCGov/mycosnp-nf](https://github.com
 <br/>
 
 ### wf_mycosnp_variants.wdl
-This workflow calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade depicted in the [reference data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), supply a reference `.fasta` that will be indexed in BWA and generate all necessary files for running the workflow, or provide a `.tar.gz` with the same directory structure as the provided reference clades:
+This workflow calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade depicted in the [reference data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), supply a reference FastA (must use suffix `.fa`) that will be indexed via BWA, or provide a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
 ```
 data/reference
 ├── B11221
 ├── Clade1
-│   ├── bwa/bwa
-|   |   ├── reference.amb 
-|   |   ├── reference.ann
-|   |   ├── reference.bwt
-|   |   ├── reference.pac
-|   |   └── reference.sa
+│   ├── bwa
+|   |   ├── bwa 
+|   |   |   ├── reference.am
+|   |   |   ├── reference.ann
+|   |   |   ├── reference.bwt
+|   |   |   ├── reference.pac
+|   |   |   └── reference.sa
 │   ├── dict
 |   |   └── reference.dict
 │   ├── fai
