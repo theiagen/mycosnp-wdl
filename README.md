@@ -13,7 +13,7 @@ WDL wrappers of and Terra.bio support for [CDCGov/mycosnp-nf](https://github.com
 <br/>
 
 ### wf_mycosnp_variants.wdl
-This workflow calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade depicted in the [reference data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), supply a reference FastA (must use suffix `.fa`) that will be indexed via BWA, or provide a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
+This is a sample-level workflow that calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade as labeled in the [reference data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), supply a reference FASTA (must use suffix `.fa`) that will be indexed via BWA, or provide a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
 ```
 data/reference
@@ -43,6 +43,8 @@ data/reference
 
 #### Inputs
 
+<div class="searchable-table" markdown="1">
+
 | **Terra Task Name** | **Variable** | **Type** | **Description** | **Default Value** | **Terra Status** |
 |---|---|---|---|---|---|
 | wf_mycosnp_variants | **read1** | File | Illumina forward read file in FASTQ format (compression optional)  |  | Required |
@@ -51,7 +53,11 @@ data/reference
 | wf_mycosnp_variants | **ref_tar** | File | Reference tar file | | Optional |
 | wf_mycosnp_variants | **fasta** | File | Reference FASTA file | | Optional |
 
+</div>
+
 #### Outputs
+
+<div class="searchable-table" markdown="1">
 
 | **Variable** | **Type** | **Description** |
 |---|---|---|
@@ -93,6 +99,8 @@ data/reference
 | myco_bam_bai | File | BAM index file |
 | full_results | File | Full results file |
 
+</div>
+
 <br/>
 
 ### wf_mycosnp_tree.wdl
@@ -100,13 +108,19 @@ This workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates re
 
 #### Inputs
 
+<div class="searchable-table" markdown="1">
+
 | **Terra Task Name** | **Variable** | **Type** | **Description** | **Default Value** | **Terra Status** |
 |---|---|---|---|---|---|
 | wf_mycosnp_tree | **vcf** | Array[File] | VCF files for analysis |  | Required |
 | wf_mycosnp_tree | **vcf_index** | Array[File] | Index files for the VCF files |  | Required |
 | wf_mycosnp_tree | **fasta** | File | Reference FASTA input | | Optional |
 
+</div>
+
 #### Outputs
+
+<div class="searchable-table" markdown="1">
 
 | **Variable** | **Type** | **Description** |
 |---|---|---|
@@ -123,3 +137,5 @@ This workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates re
 | mycosnptree_snpdists | File | SNP distances file |
 | mycosnp_tree_full_results | File | Full results file |
 | mycosnp_tree_vcf_csv | File | VCF to CSV file |
+
+</div>
