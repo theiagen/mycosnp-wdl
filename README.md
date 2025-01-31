@@ -13,8 +13,6 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *C
 
 #### Inputs
 
-<div class="searchable-table" markdown="1">
-
 | **Terra Task Name** | **Variable** | **Type** | **Description** | **Default Value** | **Terra Status** |
 |---|---|---|---|---|---|
 | wf_mycosnp_variants | **read1** | File | Illumina forward read file in FASTQ format (compression optional)  |  | Required |
@@ -23,11 +21,7 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *C
 | wf_mycosnp_variants | **strain** | String | Name of reference strain | "B11205" | Optional |
 | wf_mycosnp_variants | **accession** | String | Accession number of reference strain | "GCA_016772135" | Optional |
 
-</div>
-
 #### Outputs
-
-<div class="searchable-table" markdown="1">
 
 | **Variable** | **Type** | **Description** |
 |---|---|---|
@@ -37,13 +31,9 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *C
 | mycosnp_variants_bam_index | File | Index file for the BAM |
 | mycosnp_variants_stats | File | Statistics file for the variant calling |
 
-</div>
-
 ### wf_mycosnp_tree.wdl
 
 #### Inputs
-
-<div class="searchable-table" markdown="1">
 
 | **Terra Task Name** | **Variable** | **Type** | **Description** | **Default Value** | **Terra Status** |
 |---|---|---|---|---|---|
@@ -52,11 +42,7 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *C
 | wf_mycosnp_tree | **strain** | String | Name of reference strain | "B11205" | Optional |
 | wf_mycosnp_tree | **accession** | String | Accession number of reference strain | "GCA_016772135" | Optional |
 
-</div>
-
 #### Outputs
-
-<div class="searchable-table" markdown="1">
 
 | **Variable** | **Type** | **Description** |
 |---|---|---|
@@ -74,5 +60,3 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) for *C
 | mycosnptree_snpdists | File | SNP distances file |
 | mycosnp_tree_full_results | File | Full results file |
 | mycosnp_tree_vcf_csv | File | VCF to CSV file |
-
-</div>
