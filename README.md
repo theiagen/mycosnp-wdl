@@ -18,8 +18,8 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) design
 
 #### Inputs 
 
-- **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference)
-- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory
+- **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). Currently, this option will fail the workflow with "GCA_016772135" set as the reference - use "B11205" instead.
+- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
 - **ref_tar** optionally takes a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
 ```
@@ -57,13 +57,13 @@ data/reference
 | mycosnp_variants | **read1** | File | Illumina forward read file in FASTQ format (compression optional) | | Required |
 | mycosnp_variants | **read2** | File | Illumina reverse read file in FASTQ format (compression optional) | | Required |
 | mycosnp_variants | **samplename** | String | Name of sample to be analyzed | | Required |
-| mycosnp | **coverage** | Int | {…} | | Optional |
-| mycosnp | **cpu** | Int | {…} | | Optional |
-| mycosnp | **debug** | Boolean | {…} | | Optional |
-| mycosnp | **disk_size** | Int | {…} | | Optional |
-| mycosnp | **docker** | String | {…} | | Optional |
-| mycosnp | **memory** | Int | {…} | | Optional |
-| mycosnp | **min_depth** | Int | {…} | | Optional |
+| mycosnp | **coverage** | Int | Coverage is used to calculate a down-sampling rate that results in the specified coverage. For example, if coverage is 70, then FASTQ files are down-sampled such that, when aligned to the reference, the result is approximately 70x coverage | 0 | Optional |
+| mycosnp | **cpu** | Int | CPU cores | 8 | Optional |
+| mycosnp | **debug** | Boolean | Keeps `.nextflow/` and `work/` directories | false | Optional |
+| mycosnp | **disk_size** | Int | Disk size (GB) | 100 | Optional |
+| mycosnp | **docker** | String | Workflow Docker container | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5 | Optional |
+| mycosnp | **memory** | Int | RAM (GB) | 64 | Optional |
+| mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
 | mycosnp | **reference** | String | {…} | | Optional |
 | mycosnp | **sample_ploidy** | Int | {…} | | Optional |
 | mycosnp | **strain** | String | {…} | | Optional |
@@ -121,9 +121,9 @@ data/reference
 
 #### Inputs
 
-- **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference)
-- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory
-- **strain** is passed to output but does not change workflow function
+- **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference).
+- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
+- **strain** is passed to output but does not change workflow function.
 
 <div class="searchable-table" markdown="1">
 
