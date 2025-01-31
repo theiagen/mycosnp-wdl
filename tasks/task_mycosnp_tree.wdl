@@ -10,8 +10,8 @@ task mycosnptree {
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
-    # Optional: User-provided reference tar file or fasta file
-    File? fasta
+    # Optional: User-provided reference fasta file .fa
+    File? ref_fasta
   }
   command <<<
     date | tee DATE
@@ -37,9 +37,9 @@ task mycosnptree {
     done
 
    # Set reference FASTA
-    if [[ -n "~{fasta}" && -f "~{fasta}" ]]; then 
-        echo "Using user-provided FASTA: ~{fasta}" 
-        cp ~{fasta} /reference/custom_ref.fa 
+    if [[ -n "~{ref_fasta}" && -f "~{ref_fasta}" ]]; then 
+        echo "Using user-provided FASTA: ~{ref_fasta}" 
+        cp ~{ref_fasta} /reference/custom_ref.fa 
         ref_param="--fasta /reference/custom_ref.fa"
         ref_name="custom_ref.fa"
     else 

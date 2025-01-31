@@ -18,7 +18,7 @@ task mycosnp {
 
     # Optional: User-provided reference tar file or fasta file
     File? ref_tar
-    File? fasta
+    File? ref_fasta
   }
   command <<<
     date | tee DATE
@@ -33,11 +33,11 @@ task mycosnp {
         ref_param="--ref_dir /reference/custom_ref/"
         ref_name=$(basename "~{ref_tar}" .tar.gz)
 
-    elif [[ -n "~{fasta}" && -f "~{fasta}" ]]; then
-        echo "Using user-provided FASTA: ~{fasta}"
-        cp ~{fasta} /reference/custom_ref.fa
+    elif [[ -n "~{ref_fasta}" && -f "~{ref_fasta}" ]]; then
+        echo "Using user-provided FASTA: ~{ref_fasta}"
+        cp ~{ref_fasta} /reference/custom_ref.fa
         ref_param="--fasta /reference/custom_ref.fa"
-        ref_name=$(basename "~{fasta}")
+        ref_name=$(basename "~{ref_fasta}")
 
     else
         echo "Using predefined reference: /reference/~{reference}"
