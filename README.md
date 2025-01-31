@@ -64,12 +64,12 @@ data/reference
 | mycosnp | **docker** | String | Workflow Docker container | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5 | Optional |
 | mycosnp | **memory** | Int | RAM (GB) | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
-| mycosnp | **reference** | String | {…} | | Optional |
-| mycosnp | **sample_ploidy** | Int | {…} | | Optional |
-| mycosnp | **strain** | String | {…} | | Optional |
+| mycosnp | **reference** | String | Reference clade | "GCA_016772135" | Optional |
+| mycosnp | **sample_ploidy** | Int | 1 | Ploidy of sample (GATK) | Optional |
+| mycosnp | **strain** | String | Reference strain | "B11205" | Optional |
 | mycosnp_variants | **ref_fasta** | File | Reference FASTA file | | Optional |
-| mycosnp_variants | **ref_tar** | File | Reference tar file | | Optional |
-| version_capture | **timezone** | String | {…} | | Optional |
+| mycosnp_variants | **ref_tar** | File | Reference gzipped compressed tarchive | | Optional |
+| version_capture | **timezone** | String | Alternative timezone | | Optional |
 
 </div>
 
@@ -156,7 +156,7 @@ data/reference
 | mycosnp_tree_analysis_date | String | Date of the analysis |
 | mycosnp_tree_full_results | File | Full results file |
 | mycosnp_tree_vcf_csv | File | VCF to CSV file |
-| mycosnp_tree_version | String | Version of the MycoSNP-WDL workflow |
+| mycosnp_tree_version | String | Version of the    `mycosnp_tree` WDL workflow |
 | mycosnp_version | String | Version of MycoSNP |
 | mycosnptree_snpdists | File | SNP distances file |
 | reference_name | String | Name of the reference |
