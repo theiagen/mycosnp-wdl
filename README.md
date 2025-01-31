@@ -13,7 +13,7 @@ WDL wrappers of and Terra.bio support for [CDCGov/mycosnp-nf](https://github.com
 <br/>
 
 ### wf_mycosnp_variants.wdl
-This is a sample-level workflow that calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade as labeled in the [reference data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), supply a reference FASTA (must use suffix `.fa`) that will be indexed via BWA, or provide a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
+`mycosnp_variants` is a Terra sample-level workflow that calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade as labeled in the [reference data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), supply a reference FASTA (must use suffix `.fa`) that will be indexed via BWA, or provide a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
 ```
 data/reference
@@ -104,7 +104,7 @@ data/reference
 <br/>
 
 ### wf_mycosnp_tree.wdl
-This workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
+`mycosnp_tree` is a Terra set-level workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
 
 #### Inputs
 
@@ -112,9 +112,16 @@ This workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates re
 
 | **Terra Task Name** | **Variable** | **Type** | **Description** | **Default Value** | **Terra Status** |
 |---|---|---|---|---|---|
-| wf_mycosnp_tree | **vcf** | Array[File] | VCF files for analysis |  | Required |
-| wf_mycosnp_tree | **vcf_index** | Array[File] | Index files for the VCF files |  | Required |
-| wf_mycosnp_tree | **fasta** | File | Reference FASTA input | | Optional |
+| mycosnp_tree | **vcf** | Array[File] | VCF files for analysis |  | Required |
+| mycosnp_tree | **vcf_index** | Array[File] | Index files for the VCF files |  | Required |
+| mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
+| mycosnptree | **cpu** | Int | CPU cores | 4 | Optional |
+| mycosnptree | **disk_size** | Int | Disk size (GB) | 50 | Optional |
+| mycosnptree | **docker** | String | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | | Optional |
+| mycosnptree | **memory** | Int | RAM (GB) | 32 | Optional |
+| mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "GCA_016772135" | Optional |
+| mycosnptree | **strain** | String | mycosnp-nf reference strain name | "B11205" | Optional |
+| version_capture | **docker** | String | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | | Optional |
 
 </div>
 
@@ -124,18 +131,18 @@ This workflow reconstructs an IQ-TREE SNP phylogenetic tree that incorporates re
 
 | **Variable** | **Type** | **Description** |
 |---|---|---|
-| mycosnp_tree_version | String | Version of the MycoSNP-WDL workflow |
-| mycosnp_tree_analysis_date | String | Date of the analysis |
-| mycosnp_version | String | Version of [MycoSNP-nf](https://github.com/CDCgov/mycosnp-nf/tree/master) used |
+| mycosnp_alignment | File | Alignment file |
 | mycosnp_docker | String | Docker image used for MycoSNP |
-| reference_strain | String | Reference strain used |
-| reference_name | String | Accession number of the reference strain |
-| mycosnp_rapidnj_tree | File | RapidNJ tree file |
 | mycosnp_fastree_tree | File | FastTree tree file |
 | mycosnp_iqtree_tree | File | IQ-TREE tree file |
-| mycosnp_alignment | File | Alignment file |
-| mycosnptree_snpdists | File | SNP distances file |
+| mycosnp_rapidnj_tree | File | RapidNJ tree file |
+| mycosnp_tree_analysis_date | String | Date of the analysis |
 | mycosnp_tree_full_results | File | Full results file |
 | mycosnp_tree_vcf_csv | File | VCF to CSV file |
+| mycosnp_tree_version | String | Version of the MycoSNP-WDL workflow |
+| mycosnp_version | String | Version of MycoSNP |
+| mycosnptree_snpdists | File | SNP distances file |
+| reference_name | String | Name of the reference |
+| reference_strain | String | Reference strain used |
 
 </div>
