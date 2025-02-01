@@ -317,9 +317,9 @@
     - path: miniwdl_run/inputs.json
     - path: miniwdl_run/outputs.json
     - path: miniwdl_run/wdl/tasks/task_mycosnp_variants.wdl
-      md5sum: ba602f7b1e4a7bd4f878606cb0fbbe5a
+      md5sum: 0f65fa570dfed0f6cf9afb68db255b58
     - path: miniwdl_run/wdl/tasks/task_versioning.wdl
       md5sum: a17beb7504b76c9074736e5052702230
     - path: miniwdl_run/wdl/workflows/wf_mycosnp_variants.wdl
-      md5sum: 1a1136e487afb8f6341e8f5e6739eb63
+      md5sum: e83c1c54813a776e614ddae21036b092
     - path: miniwdl_run/workflow.log
