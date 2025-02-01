@@ -5,22 +5,50 @@ task mycosnp {
     File read1
     File read2
     String samplename
-    String docker = "quay.io/theiagen/mycosnp:1.5"
-    String strain = "B11205"
-    String accession = "GCA_016772135"
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
+    String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain so we output
+    String reference = "GCA_016772135" # Optional, defaults to clade-specific reference
     Int memory = 64
     Int cpu = 8
-    Int? coverage
-    Int min_depth = 10
     Int disk_size = 100
+    Int coverage = 0
+    Int sample_ploidy = 1  # Defaulting to 1
+    Int min_depth = 10
     Boolean debug = false
+
+    # Optional: User-provided reference tar file or fasta file
+    File? ref_tar
+    File? ref_fasta
   }
   command <<<
     date | tee DATE
     # mycosnp-nf does not have a version output
     echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
 
-    # Make sample FOFN
+    # Set reference directory
+    if [[ -n "~{ref_tar}" && -f "~{ref_tar}" && "~{ref_tar}" == *.tar.gz ]]; then
+        echo "Extracting user-provided reference archive..."
+        mkdir -p /reference/custom_ref
+        tar -xzf ~{ref_tar} --strip-components=1 -C /reference/custom_ref
+        ref_param="--ref_dir /reference/custom_ref/"
+        ref_name=$(basename "~{ref_tar}" .tar.gz)
+
+    elif [[ -n "~{ref_fasta}" && -f "~{ref_fasta}" ]]; then
+        echo "Using user-provided FASTA: ~{ref_fasta}"
+        cp ~{ref_fasta} /reference/custom_ref.fa
+        ref_param="--fasta /reference/custom_ref.fa"
+        ref_name=$(basename "~{ref_fasta}")
+
+    else
+        echo "Using predefined reference: /reference/~{reference}"
+        ref_param="--ref_dir /reference/"~{reference}
+        ref_name="~{reference}"
+    fi
+
+    echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
+    echo "Final reference param: $ref_param"  # Log reference parameter
+
+    # Create sample input file
     echo "sample,fastq_1,fastq_2" > sample.csv
     echo "~{samplename},~{read1},~{read2}" >> sample.csv
 
@@ -32,16 +60,20 @@ task mycosnp {
     # Run MycoSNP
     mkdir ~{samplename}
     cd ~{samplename}
-    if nextflow run /mycosnp-nf/main.nf \
+     if nextflow run /mycosnp-nf/main.nf \
         --input ../sample.csv \
-        --ref_dir /reference/~{accession} \
+        $ref_param \
         --publish_dir_mode copy \
+        --sample_ploidy ~{sample_ploidy} \
+        --min_depth ~{min_depth} \
         --skip_phylogeny \
         --tmpdir "${TMPDIR:-/tmp}" \
         --max_cpus ~{cpu} \
-        --max_memory "~{memory}.GB" ~{'--coverage ' + coverage}; then
+        --max_memory "~{memory}.GB" \
+        ~{if defined(coverage) then '--coverage ' + coverage else ''} \
+    ; then
         
-      # Everything finished, pack up the results
+       # Everything finished, pack up the results
       if [[ "~{debug}" == "false" ]]; then
         # not in debug mode, clean up
         rm -rf .nextflow/ work/
@@ -83,7 +115,7 @@ task mycosnp {
     String mycosnp_docker = docker
     String analysis_date = read_string("DATE")
     String reference_strain = strain
-    String reference_accession = accession
+    String reference_name = read_string("REFERENCE_NAME")  
     Int reads_before_trimming = read_int("MYCOSNP_READS_BEFORE_TRIMMING")
     Float gc_before_trimming = read_float("MYCOSNP_GC_BEFORE_TRIMMING")
     Float average_q_score_before_trimming = read_float("MYCOSNP_AVERAGE_Q_SCORE_BEFORE_TRIMMING")
