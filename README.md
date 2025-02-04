@@ -16,6 +16,8 @@ WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) design
 ### wf_mycosnp_variants.wdl
 `mycosnp_variants` calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade [data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), FASTA, or directory as described below.
 
+Note that `mycosnp_tree` requires at least 4 genomes that reference the same reference in `mycosnp_variants`.
+
 #### Inputs 
 
 - **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). Currently, this option will fail the workflow with "GCA_016772135" set as the reference - use "B11205" instead.
