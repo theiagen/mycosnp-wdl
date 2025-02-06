@@ -26,27 +26,27 @@ Note that `mycosnp_tree` requires at least 4 genomes that reference the same ref
 
 ```
 data/reference
-├── B11221
+├── B11221                      # Prebuilt clade directory
 ├── Clade1
 │   ├── bwa
-|   |   ├── bwa 
+|   |   ├── bwa                 # BWA index for alignment 
 |   |   |   ├── reference.am
 |   |   |   ├── reference.ann
 |   |   |   ├── reference.bwt
 |   |   |   ├── reference.pac
 |   |   |   └── reference.sa
-│   ├── dict
-|   |   └── reference.dict
-│   ├── fai
-|   |   └── reference.fa.fai
-│   ├── masked
-|   |   └── reference.fa
+│   ├── dict                    
+|   |   └── reference.dict      # Picard dictionary
+│   ├── fai                     
+|   |   └── reference.fa.fai    # FASTA index file
+│   ├── masked                  
+|   |   └── reference.fa        # Masked reference sequence
 │   └── Clade1.fasta
 ├── Clade2
 ├── Clade3
 ├── Clade4
 ├── Clade5
-└── GCA_016772135
+└── GCA_016772135               # Default reference
 ```
 
 - **strain** optionally delineates the strain name for VCF gene name annotation. MycoSNP currently only annotates with respect to the default strain, "B11205", so changing this option will simply bypass VCF annotation.
@@ -61,7 +61,7 @@ data/reference
 | mycosnp_variants | **samplename** | String | Name of sample to be analyzed | | Required |
 | mycosnp | **coverage** | Int | Coverage is used to calculate a down-sampling rate that results in the specified coverage. For example, if coverage is 70, then FASTQ files are down-sampled such that, when aligned to the reference, the result is approximately 70x coverage | 0 | Optional |
 | mycosnp | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
-| mycosnp | **debug** | Boolean | Keeps `.nextflow/` and `work/` directories | false | Optional |
+| mycosnp | **debug** | Boolean | If true, keeps `.nextflow/` and `work/` directories | false | Optional |
 | mycosnp | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
 | mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
 | mycosnp | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
@@ -107,12 +107,12 @@ data/reference
 | reads_mapped | Int | Number of reads mapped |
 | reference_length_coverage_after_trimming | Float | Reference length coverage after trimming |
 | reference_length_coverage_before_trimming | Float | Reference length coverage before trimming |
-| reference_name | String | Name of the reference |
+| reference_name | String | Name of the reference genome used |
 | reference_strain | String | Reference strain used |
 | unpaired_reads_after_trimming | Int | Number of unpaired reads after trimming |
 | unpaired_reads_after_trimming_percent | String | Percentage of unpaired reads after trimming |
-| vcf | File | VCF file |
-| vcf_index | File | Index file for the VCF |
+| vcf | File | Compressed variant call format (VCF) file depicting SNPs |
+| vcf_index | File | Compressed index file for the VCF |
 
 </div>
 
@@ -120,6 +120,8 @@ data/reference
 
 ### wf_mycosnp_tree.wdl
 `mycosnp_tree` reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
+
+NOTE: At least four samples, including reference, are required
 
 #### Inputs
 
@@ -131,7 +133,7 @@ data/reference
 
 | **Terra Task Name** | **Variable** | **Type** | **Description** | **Default Value** | **Terra Status** |
 |---|---|---|---|---|---|
-| mycosnp_tree | **vcf** | Array[File] | VCF files for analysis |  | Required |
+| mycosnp_tree | **vcf** | Array[File] | VCF files (.vcf.gz) containing SNP data for phylogenetic analysis. These files can be generated from `wf_mycosnp_variants.wdl` |  | Required |
 | mycosnp_tree | **vcf_index** | Array[File] | Index files for the VCF files |  | Required |
 | mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | mycosnptree | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
@@ -150,14 +152,14 @@ data/reference
 
 | **Variable** | **Type** | **Description** |
 |---|---|---|
-| mycosnp_alignment | File | Alignment file |
+| mycosnp_alignment | File | Concatenated SNP alignment file |
 | mycosnp_docker | String | Docker image used for MycoSNP |
-| mycosnp_fastree_tree | File | FastTree tree file |
-| mycosnp_iqtree_tree | File | IQ-TREE tree file |
-| mycosnp_rapidnj_tree | File | RapidNJ tree file |
+| mycosnp_fastree_tree | File | Phylogenetic tree inferred using FastTree (heuristic maximum likelihood) |
+| mycosnp_iqtree_tree | File | Phylogenetic tree inferred using IQ-TREE (high quality maximum likelihood) |
+| mycosnp_rapidnj_tree | File | Phylogenetic tree inferred using RapidNJ (neighbor-joining method)  |
 | mycosnp_tree_analysis_date | String | Date of the analysis |
 | mycosnp_tree_full_results | File | Full results file |
-| mycosnp_tree_vcf_csv | File | VCF to CSV file |
+| mycosnp_tree_vcf_csv | File | SNP variants formatted as a CSV table |
 | mycosnp_tree_version | String | Version of the    `mycosnp_tree` WDL workflow |
 | mycosnp_version | String | Version of MycoSNP |
 | mycosnptree_snpdists | File | SNP distances file |
