@@ -20,7 +20,7 @@ Note that `mycosnp_tree` requires at least 4 genomes that reference the same ref
 
 #### Inputs 
 
-- **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). Currently, this option will fail the workflow with "GCA_016772135" set as the reference - use "B11205" instead.
+- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). The default is `GCA_016772135`.
 - **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
 - **ref_tar** optionally takes a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
