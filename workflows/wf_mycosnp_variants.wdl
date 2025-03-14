@@ -8,15 +8,19 @@ workflow mycosnp_variants {
     description: "A WDL wrapper around the qc, processing and variant calling components of mycosnp-nf."
   }
   input {
-    File    read1
-    File    read2
-    String  samplename
+    File read1
+    File read2
+    String samplename
+    File? ref_tar # Optional user-defined reference tar file
+    File? ref_fasta # Optional: User-defined FASTA file (will be indexed)
   }
   call mycosnp_nf.mycosnp {
     input:
       read1 = read1,
       read2 = read2,
-      samplename = samplename
+      samplename = samplename,
+      ref_tar = ref_tar,
+      ref_fasta = ref_fasta
   }
   call versioning.version_capture{
     input:
@@ -30,7 +34,7 @@ workflow mycosnp_variants {
     String mycosnp_docker = mycosnp.mycosnp_docker
     String analysis_date = mycosnp.analysis_date
     String reference_strain = mycosnp.reference_strain
-    String reference_accession = mycosnp.reference_accession
+    String reference_name = mycosnp.reference_name
     Int reads_before_trimming = mycosnp.reads_before_trimming
     Float gc_before_trimming = mycosnp.gc_before_trimming
     Float average_q_score_before_trimming = mycosnp.average_q_score_before_trimming
