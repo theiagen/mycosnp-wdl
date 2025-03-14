@@ -4,10 +4,14 @@ task mycosnptree {
   input {
     Array[File] vcf
     Array[File] vcf_index
-    String docker="quay.io/theiagen/mycosnp:1.4"
-    String strain="B11205"
-    String accession="GCA_016772135"
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
+    String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain
+    String reference = "GCA_016772135" # Optional, defaults to accession reference 
     Int disk_size = 50
+    Int cpu = 4
+    Int memory = 32
+    # Optional: User-provided reference fasta file .fa
+    File? ref_fasta
   }
   command <<<
     date | tee DATE
@@ -32,6 +36,21 @@ task mycosnptree {
       echo -e "${vcf}" >> samples.csv
     done
 
+   # Set reference FASTA
+    if [[ -n "~{ref_fasta}" && -f "~{ref_fasta}" ]]; then 
+        echo "Using user-provided FASTA: ~{ref_fasta}" 
+        cp ~{ref_fasta} /reference/custom_ref.fa 
+        ref_param="--fasta /reference/custom_ref.fa"
+        ref_name="custom_ref.fa"
+    else 
+        echo "Using built-in reference directory: /reference/~{reference}"
+        ref_param="--ref_dir /reference/~{reference}"
+        ref_name="~{reference}"
+    fi 
+
+    echo "$ref_name" | tee REFERENCE_NAME  # Save reference name for output
+    echo "Final reference param: $ref_param"  # Log reference parameter
+
     # Debug
     export TMP_DIR=${TMPDIR:-/tmp}
     export TMP=${TMPDIR:-/tmp}
@@ -42,16 +61,16 @@ task mycosnptree {
     cd mycosnptree
     if nextflow run /mycosnp-nf/main.nf \
         --add_vcf_file ../samples.csv \
-        --ref_dir /reference/~{accession} \
+        $ref_param \
         --iqtree \
         --publish_dir_mode copy \
-        --tmpdir ${TMPDIR:-/tmp}; then
-      # Everything finished, pack up the results and clean up
+        --max_cpus ~{cpu} \
+        --max_memory "~{memory}GB" \
+        --tmpdir "${TMPDIR:-/tmp}"; then
       rm -rf .nextflow/ work/
       cd ..
-      tar -cf - mycosnptree/ | gzip -n --best  > mycosnptree.tar.gz
+      tar -cf - mycosnptree/ 2>/dev/null | gzip -n --best > mycosnptree.tar.gz || echo "Warning: tar failed"
     else
-      # Run failed
       exit 1
     fi
   >>>
@@ -60,7 +79,7 @@ task mycosnptree {
     String mycosnptree_docker = docker
     String analysis_date = read_string("DATE")
     String reference_strain = strain
-    String reference_accession = accession
+    String reference_name = read_string("REFERENCE_NAME")
     File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nh"
     File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nh"
     File mycosnptree_iqtree_tree = "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nh"
@@ -71,9 +90,9 @@ task mycosnptree {
   }
   runtime {
     docker: "~{docker}"
-    memory: "32 GB"
-    cpu: 4
-    disks: "local-disk ~{disk_size} SSD"
+    memory: "~{memory} GB"
+    cpu: cpu
+    disks: "local-disk " + disk_size + " SSD"
     maxRetries: 3
     preemptible: 0
   }

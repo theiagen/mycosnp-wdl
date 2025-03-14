@@ -4,8 +4,7 @@
     - wf_mycosnp_variants
     - wf_mycosnp_variants_cromwell
   files:
-    - path: log.err
-      contains: ["Successfully released change log lock", "INFO", "WORKFLOW_METADATA_SUMMARY_ENTRY", "liquibase"]
+    - path: log.err # file is empty, so don't check for strings within, just for presence
     - path: log.out
       contains: ["workflow finished with status 'Succeeded'", "mycosnp_variants", "Done"]
     - path: metadata.json
@@ -18,7 +17,7 @@
     - wf_mycosnp_variants_miniwdl
   files:
     - path: miniwdl_run/call-mycosnp/command
-      md5sum: dee1f918b42901cc26a7c35defcc785a
+      md5sum: 07365a61d5b5e2c406859c4445c96a5e
     - path: miniwdl_run/call-mycosnp/inputs.json
     - path: miniwdl_run/call-mycosnp/outputs.json
     - path: miniwdl_run/call-mycosnp/stderr.txt
@@ -194,7 +193,7 @@
     - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_plots/svg/mqc_samtools_alignment_plot_1_pc.svg
     - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_report.html
     - path: miniwdl_run/call-mycosnp/work/test/results/pipeline_info/software_versions.yml
-      md5sum: 3339eb73b448baba0a7ca3d04a5a4b75
+      md5sum: 7e4d33177535f70aaa4039cf07b6adbe
     - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/qa.test.base_content.txt
       md5sum: ca40f814008224f24e196813979cd7e5
     - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/qa.test.for_qual_histogram.txt
@@ -309,7 +308,7 @@
     - path: miniwdl_run/call-mycosnp/work/test/results/stats/samtools_idxstats/test.idxstats
       md5sum: 41ac5c1643eac749c95c87ae032eedd9
     - path: miniwdl_run/call-mycosnp/work/test/results/stats/samtools_stats/test.stats
-      md5sum: 44444ac4662f98ee7322f6c32798a01a
+      md5sum: 37458e96ef9bd35556f1c8a84ac345cf
     - path: miniwdl_run/call-mycosnp/work/tqc_report.txt
       md5sum: 7caf1d8410ca529e734089d8cf161731
     - path: miniwdl_run/call-version_capture/inputs.json
@@ -318,9 +317,9 @@
     - path: miniwdl_run/inputs.json
     - path: miniwdl_run/outputs.json
     - path: miniwdl_run/wdl/tasks/task_mycosnp_variants.wdl
-      md5sum: 047eae352d211a3a6110e30959bbd71f
+      md5sum: 0f65fa570dfed0f6cf9afb68db255b58
     - path: miniwdl_run/wdl/tasks/task_versioning.wdl
       md5sum: a17beb7504b76c9074736e5052702230
     - path: miniwdl_run/wdl/workflows/wf_mycosnp_variants.wdl
-      md5sum: 84f2c216eb5928c7e662050385866de4
+      md5sum: e83c1c54813a776e614ddae21036b092
     - path: miniwdl_run/workflow.log

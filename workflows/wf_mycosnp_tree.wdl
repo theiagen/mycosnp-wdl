@@ -10,11 +10,14 @@ workflow mycosnp_tree {
   input {
     Array[File] vcf
     Array[File] vcf_index
+    File? ref_fasta  # Optional reference FASTA input
+
   }
   call mycosnptree_nf.mycosnptree {
     input:
       vcf = vcf,
-      vcf_index = vcf_index
+      vcf_index = vcf_index,
+      ref_fasta = ref_fasta
   }
   call versioning.version_capture{
     input:
@@ -26,9 +29,8 @@ workflow mycosnp_tree {
     #MycoSNP QC and Assembly
     String mycosnp_version = mycosnptree.mycosnptree_version
     String mycosnp_docker = mycosnptree.mycosnptree_docker
-    String analysis_date = mycosnptree.analysis_date
     String reference_strain = mycosnptree.reference_strain
-    String reference_accession = mycosnptree.reference_accession
+    String reference_name = mycosnptree.reference_name
     File mycosnp_rapidnj_tree = mycosnptree.mycosnptree_rapidnj_tree 
     File mycosnp_fastree_tree = mycosnptree.mycosnptree_fasttree_tree
     File mycosnp_iqtree_tree = mycosnptree.mycosnptree_iqtree_tree
