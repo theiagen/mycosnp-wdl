@@ -94,7 +94,7 @@ task mycosnp {
     grep "^Average Q Score Before Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_AVERAGE_Q_SCORE_BEFORE_TRIMMING
     grep "^Reference Length Coverage Before Trimming" tqc_report.txt | cut -f2 | tee MYCOSNP_REFERENCE_LENGTH_COVERAGE_BEFORE_TRIMMING
     grep "^Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_READS_AFTER_TRIMMING
-    grep "^Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | sed -e "s/(//" | tee MYCOSNP_READS_AFTER_TRIMMING_PERCENT
+    grep "^Reads After Trimming" tqc_report.txt  | awk '{print $4}' | tee MYCOSNP_READS_AFTER_TRIMMING_PERCENT
     grep "^Paired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_PAIRED_READS_AFTER_TRIMMING
     grep "^Paired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f2 -d " " | sed -e "s/(//" | tee MYCOSNP_PAIRED_READS_AFTER_TRIMMING_PERCENT
     grep "^Unpaired Reads After Trimming" tqc_report.txt | cut -f2 | cut -f1 -d " " | tee MYCOSNP_UNPAIRED_READS_AFTER_TRIMMING
