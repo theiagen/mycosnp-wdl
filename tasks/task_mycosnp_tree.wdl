@@ -88,6 +88,7 @@ task mycosnptree {
     File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nwk"
     File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nwk"
     File mycosnptree_iqtree_tree = "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nwk"
+    File mycosnptree_quicksnp_tree = "mycosnptree/results/combined/phylogeny/quicksnp/quicksnp_phylogeny.nwk"
     File mycosnptree_alignment = "mycosnptree/results/combined/vcf-to-fasta/vcf-to-fasta.fasta"
     File mycosnptree_snpdists = "mycosnptree/results/combined/snpdists/combined.tsv"
     File mycosnptree_full_results = "mycosnptree.tar.gz"
