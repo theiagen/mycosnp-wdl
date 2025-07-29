@@ -147,7 +147,7 @@ task mycosnp {
     memory: "~{memory} GB"
     cpu: cpu
     disks:  "local-disk ~{disk_size} SSD"
-    maxRetries: 3
+    maxRetries: 1
     preemptible: 0
   }
 }
