@@ -4,7 +4,7 @@
 
 | **Workflow Type** | **Applicable Kingdom** | **Last Known Changes** | **MycoSNP Version** | **Command-line Compatibility** | **Workflow Level** |
 |---|---|---|---|---|---|
-| mycosnp_variants | Fungi | v1.6.1-wdl | v.1.6.3 | Yes | Sample-level |
+| mycosnp_variants | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Sample-level |
 | mycosnp_tree | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Set-level |
 
 
