@@ -5,7 +5,7 @@ task mycosnp {
     File read1
     File read2
     String samplename
-    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
     String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain so we output
     String reference = "GCA_016772135" # Optional, defaults to clade-specific reference
     Int memory = 64
@@ -23,7 +23,7 @@ task mycosnp {
   command <<<
     date | tee DATE
     # mycosnp-nf does not have a version output
-    echo "mycosnp-nf 1.5" | tee MYCOSNP_VERSION
+    echo "mycosnp-nf v1.6.3" | tee MYCOSNP_VERSION
 
     # Set reference directory
     if [[ -n "~{ref_tar}" && -f "~{ref_tar}" && "~{ref_tar}" == *.tar.gz ]]; then
