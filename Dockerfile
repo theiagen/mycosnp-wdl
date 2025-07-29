@@ -9,7 +9,7 @@ WORKDIR /
 
 # Version arguments
 # ARG variables only persist during build time
-ARG MYCOSNP_SOFTWARE_VERSION="1.5"
+ARG MYCOSNP_SOFTWARE_VERSION="1.6.3"
 ARG MYCOSNP_SRC_URL=https://github.com/CDCgov/mycosnp-nf/archive/refs/tags/v${MYCOSNP_SOFTWARE_VERSION}.tar.gz
 
 # metadata labels
@@ -20,10 +20,10 @@ LABEL software.version=${MYCOSNP_SOFTWARE_VERSION}
 LABEL description="A WDL wrapper of CDCGov/mycosnp-nf for Terra.bio"
 LABEL website="https://github.com/CDCgov/mycosnp-nf"
 LABEL license="https://github.com/CDCgov/mycosnp-nf/blob/master/LICENSE"
-LABEL maintainer1="Robert A. Petit III"
-LABEL maintainer.email1="robert.petit@theiagen.com"
-LABEL maintainer2="Kevin Libuit"
-LABEL maintainer.email2="kevin.libuit@theiagen.com"
+LABEL maintainer1="Zachary Konkel"
+LABEL maintainer.email1="zachary.konkel@theiagen.com"
+LABEL maintainer2="Andrew Lang"
+LABEL maintainer.email2="andrew.lang@theiagen.com"
 
 # Install references
 COPY data/reference/ /reference
