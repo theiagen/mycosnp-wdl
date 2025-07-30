@@ -32,13 +32,11 @@ task mycosnp {
         tar -xzf ~{ref_tar} --strip-components=1 -C /reference/custom_ref
         ref_param="--ref_dir /reference/custom_ref/"
         ref_name=$(basename "~{ref_tar}" .tar.gz)
-
     elif [[ -n "~{ref_fasta}" && -f "~{ref_fasta}" ]]; then
         echo "Using user-provided FASTA: ~{ref_fasta}"
         cp ~{ref_fasta} /reference/custom_ref.fa
         ref_param="--fasta /reference/custom_ref.fa"
         ref_name=$(basename "~{ref_fasta}")
-
     else
         echo "Using predefined reference: /reference/~{reference}"
         ref_param="--ref_dir /reference/"~{reference}
@@ -60,20 +58,20 @@ task mycosnp {
     # Run MycoSNP
     mkdir ~{samplename}
     cd ~{samplename}
-     if nextflow run /mycosnp-nf/main.nf \
-        --input ../sample.csv \
-        $ref_param \
-        --publish_dir_mode copy \
-        --sample_ploidy ~{sample_ploidy} \
-        --min_depth ~{min_depth} \
-        --skip_phylogeny \
-        --tmpdir "${TMPDIR:-/tmp}" \
-        --max_cpus ~{cpu} \
-        --max_memory "~{memory - 2}.GB" \
-        ~{if defined(coverage) then '--coverage ' + coverage else ''} \
-    ; then
-        
-       # Everything finished, pack up the results
+    nextflow run /mycosnp-nf/main.nf \
+      --input ../sample.csv \
+      $ref_param \
+      --publish_dir_mode copy \
+      --sample_ploidy ~{sample_ploidy} \
+      --min_depth ~{min_depth} \
+      --skip_phylogeny \
+      --tmpdir "${TMPDIR:-/tmp}" \
+      --max_cpus ~{cpu} \
+      --max_memory "~{memory - 2}.GB" \
+      ~{if defined(coverage) then '--coverage ' + coverage else ''}
+
+    if [ $? -eq 0 ]; then
+      # Everything finished, pack up the results
       if [[ "~{debug}" == "false" ]]; then
         # not in debug mode, clean up
         rm -rf .nextflow/ work/
@@ -84,6 +82,7 @@ task mycosnp {
       tar -cf - ~{samplename}/ | gzip -n --best > ~{samplename}.tar.gz
     else
       # Run failed
+      echo "ERROR: MycoSNP run failed with exit code $?"
       exit 1
     fi
 
