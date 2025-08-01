@@ -65,7 +65,7 @@ data/reference
 | mycosnp | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnp | **debug** | Boolean | If true, keeps `.nextflow/` and `work/` directories | false | Optional |
 | mycosnp | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
-| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
+| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3" | Optional |
 | mycosnp | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
 | mycosnp | **reference** | String | Reference clade | "GCA_016772135" | Optional |
@@ -140,7 +140,7 @@ NOTE: At least four samples, including reference, are required
 | mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | mycosnptree | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnptree | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
-| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
+| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3" | Optional |
 | mycosnptree | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "GCA_016772135" | Optional |
 | mycosnptree | **strain** | String | mycosnp-nf reference strain name | "B11205" | Optional |
