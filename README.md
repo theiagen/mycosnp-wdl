@@ -9,7 +9,7 @@
 
 
 ## MycoSNP-WDL
-MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) to enable MycoSNP use on [Terra.bio](https://terra.bio). These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl). 
+MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) to enable MycoSNP use on [Terra.bio](https://terra.bio). These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variantswdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl). 
 
 ### MycoSNP-WDL v. MycoSNP-NF
 
