@@ -2,16 +2,16 @@
 
 ## Quick Facts
 
-| **Workflow Type** | **Applicable Kingdom** | **Last Known Changes** | **MycoSNP Version** | **Command-line Compatibility** | **Workflow Level** |
+| **Workflow Type** | **Applicable Kingdom** | **MycoSNP-WDL version** | **MycoSNP-Nextflow Version** | **Command-line Compatibility** | **Workflow Level** |
 |---|---|---|---|---|---|
 | mycosnp_variants | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Sample-level |
 | mycosnp_tree | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Set-level |
 
 
 ## MycoSNP-WDL
-WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) designed for [Terra.bio](https://terra.bio) integration. These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
+MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) to enable MycoSNP use on [Terra.bio](https://terra.bio). These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl). 
 
-NOTE: MycoSNP-WDL versions are intended to remain concordant with the MycoSNP-NF version used ONLY to the minor release version. Patch release versions may be discrepant.
+NOTE: [MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source code for analysis. MycoSNP-WDL versions are intended to remain concordant with the MycoSNP-NF version used ONLY to the minor release version. Patch release versions may be discrepant.
 
 <br/>
 
