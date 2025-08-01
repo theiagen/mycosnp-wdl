@@ -67,7 +67,7 @@ task mycosnp {
       --skip_phylogeny \
       --tmpdir "${TMPDIR:-/tmp}" \
       --max_cpus ~{cpu} \
-      --max_memory "~{memory - 2}.GB" \
+      --max_memory "~{memory}.GB" \
       ~{if defined(coverage) then '--coverage ' + coverage else ''}
 
     if [ $? -eq 0 ]; then
