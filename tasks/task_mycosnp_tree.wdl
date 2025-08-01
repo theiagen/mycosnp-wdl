@@ -77,7 +77,6 @@ task mycosnptree {
     mv "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nh" "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nwk"
     mv "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nh" "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nwk"
     mv "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nh" "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nwk"
-
   >>>
   output {
     String mycosnptree_version = read_string("MYCOSNPTREE_VERSION")
