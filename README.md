@@ -50,6 +50,7 @@ data/reference
 ├── Clade3
 ├── Clade4
 ├── Clade5
+├── Clade6
 └── GCA_016772135               # Default reference
 ```
 
@@ -123,7 +124,7 @@ data/reference
 <br/>
 
 ### wf_mycosnp_tree.wdl
-`mycosnp_tree` reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
+`mycosnp_tree` reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade6 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
 
 NOTE: At least four samples, including reference, are required
 
