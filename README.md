@@ -13,7 +13,7 @@ MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](htt
 
 ### MycoSNP-WDL v. MycoSNP-NF
 
-[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version, patch release versions may be discrepant. For example, mycosnp-wdl v1.6.3 contains source code mycosnp-wdl v1.6.1. 
+[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version. Patch release versions may be discrepant. For example, mycosnp-wdl v1.6.3 contains source code mycosnp-wdl v1.6.1. 
 
 <br/>
 
