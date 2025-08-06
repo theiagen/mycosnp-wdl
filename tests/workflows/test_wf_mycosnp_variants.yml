@@ -191,7 +191,7 @@
     - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/mycosnp/multiqc_plots/svg/mqc_samtools-idxstats-mapped-reads-plot_Raw_Counts.svg
     - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/mycosnp/multiqc_plots/svg/mqc_samtools_alignment_plot_1.svg
     - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/mycosnp/multiqc_plots/svg/mqc_samtools_alignment_plot_1_pc.svg
-    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/multiqc_report.html
+    - path: miniwdl_run/call-mycosnp/work/test/results/multiqc/mycosnp/multiqc_report.html
     - path: miniwdl_run/call-mycosnp/work/test/results/pipeline_info/software_versions.yml
       md5sum: 8348366deee7a358e3b3f9e07046513f
     - path: miniwdl_run/call-mycosnp/work/test/results/samples/test/faqcs/qa.test.base_content.txt
