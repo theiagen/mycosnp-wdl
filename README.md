@@ -2,19 +2,23 @@
 
 ## Quick Facts
 
-| **Workflow Type** | **Applicable Kingdom** | **Last Known Changes** | **Command-line Compatibility** | **Workflow Level** |
-|---|---|---|---|---|
-| mycosnp_variants | Fungi | v1.6-wdl | Yes | Sample-level |
-| mycosnp_tree | Fungi | v1.6-wdl | Yes | Set-level |
+| **Workflow Type** | **Applicable Kingdom** | **MycoSNP-WDL version** | **MycoSNP-NF Version** | **Command-line Compatibility** | **Workflow Level** |
+|---|---|---|---|---|---|
+| mycosnp_variants | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Sample-level |
+| mycosnp_tree | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Set-level |
 
 
 ## MycoSNP-WDL
-WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) designed for [Terra.bio](https://terra.bio) integration. These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variants.wdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl).
+MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](https://github.com/CDCgov/mycosnp-nf) to enable MycoSNP use on [Terra.bio](https://terra.bio). These workflows conduct *Candiozyma (Candida) auris* [variant calling](#wf_mycosnp_variantswdl) and subsequent single nucleotide polymorphism (SNP) [phylogenetic tree reconstruction](#wf_mycosnp_treewdl). 
+
+### MycoSNP-WDL v. MycoSNP-NF
+
+[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version. Patch release versions may be discrepant. For example, MycoSNP-WDL v1.6.3 contains source code MycoSNP-NF v1.6.1. 
 
 <br/>
 
 ### wf_mycosnp_variants.wdl
-`mycosnp_variants` calls variants for inputted reads referencing the *C. auris* B11204 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade [data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), FASTA, or directory as described below.
+`mycosnp_variants` calls variants for inputted reads referencing the *C. auris* B11205 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade [data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), FASTA, or directory as described below.
 
 Note that `mycosnp_tree` requires at least 4 genomes that reference the same reference in `mycosnp_variants`.
 
@@ -46,6 +50,7 @@ data/reference
 ├── Clade3
 ├── Clade4
 ├── Clade5
+├── Clade6
 └── GCA_016772135               # Default reference
 ```
 
@@ -63,7 +68,7 @@ data/reference
 | mycosnp | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnp | **debug** | Boolean | If true, keeps `.nextflow/` and `work/` directories | false | Optional |
 | mycosnp | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
-| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
+| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3" | Optional |
 | mycosnp | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
 | mycosnp | **reference** | String | Reference clade | "GCA_016772135" | Optional |
@@ -119,7 +124,7 @@ data/reference
 <br/>
 
 ### wf_mycosnp_tree.wdl
-`mycosnp_tree` reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade5 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
+`mycosnp_tree` reconstructs an IQ-TREE SNP phylogenetic tree that incorporates representative genomes of Clade1-Clade6 *C. auris*. VCF data generated from [wf_mycosnp_variants.wdl](#wf_mycosnp_variantswdl) are used as inputs.
 
 NOTE: At least four samples, including reference, are required
 
@@ -138,7 +143,7 @@ NOTE: At least four samples, including reference, are required
 | mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | mycosnptree | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnptree | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
-| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5" | Optional |
+| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3" | Optional |
 | mycosnptree | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "GCA_016772135" | Optional |
 | mycosnptree | **strain** | String | mycosnp-nf reference strain name | "B11205" | Optional |

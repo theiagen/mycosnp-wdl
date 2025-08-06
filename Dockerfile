@@ -9,7 +9,7 @@ WORKDIR /
 
 # Version arguments
 # ARG variables only persist during build time
-ARG MYCOSNP_SOFTWARE_VERSION="1.5"
+ARG MYCOSNP_SOFTWARE_VERSION="1.6.3"
 ARG MYCOSNP_SRC_URL=https://github.com/CDCgov/mycosnp-nf/archive/refs/tags/v${MYCOSNP_SOFTWARE_VERSION}.tar.gz
 
 # metadata labels
@@ -20,10 +20,10 @@ LABEL software.version=${MYCOSNP_SOFTWARE_VERSION}
 LABEL description="A WDL wrapper of CDCGov/mycosnp-nf for Terra.bio"
 LABEL website="https://github.com/CDCgov/mycosnp-nf"
 LABEL license="https://github.com/CDCgov/mycosnp-nf/blob/master/LICENSE"
-LABEL maintainer1="Robert A. Petit III"
-LABEL maintainer.email1="robert.petit@theiagen.com"
-LABEL maintainer2="Kevin Libuit"
-LABEL maintainer.email2="kevin.libuit@theiagen.com"
+LABEL maintainer1="Zachary Konkel"
+LABEL maintainer.email1="zachary.konkel@theiagen.com"
+LABEL maintainer2="Andrew Lang"
+LABEL maintainer.email2="andrew.lang@theiagen.com"
 
 # Install references
 COPY data/reference/ /reference
@@ -39,40 +39,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   apt-get autoclean && \
   rm -rf /var/lib/apt/lists/*
 
-RUN micromamba install -y --name base -c conda-forge -c bioconda -c defaults \
-    'bioconda::bcftools==1.14' \
-    'bioconda::bedtools==2.30.0' \
-    'bioconda::bwa==0.7.17' \
-    'bioconda::csvtk==0.23.0' \
-    'bioconda::faqcs==2.10' \
-    'bioconda::fastqc==0.11.9' \
-    'bioconda::fasttree==2.1.10' \
-    'bioconda::gatk4==4.2.5.0' \
-    'bioconda::iqtree==2.1.4_beta' \
-    'bioconda::multiqc==1.11' \
-    'bioconda::mummer==3.23' \
-    'bioconda::nextflow==22.04.0' \
-    'bioconda::picard==2.26.10' \
-    'bioconda::qualimap==2.2.2d' \
-    'bioconda::quicksnp==1.0.1' \
-    'bioconda::rapidnj==2.3.2' \
-    'bioconda::raxml-ng==1.0.3' \
-    'bioconda::samtools==1.15' \
-    'bioconda::seqkit==2.1.0' \
-    'bioconda::seqtk==1.3' \
-    'bioconda::snpeff==5.0' \
-    'bioconda::snp-dists==0.8.2' \
-    'bioconda::sra-tools==2.11.0' \
-    'bioconda::tabix==1.11' \
-    'conda-forge::biopython==1.78' \
-    'conda-forge::coreutils==9.0' \
-    'conda-forge::openjdk==11.0.8' \
-    'conda-forge::pandas==1.5.2' \
-    'conda-forge::pigz==2.6' \
-    'conda-forge::python==3.9.5' \
-    'conda-forge::scipy==1.8.0' \
-    'conda-forge::sed==4.7' && \
-    micromamba clean -a -y
+# create environment
+COPY env.yaml /tmp/env.yaml
+RUN micromamba install -y --name base -f /tmp/env.yaml && \
+  micromamba clean -a -y && \
+  rm /tmp/env.yaml
 
 # get the mycosnp-nf latest release
 RUN wget --quiet "${MYCOSNP_SRC_URL}" && \

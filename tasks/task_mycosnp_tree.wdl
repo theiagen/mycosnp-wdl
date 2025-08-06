@@ -4,7 +4,7 @@ task mycosnptree {
   input {
     Array[File] vcf
     Array[File] vcf_index
-    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.5"
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
     String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain
     String reference = "GCA_016772135" # Optional, defaults to accession reference 
     Int disk_size = 50
@@ -16,7 +16,7 @@ task mycosnptree {
   command <<<
     date | tee DATE
     # mycosnp-nf does not have a version output
-    echo "mycosnp-nf 1.5" | tee MYCOSNPTREE_VERSION
+    echo "mycosnp-nf v1.6.3" | tee MYCOSNPTREE_VERSION
 
     vcf_array=(~{sep=' ' vcf})
     vcf_array_len=$(echo "${#vcf[@]}")
@@ -73,6 +73,10 @@ task mycosnptree {
     else
       exit 1
     fi
+
+    mv "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nh" "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nwk"
+    mv "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nh" "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nwk"
+    mv "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nh" "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nwk"
   >>>
   output {
     String mycosnptree_version = read_string("MYCOSNPTREE_VERSION")
@@ -80,9 +84,10 @@ task mycosnptree {
     String analysis_date = read_string("DATE")
     String reference_strain = strain
     String reference_name = read_string("REFERENCE_NAME")
-    File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nh"
-    File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nh"
-    File mycosnptree_iqtree_tree = "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nh"
+    File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nwk"
+    File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nwk"
+    File mycosnptree_iqtree_tree = "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nwk"
+    File mycosnptree_quicksnp_tree = "mycosnptree/results/combined/phylogeny/quicksnp/quicksnp_phylogeny.nwk"
     File mycosnptree_alignment = "mycosnptree/results/combined/vcf-to-fasta/vcf-to-fasta.fasta"
     File mycosnptree_snpdists = "mycosnptree/results/combined/snpdists/combined.tsv"
     File mycosnptree_full_results = "mycosnptree.tar.gz"
@@ -93,7 +98,7 @@ task mycosnptree {
     memory: "~{memory} GB"
     cpu: cpu
     disks: "local-disk " + disk_size + " SSD"
-    maxRetries: 3
+    maxRetries: 1
     preemptible: 0
   }
 }
