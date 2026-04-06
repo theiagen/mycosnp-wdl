@@ -13,7 +13,7 @@ MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](htt
 
 ### MycoSNP-WDL v. MycoSNP-NF
 
-[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version. Patch release versions may be discrepant. For example, MycoSNP-WDL v1.6.2 contains source code MycoSNP-NF v1.6.3. 
+[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version. Patch release versions may be discrepant. For example, MycoSNP-WDL v1.6.2 contains source code MycoSNP-NF v1.6.3. Please see the table above for version coordination.
 
 <br/>
 
@@ -35,7 +35,7 @@ Note that `mycosnp_tree` requires at least 4 genomes that reference the same ref
 | Clade5 | GCA_016809505.1 |
 | Clade6 | GCA_032714025.1 |
 
-- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
+- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA to generate a reference directory.
 - **ref_tar** optionally takes a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
 ```
@@ -77,9 +77,9 @@ data/reference
 | mycosnp | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
 | mycosnp | **reference** | String | Reference clade | "Clade1" | Optional |
-| mycosnp | **sample_ploidy** | Int | 1 | Ploidy of sample (GATK) | Optional |
 | mycosnp_variants | **ref_fasta** | File | Reference FASTA file | | Optional |
 | mycosnp_variants | **ref_tar** | File | Reference gzipped compressed tarchive | | Optional |
+| mycosnp | **sample_ploidy** | Int | 1 | Ploidy of sample (GATK) | Optional |
 | version_capture | **timezone** | String | Alternative timezone | | Optional |
 
 </div>
@@ -116,7 +116,7 @@ data/reference
 | reads_mapped | Int | Number of reads mapped |
 | reference_length_coverage_after_trimming | Float | Reference length coverage after trimming |
 | reference_length_coverage_before_trimming | Float | Reference length coverage before trimming |
-| reference_name | String | Name of the reference genome used |
+| reference_name | String | Name of the reference clade/input used |
 | unpaired_reads_after_trimming | Int | Number of unpaired reads after trimming |
 | unpaired_reads_after_trimming_percent | String | Percentage of unpaired reads after trimming |
 | vcf | File | Compressed variant call format (VCF) file depicting SNPs |
@@ -169,6 +169,6 @@ NOTE: At least four samples, including reference, are required
 | mycosnp_tree_version | String | Version of the    `mycosnp_tree` WDL workflow |
 | mycosnp_version | String | Version of MycoSNP |
 | mycosnptree_snpdists | File | SNP distances file |
-| reference_name | String | Name of the reference |
+| reference_name | String | Name of the reference clade/input used |
 
 </div>
