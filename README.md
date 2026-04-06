@@ -26,7 +26,7 @@ Note that `mycosnp_tree` requires at least 4 genomes that reference the same ref
 
 - **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). The default is `Clade1`. These references are derived from GenBank/RefSeq assemblies:
 
-| **Clade Input** | **Assembly Accession** |
+| **Reference Input** | **Assembly Accession** |
 |---|---|
 | Clade1 | GCA_016772135.1 |
 | Clade2 | GCF_003013715.1 |
