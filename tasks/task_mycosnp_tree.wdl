@@ -40,7 +40,7 @@ task mycosnptree {
         echo "Using user-provided FASTA: ~{ref_fasta}" 
         cp ~{ref_fasta} /reference/custom_ref.fa 
         ref_param="--fasta /reference/custom_ref.fa"
-        ref_name="custom_ref.fa"
+        ref_name=$(basename "~{ref_fasta}" .fa)
     else 
         echo "Using built-in reference directory: /reference/~{reference}"
         ref_param="--ref_dir /reference/~{reference}"

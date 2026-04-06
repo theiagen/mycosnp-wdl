@@ -35,7 +35,7 @@ task mycosnp {
         echo "Using user-provided FASTA: ~{ref_fasta}"
         cp ~{ref_fasta} /reference/custom_ref.fa
         ref_param="--fasta /reference/custom_ref.fa"
-        ref_name=$(basename "~{ref_fasta}")
+        ref_name=$(basename "~{ref_fasta}" .fa)
     else
         echo "Using predefined reference: /reference/~{reference}"
         ref_param="--ref_dir /reference/"~{reference}
