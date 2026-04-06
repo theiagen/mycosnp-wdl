@@ -77,8 +77,8 @@ data/reference
 | mycosnp | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
 | mycosnp | **reference** | String | Reference clade | "Clade1" | Optional |
-| mycosnp_variants | **ref_fasta** | File | Reference FASTA file | | Optional |
-| mycosnp_variants | **ref_tar** | File | Reference gzipped compressed tarchive | | Optional |
+| mycosnp | **ref_fasta** | File | Reference FASTA file | | Optional |
+| mycosnp | **ref_tar** | File | Reference gzipped compressed tarchive | | Optional |
 | mycosnp | **sample_ploidy** | Int | 1 | Ploidy of sample (GATK) | Optional |
 | version_capture | **timezone** | String | Alternative timezone | | Optional |
 
@@ -142,12 +142,12 @@ NOTE: At least four samples, including reference, are required
 |---|---|---|---|---|---|
 | mycosnp_tree | **vcf** | Array[File] | VCF files (.vcf.gz) containing SNP data for phylogenetic analysis. These files can be generated from `wf_mycosnp_variants.wdl` |  | Required |
 | mycosnp_tree | **vcf_index** | Array[File] | Index files for the VCF files |  | Required |
-| mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | mycosnptree | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnptree | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
 | mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2" | Optional |
 | mycosnptree | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "Clade1" | Optional |
+| mycosnptree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | version_capture | **timezone** | String | Alternative timezone | | Optional |
 
 </div>
