@@ -4,8 +4,8 @@
 
 | **Workflow Type** | **Applicable Kingdom** | **MycoSNP-WDL version** | **MycoSNP-NF Version** | **Command-line Compatibility** | **Workflow Level** |
 |---|---|---|---|---|---|
-| mycosnp_variants | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Sample-level |
-| mycosnp_tree | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Set-level |
+| mycosnp_variants | Fungi | v1.6.2-wdl | v1.6.3 | Yes | Sample-level |
+| mycosnp_tree | Fungi | v1.6.2-wdl | v1.6.3 | Yes | Set-level |
 
 
 ## MycoSNP-WDL
@@ -13,7 +13,7 @@ MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](htt
 
 ### MycoSNP-WDL v. MycoSNP-NF
 
-[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version. Patch release versions may be discrepant. For example, MycoSNP-WDL v1.6.3 contains source code MycoSNP-NF v1.6.1. 
+[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version. Patch release versions may be discrepant. For example, MycoSNP-WDL v1.6.2 contains source code MycoSNP-NF v1.6.3. 
 
 <br/>
 
