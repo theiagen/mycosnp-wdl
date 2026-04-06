@@ -5,7 +5,7 @@ task mycosnp {
     File read1
     File read2
     String samplename
-    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2"
     String reference = "Clade1"
     Int memory = 64
     Int cpu = 8

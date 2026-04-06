@@ -62,9 +62,6 @@ data/reference
 ├── Clade6
 ```
 
-- **strain** optionally delineates the strain name for VCF gene name annotation. MycoSNP currently only annotates with respect to the default strain, "B11205", so changing this option will simply bypass VCF annotation.
-
-
 <div class="searchable-table" markdown="1">
 
 | **Terra Task Name** | **Variable** | **Type** | **Description** | **Default Value** | **Terra Status** |
@@ -76,12 +73,11 @@ data/reference
 | mycosnp | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnp | **debug** | Boolean | If true, keeps `.nextflow/` and `work/` directories | false | Optional |
 | mycosnp | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
-| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3" | Optional |
+| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2" | Optional |
 | mycosnp | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
-| mycosnp | **reference** | String | Reference clade | "GCA_016772135" | Optional |
+| mycosnp | **reference** | String | Reference clade | "Clade1" | Optional |
 | mycosnp | **sample_ploidy** | Int | 1 | Ploidy of sample (GATK) | Optional |
-| mycosnp | **strain** | String | Reference strain | "B11205" | Optional |
 | mycosnp_variants | **ref_fasta** | File | Reference FASTA file | | Optional |
 | mycosnp_variants | **ref_tar** | File | Reference gzipped compressed tarchive | | Optional |
 | version_capture | **timezone** | String | Alternative timezone | | Optional |
@@ -121,7 +117,6 @@ data/reference
 | reference_length_coverage_after_trimming | Float | Reference length coverage after trimming |
 | reference_length_coverage_before_trimming | Float | Reference length coverage before trimming |
 | reference_name | String | Name of the reference genome used |
-| reference_strain | String | Reference strain used |
 | unpaired_reads_after_trimming | Int | Number of unpaired reads after trimming |
 | unpaired_reads_after_trimming_percent | String | Percentage of unpaired reads after trimming |
 | vcf | File | Compressed variant call format (VCF) file depicting SNPs |
@@ -140,7 +135,6 @@ NOTE: At least four samples, including reference, are required
 
 - **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference).
 - **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
-- **strain** is passed to output but does not change workflow function.
 
 <div class="searchable-table" markdown="1">
 
@@ -151,10 +145,9 @@ NOTE: At least four samples, including reference, are required
 | mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | mycosnptree | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnptree | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
-| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3" | Optional |
+| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2" | Optional |
 | mycosnptree | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
-| mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "GCA_016772135" | Optional |
-| mycosnptree | **strain** | String | mycosnp-nf reference strain name | "B11205" | Optional |
+| mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "Clade1" | Optional |
 | version_capture | **timezone** | String | Alternative timezone | | Optional |
 
 </div>
@@ -177,6 +170,5 @@ NOTE: At least four samples, including reference, are required
 | mycosnp_version | String | Version of MycoSNP |
 | mycosnptree_snpdists | File | SNP distances file |
 | reference_name | String | Name of the reference |
-| reference_strain | String | Reference strain used |
 
 </div>

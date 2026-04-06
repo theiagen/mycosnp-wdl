@@ -4,7 +4,7 @@ task mycosnptree {
   input {
     Array[File] vcf
     Array[File] vcf_index
-    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2"
     String reference = "Clade1"
     Int disk_size = 50
     Int cpu = 4
