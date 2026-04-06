@@ -6,7 +6,6 @@ task mycosnp {
     File read2
     String samplename
     String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
-    String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain so we output
     String reference = "GCA_016772135" # Optional, defaults to clade-specific reference
     Int memory = 64
     Int cpu = 8
@@ -113,7 +112,6 @@ task mycosnp {
     String mycosnp_version = read_string("MYCOSNP_VERSION")
     String mycosnp_docker = docker
     String analysis_date = read_string("DATE")
-    String reference_strain = strain
     String reference_name = read_string("REFERENCE_NAME")  
     Int reads_before_trimming = read_int("MYCOSNP_READS_BEFORE_TRIMMING")
     Float gc_before_trimming = read_float("MYCOSNP_GC_BEFORE_TRIMMING")

@@ -5,7 +5,6 @@ task mycosnptree {
     Array[File] vcf
     Array[File] vcf_index
     String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
-    String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain
     String reference = "GCA_016772135" # Optional, defaults to accession reference 
     Int disk_size = 50
     Int cpu = 4
@@ -82,7 +81,6 @@ task mycosnptree {
     String mycosnptree_version = read_string("MYCOSNPTREE_VERSION")
     String mycosnptree_docker = docker
     String analysis_date = read_string("DATE")
-    String reference_strain = strain
     String reference_name = read_string("REFERENCE_NAME")
     File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nwk"
     File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nwk"
