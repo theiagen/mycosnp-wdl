@@ -5,7 +5,7 @@ task mycosnptree {
     Array[File] vcf
     Array[File] vcf_index
     String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
-    String reference = "GCA_016772135" # Optional, defaults to accession reference 
+    String reference = "Clade1"
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32

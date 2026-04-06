@@ -6,7 +6,7 @@ task mycosnp {
     File read2
     String samplename
     String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
-    String reference = "GCA_016772135" # Optional, defaults to clade-specific reference
+    String reference = "Clade1"
     Int memory = 64
     Int cpu = 8
     Int disk_size = 100
