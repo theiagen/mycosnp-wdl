@@ -18,19 +18,28 @@ MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](htt
 <br/>
 
 ### wf_mycosnp_variants.wdl
-`mycosnp_variants` calls variants for inputted reads referencing the *C. auris* B11205 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade [data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), FASTA, or directory as described below.
+`mycosnp_variants` calls variants for inputted reads referencing the *C. auris* Clade I B11205 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade [data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), FASTA, or directory as described below.
 
 Note that `mycosnp_tree` requires at least 4 genomes that reference the same reference in `mycosnp_variants`.
 
 #### Inputs 
 
-- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). The default is `GCA_016772135`.
+- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). The default is `Clade1`. These references are derived from GenBank/RefSeq assemblies:
+
+| **Clade Input** | **Assembly Accession** |
+|---|---|
+| Clade1 | GCA_016772135.1 |
+| Clade2 | GCF_003013715.1 |
+| Clade3 | GCF_002775015.1 |
+| Clade4 | GCA_003014415.1 |
+| Clade5 | GCA_016809505.1 |
+| Clade6 | GCA_032714025.1 |
+
 - **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
 - **ref_tar** optionally takes a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
 ```
 data/reference
-├── B11221                      # Prebuilt clade directory
 ├── Clade1
 │   ├── bwa
 |   |   ├── bwa                 # BWA index for alignment 
@@ -51,7 +60,6 @@ data/reference
 ├── Clade4
 ├── Clade5
 ├── Clade6
-└── GCA_016772135               # Default reference
 ```
 
 - **strain** optionally delineates the strain name for VCF gene name annotation. MycoSNP currently only annotates with respect to the default strain, "B11205", so changing this option will simply bypass VCF annotation.
