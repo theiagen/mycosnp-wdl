@@ -78,18 +78,25 @@ task mycosnptree {
     mv "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nh" "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nwk"
   >>>
   output {
+    # run metadata
     String mycosnptree_version = read_string("MYCOSNPTREE_VERSION")
     String mycosnptree_docker = docker
     String analysis_date = read_string("DATE")
     String reference_name = read_string("REFERENCE_NAME")
+
+    # alignment/SNP data
+    File mycosnptree_alignment = "mycosnptree/results/combined/vcf-to-fasta/vcf-to-fasta.fasta"
+    File mycosnptree_snpdists = "mycosnptree/results/combined/snpdists/combined.tsv"
+    File mycosnptree_vcf_csv = "samples.csv"
+
+    # phylogenetic trees
     File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nwk"
     File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nwk"
     File mycosnptree_iqtree_tree = "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nwk"
     File mycosnptree_quicksnp_tree = "mycosnptree/results/combined/phylogeny/quicksnp/quicksnp_phylogeny.nwk"
-    File mycosnptree_alignment = "mycosnptree/results/combined/vcf-to-fasta/vcf-to-fasta.fasta"
-    File mycosnptree_snpdists = "mycosnptree/results/combined/snpdists/combined.tsv"
+
+    # full output
     File mycosnptree_full_results = "mycosnptree.tar.gz"
-    File mycosnptree_vcf_csv = "samples.csv"
   }
   runtime {
     docker: "~{docker}"
