@@ -29,8 +29,8 @@ Note that `mycosnp_tree` requires at least 4 genomes that reference the same ref
 | **Reference Input** | **Assembly Accession** |
 |---|---|
 | Clade1 | GCA_016772135.1 |
-| Clade2 | GCF_003013715.1 |
-| Clade3 | GCF_002775015.1 |
+| Clade2 | GCA_003013715.1 |
+| Clade3 | GCA_002775015.1 |
 | Clade4 | GCA_003014415.1 |
 | Clade5 | GCA_016809505.1 |
 | Clade6 | GCA_032714025.1 |
