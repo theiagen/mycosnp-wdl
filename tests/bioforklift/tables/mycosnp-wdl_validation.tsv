@@ -1,0 +1,14 @@
+entity:mycosnp-wdl_validation_id	cited_clade	read1	read2	srr_accession
+B11220	Clade2	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR3883452_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR3883452_2.fastq.gz	SRR3883452
+B11788	Clade4	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7140041_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7140041_2.fastq.gz	SRR7140041
+B11807	Clade4	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7140080_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7140080_2.fastq.gz	SRR7140080
+B12037	Clade3	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR10461253_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR10461253_2.fastq.gz	SRR10461253
+B12044	Clade1	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7909147_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7909147_2.fastq.gz	SRR7909147
+B12081	Clade2	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7909356_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7909356_2.fastq.gz	SRR7909356
+B12292	Clade4	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7140058_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7140058_2.fastq.gz	SRR7140058
+B12749	Clade1	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7909166_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7909166_2.fastq.gz	SRR7909166
+B12975	Clade1	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7909208_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR7909208_2.fastq.gz	SRR7909208
+B13463	Clade2	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR10461159_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR10461159_2.fastq.gz	SRR10461159
+B16451	Clade3	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR10461234_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR10461234_2.fastq.gz	SRR10461234
+B16457	Clade3	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR10461232_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR10461232_2.fastq.gz	SRR10461232
+F3485	Clade6	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR25455199_1.fastq.gz	gs://fc-89c00fb8-cb58-4502-86e6-b565a27c7763/reads/SRR25455199_2.fastq.gz	SRR25455199

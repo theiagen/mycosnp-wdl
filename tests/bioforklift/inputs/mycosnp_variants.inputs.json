@@ -1,0 +1,6 @@
+{
+  "mycosnp_variants.mycosnp.reference": "this.cited_clade",
+  "mycosnp_variants.read1": "this.read1",
+  "mycosnp_variants.read2": "this.read2",
+  "mycosnp_variants.samplename": "this.mycosnp-wdl_validation_id"
+}
