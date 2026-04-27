@@ -4,9 +4,8 @@ task mycosnptree {
   input {
     Array[File] vcf
     Array[File] vcf_index
-    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
-    String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain
-    String reference = "GCA_016772135" # Optional, defaults to accession reference 
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2"
+    String reference = "Clade1"
     Int disk_size = 50
     Int cpu = 4
     Int memory = 32
@@ -41,7 +40,7 @@ task mycosnptree {
         echo "Using user-provided FASTA: ~{ref_fasta}" 
         cp ~{ref_fasta} /reference/custom_ref.fa 
         ref_param="--fasta /reference/custom_ref.fa"
-        ref_name="custom_ref.fa"
+        ref_name=$(basename "~{ref_fasta}" .fa)
     else 
         echo "Using built-in reference directory: /reference/~{reference}"
         ref_param="--ref_dir /reference/~{reference}"
@@ -79,19 +78,25 @@ task mycosnptree {
     mv "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nh" "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nwk"
   >>>
   output {
+    # run metadata
     String mycosnptree_version = read_string("MYCOSNPTREE_VERSION")
     String mycosnptree_docker = docker
     String analysis_date = read_string("DATE")
-    String reference_strain = strain
     String reference_name = read_string("REFERENCE_NAME")
+
+    # alignment/SNP data
+    File mycosnptree_alignment = "mycosnptree/results/combined/vcf-to-fasta/vcf-to-fasta.fasta"
+    File mycosnptree_snpdists = "mycosnptree/results/combined/snpdists/combined.tsv"
+    File mycosnptree_vcf_csv = "samples.csv"
+
+    # phylogenetic trees
     File mycosnptree_rapidnj_tree = "mycosnptree/results/combined/phylogeny/rapidnj/rapidnj_phylogeny.nwk"
     File mycosnptree_fasttree_tree = "mycosnptree/results/combined/phylogeny/fasttree/fasttree_phylogeny.nwk"
     File mycosnptree_iqtree_tree = "mycosnptree/results/combined/phylogeny/iqtree/iqtree_phylogeny.nwk"
     File mycosnptree_quicksnp_tree = "mycosnptree/results/combined/phylogeny/quicksnp/quicksnp_phylogeny.nwk"
-    File mycosnptree_alignment = "mycosnptree/results/combined/vcf-to-fasta/vcf-to-fasta.fasta"
-    File mycosnptree_snpdists = "mycosnptree/results/combined/snpdists/combined.tsv"
+
+    # full output
     File mycosnptree_full_results = "mycosnptree.tar.gz"
-    File mycosnptree_vcf_csv = "samples.csv"
   }
   runtime {
     docker: "~{docker}"

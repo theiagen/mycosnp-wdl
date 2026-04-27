@@ -4,8 +4,8 @@
 
 | **Workflow Type** | **Applicable Kingdom** | **MycoSNP-WDL version** | **MycoSNP-NF Version** | **Command-line Compatibility** | **Workflow Level** |
 |---|---|---|---|---|---|
-| mycosnp_variants | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Sample-level |
-| mycosnp_tree | Fungi | v1.6.1-wdl | v1.6.3 | Yes | Set-level |
+| mycosnp_variants | Fungi | v1.6.2-wdl | v1.6.3 | Yes | Sample-level |
+| mycosnp_tree | Fungi | v1.6.2-wdl | v1.6.3 | Yes | Set-level |
 
 
 ## MycoSNP-WDL
@@ -13,24 +13,33 @@ MycoSNP-WDL is a repository comprised of WDL wrappers of [CDCGov/mycosnp-nf](htt
 
 ### MycoSNP-WDL v. MycoSNP-NF
 
-[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version. Patch release versions may be discrepant. For example, MycoSNP-WDL v1.6.3 contains source code MycoSNP-NF v1.6.1. 
+[MycoSNP-NF](https://github.com/CDCgov/mycosnp-nf) is the source Nextflow code for analysis. MycoSNP-WDL's version naming scheme intends to remain concordant with the MycoSNP-NF version contained ONLY to the minor release version. Patch release versions may be discrepant. For example, MycoSNP-WDL v1.6.2 contains source code MycoSNP-NF v1.6.3. Please see the table above for version coordination.
 
 <br/>
 
 ### wf_mycosnp_variants.wdl
-`mycosnp_variants` calls variants for inputted reads referencing the *C. auris* B11205 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade [data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), FASTA, or directory as described below.
+`mycosnp_variants` calls variants for inputted reads referencing the *C. auris* Clade I B11205 assembly accession [GCA_016772135](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016772135/) by default. Users can optionally reference a separate *C. auris* clade [data directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference), FASTA, or directory as described below.
 
 Note that `mycosnp_tree` requires at least 4 genomes that reference the same reference in `mycosnp_variants`.
 
 #### Inputs 
 
-- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). The default is `GCA_016772135`.
-- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
+- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). The default is `Clade1`. These references are derived from GenBank/RefSeq assemblies:
+
+| **Reference Input** | **Assembly Accession** |
+|---|---|
+| Clade1 | GCA_016772135.1 |
+| Clade2 | GCA_003013715.1 |
+| Clade3 | GCA_002775015.1 |
+| Clade4 | GCA_003014415.1 |
+| Clade5 | GCA_016809505.1 |
+| Clade6 | GCA_032714025.1 |
+
+- **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA to generate a reference directory.
 - **ref_tar** optionally takes a gzipped tarchive (`.tar.gz`) with the same directory structure as the provided reference clades:
 
 ```
 data/reference
-├── B11221                      # Prebuilt clade directory
 ├── Clade1
 │   ├── bwa
 |   |   ├── bwa                 # BWA index for alignment 
@@ -51,11 +60,7 @@ data/reference
 ├── Clade4
 ├── Clade5
 ├── Clade6
-└── GCA_016772135               # Default reference
 ```
-
-- **strain** optionally delineates the strain name for VCF gene name annotation. MycoSNP currently only annotates with respect to the default strain, "B11205", so changing this option will simply bypass VCF annotation.
-
 
 <div class="searchable-table" markdown="1">
 
@@ -68,14 +73,13 @@ data/reference
 | mycosnp | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnp | **debug** | Boolean | If true, keeps `.nextflow/` and `work/` directories | false | Optional |
 | mycosnp | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
-| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3" | Optional |
+| mycosnp | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2" | Optional |
 | mycosnp | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
 | mycosnp | **min_depth** | Int | Min depth for a base to be called as the consensus sequence, otherwise it will be called as an N; set to 0 to disable | 10 | Optional |
-| mycosnp | **reference** | String | Reference clade | "GCA_016772135" | Optional |
+| mycosnp | **reference** | String | Reference clade | "Clade1" | Optional |
+| mycosnp | **ref_fasta** | File | Reference FASTA file | | Optional |
+| mycosnp | **ref_tar** | File | Reference gzipped compressed tarchive | | Optional |
 | mycosnp | **sample_ploidy** | Int | 1 | Ploidy of sample (GATK) | Optional |
-| mycosnp | **strain** | String | Reference strain | "B11205" | Optional |
-| mycosnp_variants | **ref_fasta** | File | Reference FASTA file | | Optional |
-| mycosnp_variants | **ref_tar** | File | Reference gzipped compressed tarchive | | Optional |
 | version_capture | **timezone** | String | Alternative timezone | | Optional |
 
 </div>
@@ -112,8 +116,7 @@ data/reference
 | reads_mapped | Int | Number of reads mapped |
 | reference_length_coverage_after_trimming | Float | Reference length coverage after trimming |
 | reference_length_coverage_before_trimming | Float | Reference length coverage before trimming |
-| reference_name | String | Name of the reference genome used |
-| reference_strain | String | Reference strain used |
+| reference_name | String | Name of the reference clade/input used |
 | unpaired_reads_after_trimming | Int | Number of unpaired reads after trimming |
 | unpaired_reads_after_trimming_percent | String | Percentage of unpaired reads after trimming |
 | vcf | File | Compressed variant call format (VCF) file depicting SNPs |
@@ -132,7 +135,6 @@ NOTE: At least four samples, including reference, are required
 
 - **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference).
 - **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
-- **strain** is passed to output but does not change workflow function.
 
 <div class="searchable-table" markdown="1">
 
@@ -140,13 +142,12 @@ NOTE: At least four samples, including reference, are required
 |---|---|---|---|---|---|
 | mycosnp_tree | **vcf** | Array[File] | VCF files (.vcf.gz) containing SNP data for phylogenetic analysis. These files can be generated from `wf_mycosnp_variants.wdl` |  | Required |
 | mycosnp_tree | **vcf_index** | Array[File] | Index files for the VCF files |  | Required |
-| mycosnp_tree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | mycosnptree | **cpu** | Int | Number of CPUs to allocate to the task | 8 | Optional |
 | mycosnptree | **disk_size** | Int | Amount of storage (in GB) to allocate to the task | 100 | Optional |
-| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3" | Optional |
+| mycosnptree | **docker** | String | The Docker container to use for the task | "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2" | Optional |
 | mycosnptree | **memory** | Int | Amount of memory/RAM (in GB) to allocate to the task | 64 | Optional |
-| mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "GCA_016772135" | Optional |
-| mycosnptree | **strain** | String | mycosnp-nf reference strain name | "B11205" | Optional |
+| mycosnptree | **reference** | String | Preexisting [reference directory](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference) | "Clade1" | Optional |
+| mycosnptree | **ref_fasta** | File | Reference FASTA input | | Optional |
 | version_capture | **timezone** | String | Alternative timezone | | Optional |
 
 </div>
@@ -168,7 +169,6 @@ NOTE: At least four samples, including reference, are required
 | mycosnp_tree_version | String | Version of the    `mycosnp_tree` WDL workflow |
 | mycosnp_version | String | Version of MycoSNP |
 | mycosnptree_snpdists | File | SNP distances file |
-| reference_name | String | Name of the reference |
-| reference_strain | String | Reference strain used |
+| reference_name | String | Name of the reference clade/input used |
 
 </div>

@@ -10,34 +10,36 @@ workflow mycosnp_tree {
   input {
     Array[File] vcf
     Array[File] vcf_index
-    File? ref_fasta  # Optional reference FASTA input
 
   }
   call mycosnptree_nf.mycosnptree {
     input:
       vcf = vcf,
-      vcf_index = vcf_index,
-      ref_fasta = ref_fasta
+      vcf_index = vcf_index
   }
   call versioning.version_capture{
     input:
   }
   output {
-    #Version Captures
+    # run metadata
     String mycosnp_tree_version = version_capture.mycosnpwdl_version
     String mycosnp_tree_analysis_date = version_capture.date
-    #MycoSNP QC and Assembly
     String mycosnp_version = mycosnptree.mycosnptree_version
     String mycosnp_docker = mycosnptree.mycosnptree_docker
-    String reference_strain = mycosnptree.reference_strain
     String reference_name = mycosnptree.reference_name
+
+    # alignment
+    File mycosnp_alignment = mycosnptree.mycosnptree_alignment
+    File mycosnptree_snpdists = mycosnptree.mycosnptree_snpdists
+    File mycosnp_tree_vcf_csv = mycosnptree.mycosnptree_vcf_csv
+
+    # phylogenetic analysis
     File mycosnp_rapidnj_tree = mycosnptree.mycosnptree_rapidnj_tree 
     File mycosnp_fastree_tree = mycosnptree.mycosnptree_fasttree_tree
     File mycosnp_iqtree_tree = mycosnptree.mycosnptree_iqtree_tree
     File mycosnp_quicksnp_tree = mycosnptree.mycosnptree_quicksnp_tree
-    File mycosnp_alignment = mycosnptree.mycosnptree_alignment
-    File mycosnptree_snpdists = mycosnptree.mycosnptree_snpdists
+
+    # full outputs
     File mycosnp_tree_full_results = mycosnptree.mycosnptree_full_results
-    File mycosnp_tree_vcf_csv = mycosnptree.mycosnptree_vcf_csv
   }
 }

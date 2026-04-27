@@ -5,9 +5,8 @@ task mycosnp {
     File read1
     File read2
     String samplename
-    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp:1.6.3"
-    String strain = "B11205" # this is not used by the NF pipeline as an input but internally is the reference strain so we output
-    String reference = "GCA_016772135" # Optional, defaults to clade-specific reference
+    String docker = "us-docker.pkg.dev/general-theiagen/theiagen/mycosnp-wdl:1.6.2"
+    String reference = "Clade1"
     Int memory = 64
     Int cpu = 8
     Int disk_size = 100
@@ -36,7 +35,7 @@ task mycosnp {
         echo "Using user-provided FASTA: ~{ref_fasta}"
         cp ~{ref_fasta} /reference/custom_ref.fa
         ref_param="--fasta /reference/custom_ref.fa"
-        ref_name=$(basename "~{ref_fasta}")
+        ref_name=$(basename "~{ref_fasta}" .fa)
     else
         echo "Using predefined reference: /reference/~{reference}"
         ref_param="--ref_dir /reference/"~{reference}
@@ -110,11 +109,21 @@ task mycosnp {
     echo "($(cat ASSEMBLY_SIZE) - $(cat NUMBER_NS)) / $(cat ASSEMBLY_SIZE) * 100" | xargs -I {} awk 'BEGIN {printf("%.2f\n", {})}' | tee PERCENT_REFERENCE_COVERAGE
   >>>
   output {
+    # run metadata
     String mycosnp_version = read_string("MYCOSNP_VERSION")
     String mycosnp_docker = docker
     String analysis_date = read_string("DATE")
-    String reference_strain = strain
     String reference_name = read_string("REFERENCE_NAME")  
+
+    # files outputted
+    File vcf = "~{samplename}/results/samples/~{samplename}/variant_calling/haplotypecaller/~{samplename}.g.vcf.gz"
+    File vcf_index = "~{samplename}/results/samples/~{samplename}/variant_calling/haplotypecaller/~{samplename}.g.vcf.gz.tbi"
+    File multiqc = "~{samplename}/results/multiqc/mycosnp/multiqc_report.html"
+    File bam_file = "~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.bam"
+    File bam_bai_file = "~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.bam.bai"
+    File full_results = "~{samplename}.tar.gz"
+
+    # statistics
     Int reads_before_trimming = read_int("MYCOSNP_READS_BEFORE_TRIMMING")
     Float gc_before_trimming = read_float("MYCOSNP_GC_BEFORE_TRIMMING")
     Float average_q_score_before_trimming = read_float("MYCOSNP_AVERAGE_Q_SCORE_BEFORE_TRIMMING")
@@ -134,12 +143,6 @@ task mycosnp {
     Float percent_reference_coverage = read_float("PERCENT_REFERENCE_COVERAGE")
     Int assembly_size = read_int("ASSEMBLY_SIZE")
     Int consensus_n_variant_min_depth = min_depth
-    File vcf = "~{samplename}/results/samples/~{samplename}/variant_calling/haplotypecaller/~{samplename}.g.vcf.gz"
-    File vcf_index = "~{samplename}/results/samples/~{samplename}/variant_calling/haplotypecaller/~{samplename}.g.vcf.gz.tbi"
-    File multiqc = "~{samplename}/results/multiqc/mycosnp/multiqc_report.html"
-    File bam_file = "~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.bam"
-    File bam_bai_file = "~{samplename}/results/samples/~{samplename}/finalbam/~{samplename}.bam.bai"
-    File full_results = "~{samplename}.tar.gz"
   }
   runtime {
     docker: "~{docker}"

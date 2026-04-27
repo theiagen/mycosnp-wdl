@@ -11,30 +11,34 @@ workflow mycosnp_variants {
     File read1
     File read2
     String samplename
-    File? ref_tar # Optional user-defined reference tar file
-    File? ref_fasta # Optional: User-defined FASTA file (will be indexed)
   }
   call mycosnp_nf.mycosnp {
     input:
       read1 = read1,
       read2 = read2,
-      samplename = samplename,
-      ref_tar = ref_tar,
-      ref_fasta = ref_fasta
+      samplename = samplename
   }
   call versioning.version_capture{
     input:
   }
   output {
-    #Version Captures
+    # run metadata
     String mycosnp_variants_version = version_capture.mycosnpwdl_version
     String mycosnp_variants_analysis_date = version_capture.date
-    #MycoSNP QC and Assembly
     String mycosnp_version = mycosnp.mycosnp_version
     String mycosnp_docker = mycosnp.mycosnp_docker
     String analysis_date = mycosnp.analysis_date
-    String reference_strain = mycosnp.reference_strain
     String reference_name = mycosnp.reference_name
+
+    # output files
+    File vcf = mycosnp.vcf
+    File vcf_index = mycosnp.vcf_index
+    File multiqc = mycosnp.multiqc
+    File myco_bam = mycosnp.bam_file
+    File myco_bam_bai = mycosnp.bam_bai_file
+    File full_results = mycosnp.full_results
+
+    # statistics
     Int reads_before_trimming = mycosnp.reads_before_trimming
     Float gc_before_trimming = mycosnp.gc_before_trimming
     Float average_q_score_before_trimming = mycosnp.average_q_score_before_trimming
@@ -54,11 +58,5 @@ workflow mycosnp_variants {
     Float percent_reference_coverage = mycosnp.percent_reference_coverage
     Int assembly_size = mycosnp.assembly_size
     Int consensus_n_variant_min_depth = mycosnp.consensus_n_variant_min_depth
-    File vcf = mycosnp.vcf
-    File vcf_index = mycosnp.vcf_index
-    File multiqc = mycosnp.multiqc
-    File myco_bam = mycosnp.bam_file
-    File myco_bam_bai = mycosnp.bam_bai_file
-    File full_results = mycosnp.full_results
   }
 }
