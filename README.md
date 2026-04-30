@@ -26,7 +26,7 @@ Note that `mycosnp_tree` requires at least 4 genomes that reference the same ref
 
 Inputting a reference genome is required to run `mycosnp_variants`. By default, the reference will be set to "Clade1". The reference can be set by *one* of the following inputs:
 
-- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). These references are derived from GenBank/RefSeq assemblies:
+- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). These references are derived from GenBank assemblies:
 
 | **Reference Input** | **Assembly Accession** |
 |---|---|
