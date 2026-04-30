@@ -1,4 +1,4 @@
 {
-  "mycosnp_tree.vcf": "this.mycosnp-wdl_validations.vcf",
-  "mycosnp_tree.vcf_index": "this.mycosnp-wdl_validations.vcf_index"
+  "mycosnp_tree.vcf": "this.mycosnp-wdl_validation_v1-6-1s.vcf",
+  "mycosnp_tree.vcf_index": "this.mycosnp-wdl_validation_v1-6-1s.vcf_index"
 }

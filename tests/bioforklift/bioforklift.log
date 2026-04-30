@@ -1,0 +1,82 @@
+2026-04-27 23:04:27,192 - bioforklift.scripts.launch - INFO - launch - Launching workflow: mycosnp_tree
+2026-04-27 23:04:27,715 - bioforklift.terra.terra_entities - INFO - download_table - Downloaded mycosnp-wdl_validation_v1-6-1 table from Terra workspace MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:04:27,715 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data to memory
+2026-04-27 23:04:27,716 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data complete, reading into DataFrame
+2026-04-27 23:04:27,721 - bioforklift.scripts.launch - INFO - prepare_entity_set - Filtering table mycosnp-wdl_validation_v1-6-1
+2026-04-27 23:04:44,726 - bioforklift.scripts.launch - INFO - launch - Launching workflow: mycosnp_tree
+2026-04-27 23:04:45,173 - bioforklift.terra.terra_entities - INFO - download_table - Downloaded mycosnp-wdl_validation_v1-6-1 table from Terra workspace MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:04:45,173 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data to memory
+2026-04-27 23:04:45,173 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data complete, reading into DataFrame
+2026-04-27 23:04:45,179 - bioforklift.scripts.launch - INFO - prepare_entity_set - Filtering table mycosnp-wdl_validation_v1-6-1
+2026-04-27 23:04:57,078 - bioforklift.scripts.launch - INFO - launch - Launching workflow: mycosnp_tree
+2026-04-27 23:04:57,514 - bioforklift.terra.terra_entities - INFO - download_table - Downloaded mycosnp-wdl_validation_v1-6-1 table from Terra workspace MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:04:57,514 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data to memory
+2026-04-27 23:04:57,514 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data complete, reading into DataFrame
+2026-04-27 23:04:57,520 - bioforklift.scripts.launch - INFO - prepare_entity_set - Filtering table mycosnp-wdl_validation_v1-6-1
+2026-04-27 23:04:57,526 - bioforklift.scripts.launch - INFO - prepare_entity_set - Samples filtered for submission:
+	B12044
+	B12749
+	B12975
+2026-04-27 23:04:57,527 - bioforklift.terra.terra_entities - INFO - create_entity_set - Posting new entity set mycosnp-wdl_validation_v1-6-1_set_20260427_230457 to Terra for MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:04:57,628 - bioforklift.scripts.launch - INFO - prepare_entity_set - mycosnp-wdl_validation_v1-6-1 entity set created successfully
+2026-04-27 23:04:57,630 - bioforklift.terra.terra_methods - INFO - overwrite_method_config - Uploading workspace method configuration: mycosnp_tree to project: theiagen-training-workspaces
+2026-04-27 23:04:58,080 - terra_client.py - ERROR - _http_request - Request to PUT https://api.firecloud.org/api/workspaces/theiagen-training-workspaces/MycoSNP-WDL_Validation_v1-6-1/method_configs/theiagen-training-workspaces/mycosnp_tree failed with status code 404
+2026-04-27 23:04:58,080 - terra_client.py - ERROR - _handle_response_error - Terra Firecloud API error: Cannot get dockstore://github.com%2Ftheiagen%2Fpublic_health_bioinformatics%2Fmycosnp_tree/main from method repo.
+2026-04-27 23:05:25,206 - bioforklift.scripts.launch - INFO - launch - Launching workflow: MycoSNP_Tree
+2026-04-27 23:05:25,613 - bioforklift.terra.terra_entities - INFO - download_table - Downloaded mycosnp-wdl_validation_v1-6-1 table from Terra workspace MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:05:25,613 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data to memory
+2026-04-27 23:05:25,613 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data complete, reading into DataFrame
+2026-04-27 23:05:25,619 - bioforklift.scripts.launch - INFO - prepare_entity_set - Filtering table mycosnp-wdl_validation_v1-6-1
+2026-04-27 23:05:25,620 - bioforklift.scripts.launch - INFO - prepare_entity_set - Samples filtered for submission:
+	B12044
+	B12749
+	B12975
+2026-04-27 23:05:25,621 - bioforklift.terra.terra_entities - INFO - create_entity_set - Posting new entity set mycosnp-wdl_validation_v1-6-1_set_20260427_230525 to Terra for MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:05:25,840 - bioforklift.scripts.launch - INFO - prepare_entity_set - mycosnp-wdl_validation_v1-6-1 entity set created successfully
+2026-04-27 23:05:25,842 - bioforklift.terra.terra_methods - INFO - overwrite_method_config - Uploading workspace method configuration: MycoSNP_Tree to project: theiagen-training-workspaces
+2026-04-27 23:05:26,175 - terra_client.py - ERROR - _http_request - Request to PUT https://api.firecloud.org/api/workspaces/theiagen-training-workspaces/MycoSNP-WDL_Validation_v1-6-1/method_configs/theiagen-training-workspaces/MycoSNP_Tree failed with status code 404
+2026-04-27 23:05:26,175 - terra_client.py - ERROR - _handle_response_error - Terra Firecloud API error: Cannot get dockstore://github.com%2Ftheiagen%2Fpublic_health_bioinformatics%2FMycoSNP_Tree/main from method repo.
+2026-04-27 23:06:06,831 - bioforklift.scripts.launch - INFO - launch - Launching workflow: MycoSNP_Tree
+2026-04-27 23:06:15,353 - bioforklift.terra.terra_entities - INFO - download_table - Downloaded mycosnp-wdl_validation_v1-6-1 table from Terra workspace MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:06:15,354 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data to memory
+2026-04-27 23:06:15,355 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data complete, reading into DataFrame
+2026-04-27 23:06:15,360 - bioforklift.scripts.launch - INFO - prepare_entity_set - Filtering table mycosnp-wdl_validation_v1-6-1
+2026-04-27 23:06:15,361 - bioforklift.scripts.launch - INFO - prepare_entity_set - Samples filtered for submission:
+	B12044
+	B12749
+	B12975
+2026-04-27 23:06:15,362 - bioforklift.terra.terra_entities - INFO - create_entity_set - Posting new entity set mycosnp-wdl_validation_v1-6-1_set_20260427_230606 to Terra for MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:06:15,560 - bioforklift.scripts.launch - INFO - prepare_entity_set - mycosnp-wdl_validation_v1-6-1 entity set created successfully
+2026-04-27 23:06:15,562 - bioforklift.terra.terra_methods - INFO - overwrite_method_config - Uploading workspace method configuration: MycoSNP_Tree to project: theiagen-training-workspaces
+2026-04-27 23:06:16,276 - bioforklift.terra.terra_methods - INFO - method_config_validate - Validating workspace method configuration: MycoSNP_Tree from project: theiagen-training-workspaces
+2026-04-27 23:06:16,639 - bioforklift.terra.terra_methods - ERROR - method_config_validate - MethodConfig validation errors found:
+- extraInputs: ['mycosnp_tree.samplename']
+2026-04-27 23:13:08,477 - bioforklift.scripts.launch - INFO - launch - Launching workflow: MycoSNP_Tree
+2026-04-27 23:13:08,899 - bioforklift.terra.terra_entities - INFO - download_table - Downloaded mycosnp-wdl_validation_v1-6-1 table from Terra workspace MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:13:08,899 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data to memory
+2026-04-27 23:13:08,900 - bioforklift.terra.utils - INFO - stream_terra_table - Streaming data complete, reading into DataFrame
+2026-04-27 23:13:08,906 - bioforklift.scripts.launch - INFO - prepare_entity_set - Filtering table mycosnp-wdl_validation_v1-6-1
+2026-04-27 23:13:08,907 - bioforklift.scripts.launch - INFO - prepare_entity_set - Samples filtered for submission:
+	B12044
+	B12749
+	B12975
+2026-04-27 23:13:08,908 - bioforklift.terra.terra_entities - INFO - create_entity_set - Posting new entity set mycosnp-wdl_validation_v1-6-1_set_20260427_231308 to Terra for MycoSNP-WDL_Validation_v1-6-1
+2026-04-27 23:13:09,228 - bioforklift.scripts.launch - INFO - prepare_entity_set - mycosnp-wdl_validation_v1-6-1 entity set created successfully
+2026-04-27 23:13:09,230 - bioforklift.terra.terra_methods - INFO - overwrite_method_config - Uploading workspace method configuration: MycoSNP_Tree to project: theiagen-training-workspaces
+2026-04-27 23:13:09,710 - bioforklift.terra.terra_methods - INFO - method_config_validate - Validating workspace method configuration: MycoSNP_Tree from project: theiagen-training-workspaces
+2026-04-27 23:13:10,225 - terra_submissions.py - INFO - submit_workflow - Submitting workflow with config:
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - methodConfigurationNamespace: theiagen-training-workspaces
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - methodConfigurationName: MycoSNP_Tree
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - entityType: mycosnp-wdl_validation_v1-6-1_set
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - entityName: mycosnp-wdl_validation_v1-6-1_set_20260427_231308
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - expression: this.mycosnp-wdl_validation_v1-6-1s
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - useCallCache: False
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - deleteIntermediateOutputFiles: False
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - useReferenceDisks: False
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - memoryRetryMultiplier: 1.0
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - workflowFailureMode: NoNewCalls
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - userComment: test set launch, not for validation
+2026-04-27 23:13:10,226 - terra_submissions.py - INFO - submit_workflow - ignoreEmptyOutputs: False
+2026-04-27 23:13:10,753 - bioforklift.scripts.launch - INFO - launch_job - {'header': {'entityType': 'mycosnp-wdl_validation_v1-6-1', 'inputExpressions': [{'expression': 'this.mycosnp-wdl_validation_v1-6-1s.vcf', 'wdlName': 'mycosnp_tree.vcf'}, {'expression': 'this.mycosnp-wdl_validation_v1-6-1s.vcf_index', 'wdlName': 'mycosnp_tree.vcf_index'}]}, 'request': {'deleteIntermediateOutputFiles': False, 'entityName': 'mycosnp-wdl_validation_v1-6-1_set_20260427_231308', 'entityType': 'mycosnp-wdl_validation_v1-6-1_set', 'expression': 'this.mycosnp-wdl_validation_v1-6-1s', 'ignoreEmptyOutputs': False, 'memoryRetryMultiplier': 1.0, 'methodConfigurationName': 'MycoSNP_Tree', 'methodConfigurationNamespace': 'theiagen-training-workspaces', 'monitoringImage': None, 'monitoringImageScript': None, 'monitoringScript': None, 'useCallCache': False, 'useReferenceDisks': False, 'userComment': 'test set launch, not for validation', 'workflowFailureMode': 'NoNewCalls'}, 'status': 'Submitted', 'submissionDate': '2026-04-27T23:13:10.694Z', 'submissionId': 'b71160e2-0b1a-4109-9740-528ac346eff9', 'submitter': 'zachary.konkel@theiagen.com', 'workflows': [{'entityName': 'B12749', 'inputResolutions': [{'inputName': 'mycosnp_tree.vcf', 'value': []}, {'inputName': 'mycosnp_tree.vcf_index', 'value': []}]}, {'entityName': 'B12975', 'inputResolutions': [{'inputName': 'mycosnp_tree.vcf', 'value': []}, {'inputName': 'mycosnp_tree.vcf_index', 'value': []}]}, {'entityName': 'B12044', 'inputResolutions': [{'inputName': 'mycosnp_tree.vcf', 'value': []}, {'inputName': 'mycosnp_tree.vcf_index', 'value': []}]}]}
+2026-04-27 23:13:10,754 - terra_submissions.py - INFO - get_submission_status - Fetching status for submission ID: b71160e2-0b1a-4109-9740-528ac346eff9
+2026-04-27 23:13:10,888 - bioforklift.scripts.launch - INFO - launch_job - Submission URL: https://app.terra.bio/#workspaces/theiagen-training-workspaces/MycoSNP-WDL_Validation_v1-6-1/submission_history/b71160e2-0b1a-4109-9740-528ac346eff9

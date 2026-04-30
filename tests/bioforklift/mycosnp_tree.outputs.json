@@ -1,0 +1,15 @@
+{
+  "mycosnp_tree.mycosnp_alignment": "this.mycosnp_alignment",
+  "mycosnp_tree.mycosnp_docker": "this.mycosnp_docker",
+  "mycosnp_tree.mycosnp_fastree_tree": "this.mycosnp_fastree_tree",
+  "mycosnp_tree.mycosnp_iqtree_tree": "this.mycosnp_iqtree_tree",
+  "mycosnp_tree.mycosnp_quicksnp_tree": "this.mycosnp_quicksnp_tree",
+  "mycosnp_tree.mycosnp_rapidnj_tree": "this.mycosnp_rapidnj_tree",
+  "mycosnp_tree.mycosnp_tree_analysis_date": "this.mycosnp_tree_analysis_date",
+  "mycosnp_tree.mycosnp_tree_full_results": "this.mycosnp_tree_full_results",
+  "mycosnp_tree.mycosnp_tree_vcf_csv": "this.mycosnp_tree_vcf_csv",
+  "mycosnp_tree.mycosnp_tree_version": "this.mycosnp_tree_version",
+  "mycosnp_tree.mycosnp_version": "this.mycosnp_version",
+  "mycosnp_tree.mycosnptree_snpdists": "this.mycosnptree_snpdists",
+  "mycosnp_tree.reference_name": "this.reference_name"
+}
