@@ -24,7 +24,9 @@ Note that `mycosnp_tree` requires at least 4 genomes that reference the same ref
 
 #### Inputs 
 
-- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). The default is `Clade1`. These references are derived from GenBank/RefSeq assemblies:
+Inputting a reference genome is required to run `mycosnp_variants`. By default, the reference will be set to "Clade1". The reference can be set by *one* of the following inputs:
+
+- **reference** optionally takes a presupplied reference clade directory depicted [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference). These references are derived from GenBank assemblies:
 
 | **Reference Input** | **Assembly Accession** |
 |---|---|
@@ -132,6 +134,8 @@ data/reference
 NOTE: At least four samples, including reference, are required
 
 #### Inputs
+
+Inputting a reference genome is required to run `mycosnp_tree`. By default, the reference will be set to "Clade1". The reference can be set by *one* of the following inputs:
 
 - **reference** optionally takes a presupplied reference clade directory delineated [here](https://github.com/theiagen/mycosnp-wdl/tree/main/data/reference).
 - **ref_fasta** optionally takes a reference FASTA (requires suffix `.fa`) that will be indexed via BWA and generate a reference directory.
